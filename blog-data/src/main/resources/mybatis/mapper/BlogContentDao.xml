@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jxufe.dao.BlogContentDao">
+  <resultMap id="BaseResultMap" type="cn.jxufe.bean.BlogContent">
+    <result column="blog_id" jdbcType="INTEGER" property="blogId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.jxufe.bean.BlogContent">
+    insert into blog_content (blog_id, content)
+    values (#{blogId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jxufe.bean.BlogContent">
+    insert into blog_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

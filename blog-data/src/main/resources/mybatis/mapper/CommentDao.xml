@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jxufe.dao.CommentDao">
+  <resultMap id="BaseResultMap" type="cn.jxufe.bean.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="blog_id" jdbcType="INTEGER" property="blogId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="reply_id" jdbcType="INTEGER" property="replyId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content, blog_id, user_id, reply_id, parent_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+    limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+    limit 1
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.jxufe.bean.Comment" useGeneratedKeys="true">
+    insert into comment (content, blog_id, user_id,
+      reply_id, parent_id, create_time
+      )
+    values (#{content,jdbcType=VARCHAR}, #{blogId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+      #{replyId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.jxufe.bean.Comment" useGeneratedKeys="true">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="content != null">
+        content,
+      </if>
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="replyId != null">
+        reply_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="blogId != null">
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null">
+        #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jxufe.bean.Comment">
+    update comment
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="blogId != null">
+        blog_id = #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null">
+        reply_id = #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+    limit 1
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jxufe.bean.Comment">
+    update comment
+    set content = #{content,jdbcType=VARCHAR},
+      blog_id = #{blogId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      reply_id = #{replyId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+    limit 1
+  </update>
+</mapper>

@@ -27,11 +27,17 @@
         </dependency>
         <dependency>
             <groupId>cn.jxufe</groupId>
-            <artifactId>blog-data</artifactId>
+            <artifactId>blog-biz</artifactId>
+        </dependency>
+
+        <!--   swagger     -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.jxufe</groupId>
-            <artifactId>blog-biz</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
     </dependencies>
 

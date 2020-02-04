@@ -4,7 +4,6 @@ import com.github.pagehelper.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +17,8 @@ import cn.jxufe.service.BlogService;
 import cn.jxufe.service.CorpusService;
 import cn.jxufe.service.UserService;
 import cn.jxufe.vo.homepage.HomepageVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 主页信息获取controller
@@ -27,10 +28,12 @@ import cn.jxufe.vo.homepage.HomepageVO;
  * @date 2020/1/12 19:43
  */
 @Controller
+@Api(tags = "用户主页数据接口")
 public class HomepageController {
     private UserService userService;
     private BlogService blogService;
     private CorpusService corpusService;
+
 
     @Autowired
     public HomepageController(UserService userService, BlogService blogService, CorpusService corpusService) {
@@ -39,7 +42,7 @@ public class HomepageController {
         this.corpusService = corpusService;
     }
 
-    @CrossOrigin
+    @ApiOperation(value = "根据userId获取用户信息、部分文章信息（list）、文集信息（list）")
     @ResponseBody
     @RequestMapping(value = "/home/{userId}", method = RequestMethod.GET)
     public NormalResult<HomepageVO> getHomepageInfo(@PathVariable("userId") Integer userId) {

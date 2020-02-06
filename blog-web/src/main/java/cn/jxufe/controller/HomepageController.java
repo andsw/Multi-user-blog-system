@@ -50,7 +50,7 @@ public class HomepageController {
         if (homepageUser == null) {
             return NormalResult.failureWithMessage("获取用户数据失败！");
         }
-        Page<Blog> blogs = blogService.listUserBlogByPagination(userId,0, 10);
+        Page<Blog> blogs = blogService.listUserBlogByPagination(userId,0, 5);
         Page<Corpus> corpuses = corpusService.listUserCorpusByPagination(userId, 0, 10);
 
         int blogNum = (int) blogs.getTotal();

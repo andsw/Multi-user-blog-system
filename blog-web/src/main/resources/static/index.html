@@ -27,7 +27,7 @@
   </head>
   <body>
     <div class="page">
-      <!-- Main Navbar-->
+      <!-- 主导航栏 -->
       <header class="header">
         <nav class="navbar">
           <!-- Search Box-->
@@ -113,9 +113,9 @@
         </nav>
       </header>
       <div class="page-content d-flex align-items-stretch">
-        <!-- Side Navbar -->
+        <!-- 侧边栏 -->
         <nav class="side-navbar">
-          <!-- Sidebar Header-->
+          <!-- 侧边栏 头部-->
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar" id="avatar"></div>
             <div class="title">
@@ -123,7 +123,8 @@
               <p id="email"></p>
             </div>
           </div>
-          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <!-- 侧边栏菜单部分-->
+          <span class="heading">Main</span>
           <ul class="list-unstyled">
                     <li class="active"><a href="index.html"> <i class="icon-home"></i>主页 </a></li>
                     <li><a href="tables.html"> <i class="icon-grid"></i>博客 </a></li>
@@ -160,7 +161,7 @@
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-red"><i class="icon-padnote"></i></div>
-                    <div class="title"><span>博客</span>
+                    <div class="title"><span style="cursor: pointer">博客 ></span>
                       <div class="progress">
                         <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
                       </div>
@@ -172,7 +173,7 @@
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-orange"><i class="icon-check"></i></div>
-                    <div class="title"><span>文集</span>
+                    <div class="title"><span style="cursor: pointer">文集 ></span>
                       <div class="progress">
                         <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
                       </div>
@@ -184,24 +185,24 @@
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-violet"><i class="icon-user"></i></div>
-                    <div class="title"><span>关注</span>
+                    <div class="title"><span style="cursor: pointer">关注 ></span>
                       <div class="progress">
                         <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
                       </div>
                     </div>
-                    <div class="number"><strong>25</strong></div>
+                    <div class="number"><strong id="subscriptionNum"></strong></div>
                   </div>
                 </div>
                 <!-- Item -->
                 <div class="col-xl-3 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-green"><i class="icon-bill"></i></div>
-                    <div class="title"><span>粉丝</span>
+                    <div class="title"><span style="cursor: pointer">收藏 ></span>
                       <div class="progress">
                         <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
                       </div>
                     </div>
-                    <div class="number"><strong>40</strong></div>
+                    <div class="number"><strong id="collectionNum"></strong></div>
                   </div>
                 </div>
               </div>
@@ -211,7 +212,7 @@
           <section class="">
             <div class="container-fluid">
               <!-- Project-->
-              <h4 class="no-margin-bottom text-gray">热门文章：</h4>
+              <h3 class="no-margin-bottom text-gray">热门文章：</h3>
               <div class="project" style="margin-top: 20px">
                 <div class="row bg-white has-shadow">
                   <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
@@ -312,20 +313,20 @@
                 <!-- Statistics -->
                 <div class="statistics col-lg-3 col-12">
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                    <div class="text"><strong>234</strong><br><small>总浏览量</small></div>
+                    <div class="icon bg-red"><i class="fa fa-eye"></i></div>
+                    <div class="text"><strong id="readNum"></strong><br><small>收获阅读</small></div>
                   </div>
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                    <div class="text"><strong>152</strong><br><small>收获喜欢</small></div>
+                    <div class="icon bg-green"><i class="fa fa-heart"></i></div>
+                    <div class="text"><strong id="likeNum"></strong><br><small>收获喜欢</small></div>
                   </div>
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong>147</strong><br><small>总字数</small></div>
+                    <div class="icon bg-orange"><i class="fa fa-fire"></i></div>
+                    <div class="text"><strong id="fanNum"></strong><br><small>粉丝</small></div>
                   </div>
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong>147</strong><br><small>总字数</small></div>
+                    <div class="icon bg-gray"><i class="fa fa-pencil"></i></div>
+                    <div class="text"><strong id="wordNum"></strong><br><small>总字数</small></div>
                   </div>
                 </div>
                 <!-- Line Chart            -->

@@ -16,6 +16,8 @@ public class Corpus implements Serializable {
 
     private Integer userId;
 
+    private Integer blogNum;
+
     /**
      * 文集创建时间
      */

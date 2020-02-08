@@ -9,11 +9,16 @@ import lombok.EqualsAndHashCode;
 
 /**
  * like
+ *
  * @author hsw
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class Like extends LikeKey implements Serializable {
+public class Like implements Serializable {
+
+    private Integer userId;
+
+    private Integer blogId;
+
     /**
      * 记住每篇文章记录赞的人要有上限，即只保存最新的几个用户点赞记录！
      */

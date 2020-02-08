@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import cn.jxufe.bean.Blog;
@@ -27,6 +28,21 @@ public class BlogServiceImpl implements BlogService {
     public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao) {
         this.blogDao = blogDao;
         this.blogContentDao = blogContentDao;
+    }
+
+    @Override
+    public Long getSumReadNumByUserId(Integer userId) {
+
+        return null;
+    }
+
+    @Override
+    public List<Blog> getTopNHottestBlog(Integer userId, int n) {
+        if (userId == null) {
+            throw new InvalidParameterException("userId is null");
+        }
+        PageHelper.startPage(0, 5);
+        return blogDao.selectBlogByUserIdSortedByReadNum(userId);
     }
 
     @Override

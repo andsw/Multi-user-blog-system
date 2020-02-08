@@ -13,8 +13,6 @@ public interface UserService {
      * @param userId 用户id
      * @return 信息
      */
-    User getHomepageUser(Integer userId);
-
-    int updateUserByUserIdSelective(User user);
+    User getUserInfo(Integer userId);
 
 }

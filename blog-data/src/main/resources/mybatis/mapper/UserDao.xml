@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.jxufe.dao.UserDao">
+
+  <!-- customize -->
+  <select id="selectByUserId" parameterType="Integer" resultType="cn.jxufe.bean.User">
+    select id,
+           email,
+           username,
+           avatar,
+           person_msg,
+           gender,
+           blog_num,
+           corpus_num,
+           word_num,
+           sub_num,
+           fan_num,
+           register_at
+    from user
+    where id = ${userId}
+    limit 1;
+  </select>
+
+  <!-- auto generate -->
   <resultMap id="BaseResultMap" type="cn.jxufe.bean.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="email" jdbcType="VARCHAR" property="email" />

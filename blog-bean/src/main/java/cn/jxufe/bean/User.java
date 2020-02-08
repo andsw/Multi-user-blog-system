@@ -1,17 +1,20 @@
 package cn.jxufe.bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
  * user
  *
- * @author
+ * @author hsw
  */
 @Data
 @AllArgsConstructor
@@ -50,6 +53,17 @@ public class User implements Serializable {
      * 文集数量
      */
     private Integer corpusNum;
+
+    private Long wordNum;
+
+    private Integer subNum;
+
+    private Integer fanNum;
+
+    /**
+     * 注册时间，不可以更改！！！只读
+     */
+    private Timestamp registerAt;
 
     private static final long serialVersionUID = 1L;
 }

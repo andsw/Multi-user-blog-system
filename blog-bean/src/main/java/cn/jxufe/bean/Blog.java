@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * blog
- * @author
+ * @author hsw
  */
 @Data
 public class Blog implements Serializable {
@@ -44,16 +44,6 @@ public class Blog implements Serializable {
      * 发布时间，每次更新后，变化成更新时间
      */
     private Timestamp releaseTime;
-
-    /**
-     * 编辑次数，即内容修改次数，默认0
-     */
-    private Byte editNum;
-
-    /**
-     * 点赞数
-     */
-    private Integer likeNum;
 
     private static final long serialVersionUID = 1L;
 }

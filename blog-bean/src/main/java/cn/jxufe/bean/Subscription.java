@@ -8,11 +8,21 @@ import lombok.EqualsAndHashCode;
 
 /**
  * subscription
- * @author
+ *
+ * @author hsw
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class Subscription extends SubscriptionKey implements Serializable {
+public class Subscription implements Serializable {
+    /**
+     * 被关注的用户
+     */
+    private Integer subId;
+
+    /**
+     * 粉丝id
+     */
+    private Integer fanId;
+
     /**
      * 关注时间
      */

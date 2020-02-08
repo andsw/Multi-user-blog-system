@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * blog_content
- * @author
+ * @author hsw
  */
 @Data
 public class BlogContent implements Serializable {

@@ -6,11 +6,15 @@ import lombok.Data;
 
 /**
  * collect
- * @author
+ * @author hsw
  */
 @Data
-public class Collect extends CollectKey implements Serializable {
-    private Timestamp collectTime;
+public class Collect implements Serializable {
+    private Integer blogId;
+
+    private Integer userId;
+
+    private Integer authorId;
 
     /**
      * 记住这个功能，平常很喜欢将某些特别喜欢文章转载为自己的，这里可以实现直接将文章收藏为自己的，保存在自己的文集中。前端可以选择是否展示。

@@ -3,6 +3,8 @@ package cn.jxufe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
+
 import cn.jxufe.bean.User;
 import cn.jxufe.dao.UserDao;
 import cn.jxufe.service.UserService;
@@ -14,19 +16,18 @@ import cn.jxufe.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    @Override
-    public User getHomepageUser(Integer userId) {
-        return userDao.selectByPrimaryKey(userId);
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
-    public int updateUserByUserIdSelective(User user) {
-        if (user == null) {
-            return 0;
+    public User getUserInfo(Integer userId) {
+        if (userId == null) {
+            throw new InvalidParameterException("userId is null");
         }
-        return userDao.updateByPrimaryKeySelective(user);
+        return userDao.selectByUserId(userId);
     }
 }

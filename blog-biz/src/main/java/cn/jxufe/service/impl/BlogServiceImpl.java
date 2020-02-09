@@ -37,7 +37,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getTopNHottestBlog(Integer userId, int n) {
+    public List<Blog> getTopHottestBlog(Integer userId, int n) {
         if (userId == null) {
             throw new InvalidParameterException("userId is null");
         }

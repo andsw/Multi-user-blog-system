@@ -70,10 +70,10 @@ public class HomepageController {
     public NormalResult<List<Blog>> getHomepageHottestBlog(@PathVariable("userId") Integer userId, @RequestParam("blogNum") Integer blogNum) {
         final List<Blog> topHottestBlog;
         try {
-            topHottestBlog = blogService.getTopNHottestBlog(userId, blogNum);
+            topHottestBlog = blogService.getTopHottestBlog(userId, blogNum);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            Arrays.stream(e.getStackTrace()).map(s -> s.toString() + "\n").forEach(System.out::println);
             return NormalResult.failureWithMessage("获取文章发生错误！");
         }
 

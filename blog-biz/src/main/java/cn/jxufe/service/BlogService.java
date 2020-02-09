@@ -14,7 +14,7 @@ public interface BlogService {
 
     Long getSumReadNumByUserId(Integer userId);
 
-    List<Blog> getTopNHottestBlog(Integer userId, int n);
+    List<Blog> getTopHottestBlog(Integer userId, int n);
 
     /**
      * 分页获取某用户的文章列表

@@ -39,3 +39,4 @@ mvnw
 .mvn/*
 HELP.md
 .classpath
+src/main/resources/templates/

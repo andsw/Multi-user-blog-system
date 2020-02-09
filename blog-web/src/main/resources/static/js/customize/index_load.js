@@ -2,7 +2,7 @@
 
 $(function(){
     // const userId = $.cookie("user_id");
-    request("/home/user/1", "get", null, false, function (result) {
+    request("/home/user/1", "get", null, true, function (result) {
         if (result.code === 200) {
             const usernameComponent = $('#username');
             const emailComponent = $('#email');
@@ -20,10 +20,12 @@ $(function(){
 
             $("#readNum").text(result.data.readNum);
             $("#collectionNum").text(result.data.collectionNum);
-            $("#likeNum").text(result.data.likeNum);
+            $("#likeNum").text(result.data.loveNum);
+
         } else {
             alert("获取用户信息发生错误！")
         }
+        $(".data-loading").hide()
     }, function () {
         alert('error')
     });

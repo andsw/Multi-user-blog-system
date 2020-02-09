@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.List;
 
 import cn.jxufe.bean.Blog;
@@ -46,12 +48,11 @@ public class HomepageController {
     @RequestMapping(value = "/home/user/{userId}", method = RequestMethod.GET)
     public NormalResult<HomepageUserVo> getHomepageUserInfo(@PathVariable("userId") Integer userId) {
         HomepageUserVo homepageUserVo;
-        try {
-            homepageUserVo = homepageService.getHomepageUserVoByUserId(userId);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return NormalResult.failureWithMessage("获取用户信息发生错误！");
-        }
+//        try {
+        homepageUserVo = homepageService.getHomepageUserVoByUserId(userId);
+//        } catch (Exception e) {
+//            return NormalResult.failureWithMessage("获取用户信息发生错误！");
+//        }
 
         return NormalResult.successWithData(homepageUserVo);
     }
@@ -60,20 +61,23 @@ public class HomepageController {
      * 主页加载第一步先获取用户信息，比较快，再获取文章等内容！
      *
      * @param userId userId
+     * @param blogNum 个人热门文章top n，此为n
      * @return blog info list
      */
     @ApiOperation(value = "主页的热门文章，也即是主页第二步获取信息")
     @ResponseBody
     @RequestMapping(value = "/home/blog/{userId}", method = RequestMethod.GET)
-    public NormalResult<List<Blog>> getHomepageHottestBlog(@PathVariable("userId") Integer userId) {
-        final List<Blog> topNHottestBlog;
+    public NormalResult<List<Blog>> getHomepageHottestBlog(@PathVariable("userId") Integer userId, @RequestParam("blogNum") Integer blogNum) {
+        final List<Blog> topHottestBlog;
         try {
-            topNHottestBlog = blogService.getTopNHottestBlog(userId, 5);
+            topHottestBlog = blogService.getTopNHottestBlog(userId, blogNum);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(Arrays.toString(e.getStackTrace()));
             return NormalResult.failureWithMessage("获取文章发生错误！");
         }
 
-        return NormalResult.successWithData(topNHottestBlog);
+        return NormalResult.successWithData(topHottestBlog);
     }
 
 }

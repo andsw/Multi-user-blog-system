@@ -9,5 +9,5 @@ import cn.jxufe.vo.homepage.HomepageUserVo;
  * @date 2020/2/7 10:00 下午
  */
 public interface HomepageService {
-    HomepageUserVo getHomepageUserVoByUserId(Integer UserId);
+    HomepageUserVo getHomepageUserVoByUserId(Integer userId);
 }

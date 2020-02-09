@@ -21,7 +21,7 @@ public class HomepageUserVo implements Serializable {
 
     /* others by calculation*/
     private Integer readNum;
-    private Integer likeNum;
+    private Integer loveNum;
     private Integer collectionNum;
     private Integer blogCollectedNum;
 

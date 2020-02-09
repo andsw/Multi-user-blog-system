@@ -11,7 +11,7 @@ mybatis:
 spring:
   datasource:
     druid:
-      driver-calss-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://47.101.223.154:3306/blog?autoReconnect=true&useUnicode=true&createDatabaseIfNotExist=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
       username: root
       password: 123456
@@ -27,16 +27,16 @@ spring:
           log-slow-sql: true
           slow-sql-millis: 2000
         # 监控过滤器
-        web-stat-filter:
-          enabled: true
-          exclusions:
-            - "*.js"
-            - "*.gif"
-            - "*.jpg"
-            - "*.png"
-            - "*.css"
-            - "*.ico"
-            - "/druid/*"
+      web-stat-filter:
+        enabled: true
+        exclusions:
+          - "*.js"
+          - "*.gif"
+          - "*.jpg"
+          - "*.png"
+          - "*.css"
+          - "*.ico"
+          - "/druid/*"
       stat-view-servlet:
         enabled: true
         url-pattern: /druid/*

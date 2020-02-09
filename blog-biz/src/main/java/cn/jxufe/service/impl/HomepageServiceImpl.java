@@ -7,6 +7,8 @@ import java.security.InvalidParameterException;
 
 import cn.jxufe.bean.User;
 import cn.jxufe.dao.BlogDao;
+import cn.jxufe.dao.BlogCollectionDao;
+import cn.jxufe.dao.LoveDao;
 import cn.jxufe.dao.UserDao;
 import cn.jxufe.service.HomepageService;
 import cn.jxufe.vo.homepage.HomepageUserVo;
@@ -20,11 +22,15 @@ public class HomepageServiceImpl implements HomepageService {
 
     private UserDao userDao;
     private BlogDao blogDao;
+    private BlogCollectionDao blogCollectionDao;
+    private LoveDao loveDao;
 
     @Autowired
-    public HomepageServiceImpl(UserDao userDao, BlogDao blogDao) {
+    public HomepageServiceImpl(UserDao userDao, BlogDao blogDao, BlogCollectionDao BlogCollectionDao, LoveDao loveDao) {
         this.userDao = userDao;
         this.blogDao = blogDao;
+        this.blogCollectionDao = BlogCollectionDao;
+        this.loveDao = loveDao;
     }
 
     /**
@@ -47,9 +53,13 @@ public class HomepageServiceImpl implements HomepageService {
         // blog view num
         final Integer blogReadNum = blogDao.selectSumReadNumByUserIdLimit(userId, user.getBlogNum());
 
-        // collect num
+        // blog collect count by other users
+        final Integer collectionNum = blogCollectionDao.selectCountByAuthorId(userId);
+        final Integer collectBlogNum = blogCollectionDao.selectCountByUserId(userId);
 
+        // thumb-up count given by other users
+        final Integer loveNum = loveDao.selectCountByAuthorId(userId);
 
-        return new HomepageUserVo(user, blogReadNum, 0, 0, 0);
+        return new HomepageUserVo(user, blogReadNum, loveNum, collectionNum, collectBlogNum);
     }
 }

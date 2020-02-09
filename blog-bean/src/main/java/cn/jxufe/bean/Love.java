@@ -1,23 +1,23 @@
 package cn.jxufe.bean;
 
-import org.apache.ibatis.type.Alias;
-
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * like
+ * love表
  *
  * @author hsw
  */
 @Data
-public class Like implements Serializable {
+public class Love implements Serializable {
 
     private Integer userId;
 
     private Integer blogId;
+
+    private Integer authorId;
 
     /**
      * 记住每篇文章记录赞的人要有上限，即只保存最新的几个用户点赞记录！

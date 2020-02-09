@@ -9,7 +9,7 @@ import lombok.Data;
  * @author hsw
  */
 @Data
-public class Collect implements Serializable {
+public class BlogCollection implements Serializable {
     private Integer blogId;
 
     private Integer userId;

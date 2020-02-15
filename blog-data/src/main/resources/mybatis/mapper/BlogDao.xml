@@ -3,7 +3,7 @@
 <mapper namespace="cn.jxufe.dao.BlogDao">
 
   <!-- customize -->
-  <select id="selectBlogByUserIdSortedByReadNum" resultType="cn.jxufe.bean.Blog" parameterType="integer">
+  <select id="selectBlogByUserIdSortedByReadNum" resultType="cn.jxufe.bean.Blog">
     select id,
            title,
            corpus_id,
@@ -12,6 +12,7 @@
            read_num,
            release_time
     from blog
+    where user_id = ${userId}
     order by read_num
   </select>
 

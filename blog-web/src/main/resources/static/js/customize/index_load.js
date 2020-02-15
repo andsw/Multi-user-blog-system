@@ -3,7 +3,8 @@
 $(function () {
     // const userId = $.cookie("user_id");
     const userId = 1;
-    let blog_num = 1000;
+    // 默认top 5 hottest blog
+    let blog_num = 5;
     // 加载用户数据信息
     request("/home/user/" + userId, "get", null, true, function (result) {
         if (result.code === 200) {
@@ -34,8 +35,7 @@ $(function () {
         alert('error')
     });
 
-    alert("/home/blog/" + userId + "?blogNum=" + blog_num);
-    request("/home/blog/" + userId + "?blogNum=" + blogNum, "get", null, true, function (result) {
+    request("/home/blog/" + userId + "?blogNum=" + blog_num, "get", null, true, function (result) {
         if (result.code === 200) {
             console.log(result.data);
         } else {

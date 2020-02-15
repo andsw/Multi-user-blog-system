@@ -41,7 +41,7 @@ public class BlogServiceImpl implements BlogService {
         if (userId == null) {
             throw new InvalidParameterException("userId is null");
         }
-        PageHelper.startPage(0, 5);
+        PageHelper.startPage(0, n);
         return blogDao.selectBlogByUserIdSortedByReadNum(userId);
     }
 

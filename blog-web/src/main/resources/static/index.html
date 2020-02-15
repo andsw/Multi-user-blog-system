@@ -235,93 +235,127 @@
             </div>
           </section>
 
-          <!-- 文章列表-->
+          <!-- 其他数据 和 文章列表-->
           <section class="">
-            <div class="container-fluid">
-              <h3 class="no-margin-bottom text-gray">热门文章：</h3>
-              <!-- 文章列表项-->
-              <div class="project" style="margin-top: 20px">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="img/project-1.jpg" alt="..." class="img-fluid"></div>
-                      <div class="text">
-                        <h5 class="h5">ACM----从1-10w（乱序）这10w个数中随机去除一个数，求出去除的是哪个数，要求时间O(n),-空间O(1)</h5><small>Lorem Ipsum Dolor</small>
-                      </div>
+            <div class="row container-fluid">
+              <div class="statistics col-lg-2 col-12">
+                <h4 class="text-gray">收获：</h4>
+                <div class="statistic d-flex align-items-center bg-white has-shadow">
+                  <div class="icon bg-red"><i class="fa fa-eye"></i></div>
+                  <div class="text">
+                    <div class="spinner-border text-danger data-loading" role="status">
+                      <span class="sr-only">Loading...</span>
                     </div>
-                    <div class="project-date"><span class="hidden-sm-down">Today at 4:24 AM</span></div>
+                    <strong id="readNum"></strong><br>
+                    <small>阅读</small>
                   </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
+                </div>
+                <div class="statistic d-flex align-items-center bg-white has-shadow">
+                  <div class="icon bg-green"><i class="fa fa-heart"></i></div>
+                  <div class="text">
+                    <div class="spinner-border text-success data-loading" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <strong id="likeNum"></strong><br>
+                    <small>喜欢</small>
+                  </div>
+                </div>
+                <div class="statistic d-flex align-items-center bg-white has-shadow">
+                  <div class="icon bg-orange"><i class="fa fa-fire"></i></div>
+                  <div class="text">
+                    <div class="spinner-border text-warning data-loading" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <strong id="fanNum"></strong><br>
+                    <small>粉丝</small>
+                  </div>
+                </div>
+                <div class="statistic d-flex align-items-center bg-white has-shadow">
+                  <div class="icon bg-gray"><i class="fa fa-pencil"></i></div>
+                  <div class="text">
+                    <div class="spinner-border text-dark data-loading" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <strong id="wordNum"></strong><br>
+                    <small>总字数</small>
+                  </div>
+                </div>
+              </div>
 
-                    <div class="comments"><i class="fa fa-comment-o"></i>20</div>
-                  </div>
-                </div>
-              </div>
-              <!-- 文章列表项-->
-              <div class="project">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="img/project-2.jpg" alt="..." class="img-fluid"></div>
-                      <div class="text">
-                        <h3 class="h4">Project Title</h3><small>Lorem Ipsum Dolor</small>
+              <div class="col-lg-10 col-12">
+                <h4 class="text-gray">热门博客：</h4>
+                <!-- 文章列表项-->
+                <div class="project">
+                  <div class="row bg-white has-shadow">
+                    <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
+                      <div class="project-title d-flex align-items-center">
+                        <div class="image has-shadow"><img src="img/project-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="text">
+                          <h3 class="h4">Project Title</h3>
+                          <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="project-date"><span class="hidden-sm-down">Today at 4:24 AM</span></div>
-                  </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
-                    <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
-                    <div class="comments"><i class="fa fa-comment-o"></i>20</div>
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 60%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
-                      </div>
+                    <div class="right-col col-lg-3 d-flex align-items-center">
+                      <div class="comments"><i class="fa fa-comment-o"></i>20</div>
+                      <div class="read"><i class="fa fa-eye"></i>188</div>
+                      <div class="like"><i class="fa fa-thumbs-up"></i>78</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 文章列表项-->
-              <div class="project">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="img/project-3.jpg" alt="..." class="img-fluid"></div>
-                      <div class="text">
-                        <h3 class="h4">Project Title</h3><small>Lorem Ipsum Dolor</small>
+                <!-- 文章列表项-->
+                <div class="project">
+                  <div class="row bg-white has-shadow">
+                    <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
+                      <div class="project-title d-flex align-items-center">
+                        <div class="image has-shadow"><img src="img/project-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="text">
+                          <h3 class="h4">Project Title</h3>
+                          <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="project-date"><span class="hidden-sm-down">Today at 4:24 AM</span></div>
-                  </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
-                    <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
-                    <div class="comments"><i class="fa fa-comment-o"></i>20</div>
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 50%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
-                      </div>
+                    <div class="right-col col-lg-3 d-flex align-items-center">
+                      <div class="comments"><i class="fa fa-comment-o"></i>20</div>
+                      <div class="read"><i class="fa fa-eye"></i>188</div>
+                      <div class="like"><i class="fa fa-thumbs-up"></i>78</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- 文章列表项-->
-              <div class="project">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="img/project-4.jpg" alt="..." class="img-fluid"></div>
-                      <div class="text">
-                        <h3 class="h4">Project Title</h3><small>Lorem Ipsum Dolor</small>
+                <!-- 文章列表项-->
+                <div class="project">
+                  <div class="row bg-white has-shadow">
+                    <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
+                      <div class="project-title d-flex align-items-center">
+                        <div class="image has-shadow"><img src="img/project-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="text">
+                          <h3 class="h4">Project Title</h3>
+                          <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="project-date"><span class="hidden-sm-down">Today at 4:24 AM</span></div>
+                    <div class="right-col col-lg-3 d-flex align-items-center">
+                      <div class="comments"><i class="fa fa-comment-o"></i>20</div>
+                      <div class="read"><i class="fa fa-eye"></i>188</div>
+                      <div class="like"><i class="fa fa-thumbs-up"></i>78</div>
+                    </div>
                   </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
-                    <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
-                    <div class="comments"><i class="fa fa-comment-o"></i>20</div>
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 50%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                </div>
+                <div class="project">
+                  <div class="row bg-white has-shadow">
+                    <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
+                      <div class="project-title d-flex align-items-center">
+                        <div class="image has-shadow"><img src="img/project-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="text">
+                          <h3 class="h4">Project Title</h3>
+                          <div class="time"><i class="fa fa-clock-o"></i>12:00 PM </div>
+                        </div>
                       </div>
+                    </div>
+                    <div class="right-col col-lg-3 d-flex align-items-center">
+                      <div class="comments"><i class="fa fa-comment-o"></i>20</div>
+                      <div class="read"><i class="fa fa-eye"></i>188</div>
+                      <div class="like"><i class="fa fa-thumbs-up"></i>78</div>
                     </div>
                   </div>
                 </div>
@@ -333,49 +367,6 @@
           <section class="projects no-padding-top">
             <div class="container-fluid">
               <div class="row">
-                <!-- Statistics -->
-                <div class="statistics col-lg-3 col-12">
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-eye"></i></div>
-                    <div class="text">
-                      <div class="spinner-border text-danger data-loading" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div>
-                      <strong id="readNum"></strong><br>
-                      <small>收获阅读</small>
-                    </div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-heart"></i></div>
-                    <div class="text">
-                      <div class="spinner-border text-success data-loading" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div>
-                      <strong id="likeNum"></strong><br>
-                      <small>收获喜欢</small>
-                    </div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-fire"></i></div>
-                    <div class="text">
-                      <div class="spinner-border text-warning data-loading" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div>
-                      <strong id="fanNum"></strong><br>
-                      <small>粉丝</small>
-                    </div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-gray"><i class="fa fa-pencil"></i></div>
-                    <div class="text">
-                      <div class="spinner-border text-dark data-loading" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div>
-                      <strong id="wordNum"></strong><br>
-                      <small>总字数</small>
-                    </div>
-                  </div>
-                </div>
                 <!-- Line Chart            -->
                 <div class="chart col-lg-6 col-12">
                   <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">

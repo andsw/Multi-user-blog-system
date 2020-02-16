@@ -3,8 +3,8 @@
 $(function () {
     // const userId = $.cookie("user_id");
     const userId = 1;
-    // 默认top 5 hottest blog
-    let blog_num = 5;
+    // 默认top 4 hottest blog
+    let blog_num = 4;
     // 加载用户数据信息
     request("/home/user/" + userId, "get", null, true, function (result) {
         if (result.code === 200) {
@@ -38,6 +38,7 @@ $(function () {
     request("/home/blog/" + userId + "?blogNum=" + blog_num, "get", null, true, function (result) {
         if (result.code === 200) {
             console.log(result.data);
+
         } else {
             alert("获取热门文章发生错误！")
         }

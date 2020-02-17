@@ -41,6 +41,16 @@ public class Blog implements Serializable {
     private Integer readNum;
 
     /**
+     * 点赞数
+     */
+    private Integer loveNum;
+
+    /**
+     * 评论数
+     */
+    private Integer commentNum;
+
+    /**
      * 发布时间，每次更新后，变化成更新时间
      */
     private Timestamp releaseTime;

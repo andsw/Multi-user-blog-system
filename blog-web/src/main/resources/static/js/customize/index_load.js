@@ -39,6 +39,39 @@ $(function () {
         if (result.code === 200) {
             console.log(result.data);
 
+            const data = result.data;
+
+            if (data.length === 0) {
+                $("#hottest_blogs_div").html("<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
+                                             + "                  <img src=\"img/customize/nothing_return.jpg\"\n"
+                                             + "                       alt=\"还没有博客哦，快来发表吧！\"\n"
+                                             + "                       class=\"offset-sm-3\">\n"
+                                             + "                </div>")
+            } else {
+                $("#hottest-blog-loading").hide();
+                $(data).each(function (index, blog) {
+                    $("#hottest_blogs_div").append(
+                        "<div class=\"project\">\n"
+                        + "  <div class=\"row bg-white has-shadow\">\n"
+                        + "    <div class=\"left-col col-lg-9 d-flex align-items-center justify-content-between\">\n"
+                        + "      <div class=\"project-title d-flex align-items-center\">\n"
+                        + "        <div class=\"image has-shadow\"><img src=\"img/project-2.jpg\" alt=\"...\" class=\"img-fluid\"></div>\n"
+                        + "         <div class=\"text\">\n"
+                        + "           <h4 class=\"h4\">" + blog.title + "</h4>\n"
+                        + "           <div class=\"time\"><i class=\"fa fa-clock-o\"></i>" + blog.releaseTime + "</div>\n"
+                        + "         </div>\n"
+                        + "       </div>\n"
+                        + "     </div>\n"
+                        + "     <div class=\"right-col col-lg-3 d-flex align-items-center\">\n"
+                        + "       <div class=\"comments\"><i class=\"fa fa-comment-o\"></i>" + blog.commentNum + "</div>\n"
+                        + "       <div class=\"read\"><i class=\"fa fa-eye\"></i>" + blog.readNum + "</div>\n"
+                        + "       <div class=\"like\"><i class=\"fa fa-thumbs-up\"></i>" + blog.loveNum + "</div>\n"
+                        + "     </div>\n"
+                        + "  </div>\n"
+                        + "</div>"
+                    )
+                });
+            }
         } else {
             alert("获取热门文章发生错误！")
         }

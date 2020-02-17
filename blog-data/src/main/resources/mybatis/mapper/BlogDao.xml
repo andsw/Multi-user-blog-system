@@ -10,10 +10,12 @@
            user_id,
            word_num,
            read_num,
+           love_num,
+           comment_num,
            release_time
     from blog
     where user_id = ${userId}
-    order by read_num
+    order by read_num desc
   </select>
 
   <select id="selectSumReadNumByUserIdLimit" resultType="java.lang.Integer">

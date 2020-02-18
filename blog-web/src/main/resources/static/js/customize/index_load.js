@@ -43,10 +43,10 @@ $(function () {
 
             if (data.length === 0) {
                 $("#hottest_blogs_div").html("<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
-                                             + "                  <img src=\"img/customize/nothing_return.jpg\"\n"
-                                             + "                       alt=\"还没有博客哦，快来发表吧！\"\n"
-                                             + "                       class=\"offset-sm-3\">\n"
-                                             + "                </div>")
+                                             + "  <img src=\"img/customize/nothing_return.jpg\"\n"
+                                             + "       alt=\"还没有博客哦，快来发表吧！\"\n"
+                                             + "       class=\"offset-sm-3\">\n"
+                                             + "</div>")
             } else {
                 $("#hottest-blog-loading").hide();
                 $(data).each(function (index, blog) {
@@ -57,7 +57,7 @@ $(function () {
                         + "      <div class=\"project-title d-flex align-items-center\">\n"
                         + "        <div class=\"image has-shadow\"><img src=\"img/project-2.jpg\" alt=\"...\" class=\"img-fluid\"></div>\n"
                         + "         <div class=\"text\">\n"
-                        + "           <h4 class=\"h4\">" + blog.title + "</h4>\n"
+                        + "           <a class=\"h5\" href='#'>" + blog.title + "</a>\n"
                         + "           <div class=\"time\"><i class=\"fa fa-clock-o\"></i>" + blog.releaseTime + "</div>\n"
                         + "         </div>\n"
                         + "       </div>\n"

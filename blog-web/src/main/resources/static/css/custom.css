@@ -153,3 +153,8 @@
     left: 300px;
     top: 88px;
 }
+
+/* 主页其他 */
+.statistics strong {
+    cursor: pointer;
+}

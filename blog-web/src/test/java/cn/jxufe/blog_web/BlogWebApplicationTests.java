@@ -15,7 +15,7 @@ class BlogWebApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(userDao.selectByPrimaryKey(1));
+        System.out.println(userDao.selectByUserId(1));
     }
 
 }

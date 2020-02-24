@@ -8,17 +8,7 @@ public interface UserDao {
 
     User selectByUserId(Integer userId);
 
-//    auto
+    Integer insertNewUser(User user);
 
     int deleteByPrimaryKey(Integer id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 }

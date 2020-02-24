@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
 
 /**
@@ -14,8 +15,18 @@ import cn.jxufe.service.UserService;
 public class UserServiceTest {
     @Autowired
     private UserService userService;
+
     @Test
     public void testGetUserInfo() {
         System.out.println(userService.getUserInfo(1));
+    }
+
+    @Test
+    public void testRegisterUser() {
+        try {
+            System.out.println(userService.registerUser("nobug", "985934131@qq.com", "xxxxxxx"));
+        } catch (RegisterException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

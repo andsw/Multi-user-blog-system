@@ -1,6 +1,7 @@
 package cn.jxufe.service;
 
 import cn.jxufe.bean.User;
+import cn.jxufe.exception.RegisterException;
 
 /**
  * @author hsw
@@ -15,4 +16,5 @@ public interface UserService {
      */
     User getUserInfo(Integer userId);
 
+    boolean registerUser(String username, String email, String password) throws RegisterException;
 }

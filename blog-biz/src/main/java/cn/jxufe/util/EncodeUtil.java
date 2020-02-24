@@ -67,7 +67,7 @@ public class EncodeUtil {
     }
 
     public static void main(String[] args) {
-        final String[] generate = generate("123456");
+        final String[] generate = generate("1");
         System.out.println(generate[0] + " " + generate[1]);
 
     }

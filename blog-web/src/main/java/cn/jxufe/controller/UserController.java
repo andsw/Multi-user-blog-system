@@ -14,11 +14,14 @@ import java.util.Arrays;
 import cn.jxufe.bean.User;
 import cn.jxufe.dto.NormalResult;
 import cn.jxufe.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author hsw
  * @date 2020/1/12 11:06
  */
+@Api(tags = "用户数据操作接口")
 @RestController
 public class UserController {
 
@@ -31,6 +34,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ApiOperation(value = "根据userId获取用户信息")
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     public NormalResult<User> getUserInfo(@PathVariable(name = "userId") Integer userId) {
         User user;

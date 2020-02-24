@@ -49,7 +49,10 @@ public class HomepageController {
     public NormalResult<HomepageUserVo> getHomepageUserInfo(@PathVariable("userId") Integer userId) {
         HomepageUserVo homepageUserVo;
 //        try {
+        long start = System.currentTimeMillis();
         homepageUserVo = homepageService.getHomepageUserVoByUserId(userId);
+        long end = System.currentTimeMillis();
+        System.out.println("get homepage info takes : " + (end - start) + " ms");
 //        } catch (Exception e) {
 //            return NormalResult.failureWithMessage("获取用户信息发生错误！");
 //        }

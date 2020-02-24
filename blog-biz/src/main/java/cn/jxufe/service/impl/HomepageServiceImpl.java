@@ -2,6 +2,7 @@ package cn.jxufe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.InvalidParameterException;
 
@@ -40,6 +41,7 @@ public class HomepageServiceImpl implements HomepageService {
      * @param userId userId需要判空
      * @return homepageUserVo
      */
+    @Transactional
     @Override
     public HomepageUserVo getHomepageUserVoByUserId(Integer userId) {
 

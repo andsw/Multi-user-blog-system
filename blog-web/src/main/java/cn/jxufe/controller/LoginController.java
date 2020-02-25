@@ -1,19 +1,21 @@
 package cn.jxufe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.servlet.http.HttpServletResponse;
 
+import cn.jxufe.bean.User;
 import cn.jxufe.dto.NormalResult;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
+import cn.jxufe.validation.group.LoginGroup;
+import cn.jxufe.validation.group.RegisterGroup;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -21,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
  * @date 2020/2/22 9:21 下午
  */
 @Api(tags = "登录注册接口")
-@Controller
+@RestController
 public class LoginController {
 
     private final UserService userService;
@@ -31,40 +33,31 @@ public class LoginController {
         this.userService = userService;
     }
 
+    /**
+     * 可以用email或username登录
+     *
+     * @param user     属性组合为：用户名和密码，邮箱和密码
+     * @param response 添加token
+     * @return 返回更丰富的个人信息
+     */
     @ApiOperation(value = "登录接口，前端ajax请求，dataType为json")
+    @ApiImplicitParam(name = "user",
+        value = "用户名(username, 唯一)，邮箱(email, 未注册过)，" +
+            "密码(password, 长度区间6～16) json格式")
     @PostMapping(value = "/login")
-    public NormalResult<?> login(@Email String email,
-                                 @NotBlank String password,
-                                 @NotBlank String verifyCode,
-                                 HttpServletRequest request) {
-
+    public NormalResult<?> login(@RequestBody @Validated(LoginGroup.class) User user,
+                                 HttpServletResponse response) {
 
         return null;
     }
 
     @ApiOperation(value = "注册接口")
-    @ApiImplicitParams(
-        {
-            @ApiImplicitParam(name = "email", value = "注册邮箱，必须唯一"),
-            @ApiImplicitParam(name = "username", value = "用户名，必须唯一"),
-            @ApiImplicitParam(name = "password", value = "密码，长度区间[6,16]")
-        }
-    )
+    @ApiImplicitParam(name = "user", value = "用户名(username, 唯一)，邮箱(email, 未注册过)，密码(password, 长度区间6～16) json格式")
     @PostMapping("/register")
-    public NormalResult<?> Register(@Email String email,
-                                    @NotBlank String username,
-                                    @NotBlank String password) {
-        try {
-            if (userService.registerUser(username, email, password)) {
-                return NormalResult.success();
-            } else {
-                return NormalResult.failureWithMessage("未知错误");
-            }
-        } catch (RegisterException re) {
-            return NormalResult.failureWithMessage(re.getMessage());
-        } catch (Exception e) {
-            return NormalResult.failureWithMessage("未知错误");
-        }
+    public NormalResult<?> Register(@RequestBody @Validated(RegisterGroup.class) User user)
+        throws RegisterException {
+        userService.registerUser(user);
+        return NormalResult.success();
     }
 
 }

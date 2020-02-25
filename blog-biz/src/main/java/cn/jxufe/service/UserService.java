@@ -16,5 +16,7 @@ public interface UserService {
      */
     User getUserInfo(Integer userId);
 
-    boolean registerUser(String username, String email, String password) throws RegisterException;
+    void registerUser(User user) throws RegisterException;
+
+    User login(User user);
 }

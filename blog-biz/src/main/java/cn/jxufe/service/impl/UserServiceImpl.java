@@ -3,8 +3,10 @@ package cn.jxufe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.security.InvalidParameterException;
+import java.time.Year;
 import java.util.Objects;
 
 import cn.jxufe.bean.User;
@@ -29,28 +31,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserInfo(Integer userId) {
-        if (userId == null) {
-            throw new InvalidParameterException("userId is null");
-        }
         return userDao.selectByUserId(userId);
     }
 
     @Override
-    public boolean registerUser(String username, String email, String password) throws RegisterException {
+    public void registerUser(User user) throws RegisterException {
         // encode password
-        if (password.length() < 6 ) {
-            throw new RegisterException("密码较短！");
-        } else if (password.length() > 16) {
-            throw new RegisterException("密码过长！");
-        }
-        String[] utilResult = EncodeUtil.generate(password);
+        String[] utilResult = EncodeUtil.generate(user.getPassword());
         String cipherPassword = utilResult[0];
         String salt = utilResult[1];
         // insert user
-        int result;
         try {
-            result = userDao.insertNewUser(new User().setEmail(email)
-                .setPassword(cipherPassword).setSalt(salt).setUsername(username));
+            userDao.insertNewUser(new User().setEmail(user.getEmail())
+                .setPassword(cipherPassword).setSalt(salt).setUsername(user.getSalt()));
         } catch (DuplicateKeyException dke) {
             // new user's username or email is in used, now ensure which one is duplicated.
             String rootCause = Objects.requireNonNull(dke.getRootCause()).toString();
@@ -60,10 +53,20 @@ public class UserServiceImpl implements UserService {
 //                if (rootCause.endsWith("'email'")) {
                 throw new RegisterException("此邮箱已被注册！");
             }
+        } catch (Exception e) {
+            throw new RegisterException("请求超时！");
         }
+    }
 
-        //
-        return result == 1;
+    @Override
+    public User login(User user) {
+        // 邮箱有内容，邮箱登录
+        if (StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getUsername())) {
+
+        }
+        User userFromDb = userDao.selectByUsernameOrEmail(user);
+
+        return null;
     }
 
 }

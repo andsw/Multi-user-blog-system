@@ -8,6 +8,8 @@ public interface UserDao {
 
     User selectByUserId(Integer userId);
 
+    User selectByUsernameOrEmail(User user);
+
     Integer insertNewUser(User user);
 
     int deleteByPrimaryKey(Integer id);

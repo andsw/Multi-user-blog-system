@@ -21,6 +21,20 @@
     limit 1
   </select>
 
+  <select id="selectByUsernameOrEmail" resultType="cn.jxufe.bean.User">
+    select id, password, salt
+    from user
+    <choose>
+      <when test="username != null">
+        where username = ${username}
+      </when>
+      <otherwise>
+        when email = ${email}
+      </otherwise>
+    </choose>
+    limit 1
+  </select>
+
   <insert id="insertNewUser" parameterType="cn.jxufe.bean.User">
     insert into user(email, password, salt, username)
     values ('${email}', '${password}', '${salt}', '${username}')

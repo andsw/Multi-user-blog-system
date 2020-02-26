@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
+import cn.jxufe.bean.Token;
 import cn.jxufe.bean.User;
 import cn.jxufe.dto.NormalResult;
+import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
 import cn.jxufe.validation.group.LoginGroup;
@@ -46,7 +48,8 @@ public class LoginController {
             "密码(password, 长度区间6～16) json格式")
     @PostMapping(value = "/login")
     public NormalResult<?> login(@RequestBody @Validated(LoginGroup.class) User user,
-                                 HttpServletResponse response) {
+                                 HttpServletResponse response) throws LoginException {
+        Token token = userService.login(user);
 
         return null;
     }

@@ -5,12 +5,13 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.security.InvalidParameterException;
-import java.time.Year;
 import java.util.Objects;
 
+import cn.jxufe.bean.Token;
 import cn.jxufe.bean.User;
+import cn.jxufe.dao.TokenDao;
 import cn.jxufe.dao.UserDao;
+import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
 import cn.jxufe.util.EncodeUtil;
@@ -23,10 +24,12 @@ import cn.jxufe.util.EncodeUtil;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
+    private final TokenDao tokenDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, TokenDao tokenDao) {
         this.userDao = userDao;
+        this.tokenDao = tokenDao;
     }
 
     @Override
@@ -59,14 +62,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(User user) {
-        // 邮箱有内容，邮箱登录
-        if (StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getUsername())) {
-
+    public Token login(User user) throws LoginException {
+        // 因为可能是用户名登录，可能是email登录，使用hibernate-validation注解无法表现二者一个可以
+        // 为空，不为空的检验，所以直接这里判断。
+        if (StringUtils.isEmpty(user.getEmail()) && user.getUsername().length() >=4
+        && user.getEmail().trim().split("@").length == 2) {
+            throw new LoginException("找不到用户！");
         }
         User userFromDb = userDao.selectByUsernameOrEmail(user);
-
-        return null;
+        if (EncodeUtil.generate(user.getPassword(), userFromDb.getSalt()).equals(userFromDb.getPassword())) {
+            // 登录成功生成token并存入数据库
+            Token token = new Token(user.getId(),
+                EncodeUtil.generateToken(userFromDb.getUsername(), userFromDb.getEmail(), userFromDb.getId()));
+            tokenDao.insertToken(token);
+            return token;
+        } else {
+            throw new LoginException("密码错误！");
+        }
     }
 
 }

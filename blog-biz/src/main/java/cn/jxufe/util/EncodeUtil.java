@@ -40,6 +40,20 @@ public class EncodeUtil {
     }
 
     /**
+     * md5加盐加密password
+     * @param password pw
+     * @param salt 如上一个方法所示，salt是一个长为16的全数字字符串
+     * @return 加密后密码
+     */
+    public static String generate(String password, String salt) {
+        return md5Encode(password + salt);
+    }
+
+    public static String generateToken(String username, String email, Integer userId) {
+        return md5Encode(username + email + userId);
+    }
+
+    /**
      * md5加密
      * @param Ciphertext 加盐后的密码
      * @return 密文

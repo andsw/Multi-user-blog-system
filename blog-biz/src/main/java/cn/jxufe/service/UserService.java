@@ -1,6 +1,8 @@
 package cn.jxufe.service;
 
+import cn.jxufe.bean.Token;
 import cn.jxufe.bean.User;
+import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 
 /**
@@ -18,5 +20,5 @@ public interface UserService {
 
     void registerUser(User user) throws RegisterException;
 
-    User login(User user);
+    Token login(User user) throws LoginException;
 }

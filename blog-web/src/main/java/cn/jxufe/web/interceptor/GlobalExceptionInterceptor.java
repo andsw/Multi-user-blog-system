@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Objects;
 
 import cn.jxufe.dto.NormalResult;
+import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 
 /**
@@ -30,6 +31,8 @@ public class GlobalExceptionInterceptor  {
             return NormalResult.failureWithMessage(message);
         } else if (e instanceof RegisterException) {
             // 注册异常
+            return NormalResult.failureWithMessage(e.getMessage());
+        } else if (e instanceof LoginException) {
             return NormalResult.failureWithMessage(e.getMessage());
         }
         return null;

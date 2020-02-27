@@ -26,10 +26,10 @@
     from user
     <choose>
       <when test="username != null">
-        where username = ${username}
+        where username = '${username}'
       </when>
       <otherwise>
-        when email = ${email}
+        when email = '${email}'
       </otherwise>
     </choose>
     limit 1

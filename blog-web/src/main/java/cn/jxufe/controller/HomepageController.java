@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
  * @date 2020/1/12 19:43
  */
 @Controller
-@Api(tags = "用户主页数据接口")
+@Api(tags = "主页数据接口")
 public class HomepageController {
     private BlogService blogService;
     private HomepageService homepageService;

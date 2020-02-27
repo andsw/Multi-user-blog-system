@@ -10,7 +10,7 @@
   </select>
 
   <insert id="insertToken">
-    insert into token(user_id, login_token) value (${userId}, ${loginToken})
+    insert into token(user_id, login_token) value (${userId}, '${loginToken}')
   </insert>
 
 </mapper>

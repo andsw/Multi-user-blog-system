@@ -3,7 +3,6 @@ package cn.jxufe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
         // insert user
         try {
             userDao.insertNewUser(new User().setEmail(user.getEmail())
-                .setPassword(cipherPassword).setSalt(salt).setUsername(user.getSalt()));
+                .setPassword(cipherPassword).setSalt(salt).setUsername(user.getUsername()));
         } catch (DuplicateKeyException dke) {
             // new user's username or email is in used, now ensure which one is duplicated.
             String rootCause = Objects.requireNonNull(dke.getRootCause()).toString();
@@ -65,14 +64,15 @@ public class UserServiceImpl implements UserService {
     public Token login(User user) throws LoginException {
         // 因为可能是用户名登录，可能是email登录，使用hibernate-validation注解无法表现二者一个可以
         // 为空，不为空的检验，所以直接这里判断。
-        if (StringUtils.isEmpty(user.getEmail()) && user.getUsername().length() >=4
-        && user.getEmail().trim().split("@").length == 2) {
+        if ((user.getEmail() == null || "".equals(user.getEmail())
+            || user.getEmail().trim().split("@").length != 2)
+            && (user.getUsername() == null || user.getUsername().length() < 4)) {
             throw new LoginException("找不到用户！");
         }
         User userFromDb = userDao.selectByUsernameOrEmail(user);
         if (EncodeUtil.generate(user.getPassword(), userFromDb.getSalt()).equals(userFromDb.getPassword())) {
             // 登录成功生成token并存入数据库
-            Token token = new Token(user.getId(),
+            Token token = new Token(userFromDb.getId(),
                 EncodeUtil.generateToken(userFromDb.getUsername(), userFromDb.getEmail(), userFromDb.getId()));
             tokenDao.insertToken(token);
             return token;

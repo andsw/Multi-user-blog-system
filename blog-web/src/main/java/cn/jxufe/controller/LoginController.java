@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.jxufe.bean.Token;
@@ -50,8 +51,16 @@ public class LoginController {
     public NormalResult<?> login(@RequestBody @Validated(LoginGroup.class) User user,
                                  HttpServletResponse response) throws LoginException {
         Token token = userService.login(user);
+        // name为loginToken每个字母后加以为
+        Cookie tokenCookie = new Cookie("mphjouplfo", token.getLoginToken());
+        Cookie userIdCookie = new Cookie("userId", "" + token.getUserId());
+        // 暂时设置cookie脚本不可获取
+        tokenCookie.setHttpOnly(true);
+        userIdCookie.setHttpOnly(true);
+        response.addCookie(tokenCookie);
+        response.addCookie(userIdCookie);
 
-        return null;
+        return NormalResult.successWithData("登录成功");
     }
 
     @ApiOperation(value = "注册接口")

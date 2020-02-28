@@ -27,6 +27,10 @@ public enum HttpCodeEnum {
      */
     NO_CONTENT_CODE(204),
     /**
+     * 重定向码
+     */
+    REDIRECT_CODE(302),
+    /**
      * 服务器端发生错误
      */
     SERVER_ERROR_CODE(500),

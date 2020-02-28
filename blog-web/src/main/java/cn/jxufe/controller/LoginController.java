@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.jxufe.bean.Token;
 import cn.jxufe.bean.User;
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.dto.RedirectResult;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
@@ -41,15 +41,15 @@ public class LoginController {
      *
      * @param user     属性组合为：用户名和密码，邮箱和密码
      * @param response 添加token
-     * @return 返回更丰富的个人信息
+     * @return 成功后重定向到用户主页
      */
     @ApiOperation(value = "登录接口，前端ajax请求，dataType为json")
     @ApiImplicitParam(name = "user",
         value = "用户名(username, 唯一)，邮箱(email, 未注册过)，" +
             "密码(password, 长度区间6～16) json格式")
     @PostMapping(value = "/login")
-    public NormalResult<?> login(@RequestBody @Validated(LoginGroup.class) User user,
-                                 HttpServletResponse response) throws LoginException {
+    public RedirectResult login(@RequestBody @Validated(LoginGroup.class) User user,
+                                HttpServletResponse response) throws LoginException {
         Token token = userService.login(user);
         // name为loginToken每个字母后加以为
         Cookie tokenCookie = new Cookie("mphjouplfo", token.getLoginToken());
@@ -60,16 +60,22 @@ public class LoginController {
         response.addCookie(tokenCookie);
         response.addCookie(userIdCookie);
 
-        return NormalResult.successWithData("登录成功");
+        return RedirectResult.redirect("/index.html");
     }
 
+    /**
+     * 注册异常将抛出至异常处理器GlobalExceptionInterceptor处理
+     * 其他接口同理
+     * @param user
+     * @return 注册成功重定向到登录界面
+     * @throws RegisterException 注册异常
+     */
     @ApiOperation(value = "注册接口")
     @ApiImplicitParam(name = "user", value = "用户名(username, 唯一)，邮箱(email, 未注册过)，密码(password, 长度区间6～16) json格式")
     @PostMapping("/register")
-    public NormalResult<?> Register(@RequestBody @Validated(RegisterGroup.class) User user)
+    public RedirectResult Register(@RequestBody @Validated(RegisterGroup.class) User user)
         throws RegisterException {
         userService.registerUser(user);
-        return NormalResult.success();
+        return RedirectResult.redirect("/login.html");
     }
-
 }

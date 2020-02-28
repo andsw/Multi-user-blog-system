@@ -77,6 +77,6 @@ $(function () {
         }
         $(".data-loading").hide()
     }, function () {
-        alert('error')
+        alert('请求超时')
     });
 });

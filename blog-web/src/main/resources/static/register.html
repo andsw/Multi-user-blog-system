@@ -35,9 +35,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    <h1>WeiKe Blog</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>微客博客，在社交中创作</p>
                 </div>
               </div>
             </div>
@@ -47,15 +47,15 @@
                 <div class="content">
                   <form class="form-validate">
                     <div class="form-group">
-                      <input id="register-username" type="text" name="registerUsername" required data-msg="Please enter your username" class="input-material">
+                      <input id="register-username" type="text" name="registerUsername" required data-msg="Please enter your username" class="input-material" autocomplete="new-password">
                       <label for="register-username" class="label-material">User Name</label>
                     </div>
                     <div class="form-group">
-                      <input id="register-email" type="email" name="registerEmail" required data-msg="Please enter a valid email address" class="input-material">
+                      <input id="register-email" type="email" name="registerEmail" required data-msg="Please enter a valid email address" class="input-material" autocomplete="new-password">
                       <label for="register-email" class="label-material">Email Address      </label>
                     </div>
                     <div class="form-group">
-                      <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material">
+                      <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material" autocomplete="new-password">
                       <label for="register-password" class="label-material">password        </label>
                     </div>
                     <div class="form-group terms-conditions">
@@ -63,7 +63,8 @@
                       <label for="register-agree">Agree the terms and policy</label>
                     </div>
                     <div class="form-group">
-                      <button id="regidter" type="submit" name="registerSubmit" class="btn btn-primary">Register</button>
+                      <button id="register" type="button" class="btn btn-primary text-white disabled">Register</button>
+                      <div id="register-exception" class="text-red text-small"> </div>
                     </div>
                   </form><small>Already have an account? </small><a href="login.html" class="signup">Login</a>
                 </div>
@@ -71,9 +72,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="copyrights text-center">
-        <p>Copyright &copy; 2019.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
       </div>
     </div>
     <!-- JavaScript files-->
@@ -85,5 +83,9 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+
+    <!-- customize -->
+    <script src="js/customize/common.js"></script>
+    <script src="js/customize/register.js"></script>
   </body>
 </html>

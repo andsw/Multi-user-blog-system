@@ -35,9 +35,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    <h1>Weike Blog</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>微客平台，在社交中创作</p>
                 </div>
               </div>
             </div>
@@ -45,15 +45,16 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form method="post" class="form-validate">
+                  <form method="post" class="form-validate" >
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
+                      <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material" autocomplete="new-password">
                       <label for="login-username" class="label-material">User Name</label>
                     </div>
                     <div class="form-group">
-                      <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
+                      <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material" autocomplete="new-password">
                       <label for="login-password" class="label-material">Password</label>
-                    </div><a id="login" href="index.html" class="btn btn-primary">Login</a>
+                    </div><button id="login" type="button" class="btn btn-primary text-white d-inline-block">Login</button>
+                    <div id="login-exception" class="text-red text-small" style="display: inline-block; margin-left: 50px"> </div>
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                   </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
                 </div>
@@ -61,11 +62,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="copyrights text-center">
-        <p>Design by <a href="#" class="external">Bootstrapious</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
       </div>
     </div>
     <!-- JavaScript files-->
@@ -77,5 +73,9 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+
+    <!-- customize -->
+    <script src="js/customize/common.js"></script>
+    <script src="js/customize/login.js"></script>
   </body>
 </html>

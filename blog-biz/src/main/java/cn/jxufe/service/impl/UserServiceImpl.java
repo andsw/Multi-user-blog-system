@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
             // new user's username or email is in used, now ensure which one is duplicated.
             String rootCause = Objects.requireNonNull(dke.getRootCause()).toString();
             if (rootCause.endsWith("'username'")) {
-                throw new RegisterException("此用户名已被使用！");
+                throw new RegisterException("此用户名已被注册！");
             } else {
 //                if (rootCause.endsWith("'email'")) {
                 throw new RegisterException("此邮箱已被注册！");
@@ -67,10 +67,12 @@ public class UserServiceImpl implements UserService {
         if ((user.getEmail() == null || "".equals(user.getEmail())
             || user.getEmail().trim().split("@").length != 2)
             && (user.getUsername() == null || user.getUsername().length() < 4)) {
-            throw new LoginException("找不到用户！");
+            throw new LoginException("找不到此用户！");
         }
         User userFromDb = userDao.selectByUsernameOrEmail(user);
-        if (EncodeUtil.generate(user.getPassword(), userFromDb.getSalt()).equals(userFromDb.getPassword())) {
+        if (userFromDb == null) {
+            throw new LoginException("用户不存在！");
+        } else if (EncodeUtil.generate(user.getPassword(), userFromDb.getSalt()).equals(userFromDb.getPassword())) {
             // 登录成功生成token并存入数据库
             Token token = new Token(userFromDb.getId(),
                 EncodeUtil.generateToken(userFromDb.getUsername(), userFromDb.getEmail(), userFromDb.getId()));

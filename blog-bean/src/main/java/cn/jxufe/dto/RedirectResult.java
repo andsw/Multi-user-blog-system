@@ -15,9 +15,13 @@ import lombok.experimental.Accessors;
 public class RedirectResult {
     private Integer code;
     private String redirectUrl;
+    private String messge;
 
     public static RedirectResult redirect(String redirectUrl) {
-        return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl);
+        return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl, "");
     }
 
+    public static RedirectResult redirectWithMsg(String redirectUrl, String  message) {
+        return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl, message);
+    }
 }

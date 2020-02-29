@@ -1,6 +1,7 @@
 package cn.jxufe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,12 @@ public class LoginController {
 
     private final UserService userService;
 
+    @Value(value = "cookie.name.token")
+    private String tokenCookieName;
+
+    @Value(value = "cookie.name.userId")
+    private String userIdCookieName;
+
     @Autowired
     public LoginController(UserService userService) {
         this.userService = userService;
@@ -52,8 +59,8 @@ public class LoginController {
                                 HttpServletResponse response) throws LoginException {
         Token token = userService.login(user);
         // name为loginToken每个字母后加以为
-        Cookie tokenCookie = new Cookie("mphjouplfo", token.getLoginToken());
-        Cookie userIdCookie = new Cookie("userId", "" + token.getUserId());
+        Cookie tokenCookie = new Cookie(tokenCookieName, token.getLoginToken());
+        Cookie userIdCookie = new Cookie(userIdCookieName, "" + token.getUserId());
         // 暂时设置cookie脚本不可获取
         tokenCookie.setHttpOnly(true);
         userIdCookie.setHttpOnly(true);

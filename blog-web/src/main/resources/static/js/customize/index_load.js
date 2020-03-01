@@ -1,6 +1,6 @@
-// 设置可跨域访问
-
 $(function () {
+    const locationUrl = window.location.href;
+    // 判断是否有param
     // const userId = $.cookie("user_id");
     const userId = 1;
     // 默认top 4 hottest blog
@@ -26,13 +26,18 @@ $(function () {
             $("#readNum").text(result.data.readNum);
             $("#collectionNum").text(result.data.collectionNum);
             $("#likeNum").text(result.data.loveNum);
-
+        } else if (result.code === 302) {
+            toastr.info(result.message);
+            setTimeout(function () {
+                //登录成功跳转回原页面
+                redirectTo(result.redirectUrl + "?redirectUrl=" + locationUrl);
+            }, 2000);
         } else {
-            alert("获取用户信息发生错误！")
+            toastr.error("获取用户信息发生错误！");
         }
         $(".data-loading").hide()
     }, function () {
-        alert('error')
+        toastr.error('error')
     });
 
     request("/home/blog/" + userId + "?blogNum=" + blog_num, "get", null, true, function (result) {
@@ -72,8 +77,10 @@ $(function () {
                     )
                 });
             }
+        } else if (result.code === 302) {
+            toastr.info("正在跳转...")
         } else {
-            alert("获取热门文章发生错误！")
+            toastr.error("获取热门文章发生错误！")
         }
         $(".data-loading").hide()
     }, function () {

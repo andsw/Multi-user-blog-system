@@ -31,7 +31,7 @@ import cn.jxufe.util.JsonUtil;
  * @date 2020/2/29 9:54 下午
  */
 @Component
-@WebFilter(filterName = "鉴权过滤器", urlPatterns = {"/*"})
+@WebFilter(filterName = "鉴权过滤器", urlPatterns = "/home/*")
 public class TokenAuthenticateFilter implements Filter {
 
     @Value(value = "${cookie.name.token}")
@@ -49,39 +49,45 @@ public class TokenAuthenticateFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        Cookie[] cookies = ((HttpServletRequest) request).getCookies();
-        ServletOutputStream outputStream = response.getOutputStream();
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        if (cookies == null) {
-            returnRedirectResponse(outputStream, "未登录，跳转至登录界面");
-            return;
-        }
-        Map<String, String> cookieMap = Arrays.stream(cookies)
-            .filter(c -> c.getName().equals(tokenCookieName) || c.getName().equals(userIdCookieName))
-            .collect(Collectors.toMap(Cookie::getName, Cookie::getValue, (c1, c2) -> c1));
-        String userIdStr = cookieMap.getOrDefault(userIdCookieName, null);
-        String token = cookieMap.getOrDefault(tokenCookieName, null);
 
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-
-        if (StringUtils.isBlank(token) || StringUtils.isBlank(userIdStr) || token.length() != 32) {
-            returnRedirectResponse(outputStream, "未登录，跳转至登录界面");
+        final String requestURI = ((HttpServletRequest) request).getRequestURI();
+        if (requestURI.equals("/login") || requestURI.equals("/register")) {
+            filterChain.doFilter(request, response);
         } else {
-            Integer userId = Integer.parseInt(userIdStr);
-            Token tokenFromDb = tokenService.selectTokenByUserId(userId);
-            if (tokenService.isTokenExpire(tokenFromDb.getLatestLoginAt())) {
-                returnRedirectResponse(outputStream,"登录信息已过期，请重新登录");
-            } else if (!token.equals(tokenFromDb.getLoginToken())) {
-                returnRedirectResponse(outputStream, "登录信息错误，请重新登录");
+            Cookie[] cookies = ((HttpServletRequest) request).getCookies();
+            ServletOutputStream outputStream = response.getOutputStream();
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json");
+            if (cookies == null) {
+                returnRedirectResponse(outputStream, "未登录，跳转至登录界面");
+                return;
+            }
+            Map<String, String> cookieMap = Arrays.stream(cookies)
+                .filter(c -> c.getName().equals(tokenCookieName) || c.getName().equals(userIdCookieName))
+                .collect(Collectors.toMap(Cookie::getName, Cookie::getValue, (c1, c2) -> c1));
+            String userIdStr = cookieMap.getOrDefault(userIdCookieName, null);
+            String token = cookieMap.getOrDefault(tokenCookieName, null);
+
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json");
+
+            if (StringUtils.isBlank(token) || StringUtils.isBlank(userIdStr) || token.length() != 32) {
+                returnRedirectResponse(outputStream, "未登录，跳转至登录界面");
             } else {
-                filterChain.doFilter(request, response);
+                Integer userId = Integer.parseInt(userIdStr);
+                Token tokenFromDb = tokenService.selectTokenByUserId(userId);
+                if (tokenService.isTokenExpire(tokenFromDb.getLatestLoginAt())) {
+                    returnRedirectResponse(outputStream, "登录信息已过期，请重新登录");
+                } else if (!token.equals(tokenFromDb.getLoginToken())) {
+                    returnRedirectResponse(outputStream, "登录信息错误，请重新登录");
+                } else {
+                    filterChain.doFilter(request, response);
+                }
             }
         }
     }
 
     private void returnRedirectResponse(OutputStream outputStream, String message) throws IOException {
-        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg("/login", message)).getBytes());
+        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg("/login.html", message)).getBytes());
     }
 }

@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 public class RedirectResult {
     private Integer code;
     private String redirectUrl;
-    private String messge;
+    private String message;
 
     public static RedirectResult redirect(String redirectUrl) {
         return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl, "");

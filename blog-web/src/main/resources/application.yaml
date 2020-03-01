@@ -46,9 +46,20 @@ spring:
         reset-enable: false
         login-username: admin
         login-password: 123456
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-id:
 
 #customize
 cookie:
   name:
+    # 即login token每个字母后移一位的结果
     token: "mphjouplfo"
     userId: "userId"
+
+#  token过期天数
+token:
+  expire:
+    day: 3

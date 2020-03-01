@@ -1,5 +1,7 @@
 package cn.jxufe.service;
 
+import java.sql.Timestamp;
+
 import cn.jxufe.bean.Token;
 
 /**
@@ -8,4 +10,6 @@ import cn.jxufe.bean.Token;
  */
 public interface TokenService {
     Token selectTokenByUserId(Integer userId);
+
+    boolean isTokenExpire(Timestamp updateAt);
 }

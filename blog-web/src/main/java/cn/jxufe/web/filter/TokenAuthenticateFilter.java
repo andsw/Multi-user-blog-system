@@ -26,6 +26,7 @@ import cn.jxufe.service.TokenService;
 import cn.jxufe.util.JsonUtil;
 
 /**
+ * 暂时还没有需要拦截的操作
  * @author hsw
  * @date 2020/2/29 9:54 下午
  */

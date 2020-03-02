@@ -1,4 +1,10 @@
 host = 'http://localhost:8080';
+const ToastLevel = {
+    ERROR: 1,
+    WARN: 2,
+    INFO: 3,
+};
+
 
 function request(path, method, data, async, successMethod, failureMethod) {
     console.log(host + path);
@@ -14,8 +20,23 @@ function request(path, method, data, async, successMethod, failureMethod) {
     })
 }
 
-function redirectTo(redirectUrl) {
-    window.location.href = redirectUrl;
+function redirectTo(redirectUrl, toastLevel, message = "", timeout = 2000) {
+    if (message === "") {
+        window.location.href = redirectUrl;
+    } else {
+        if (toastLevel === ToastLevel.ERROR) {
+            toastr.error(message);
+        } else if (toastLevel === ToastLevel.WARN) {
+            toastr.warn(message);
+        } else if (toastLevel === ToastLevel.INFO) {
+            toastr.info(message);
+        } else {
+            toastr.text(message);
+        }
+        setTimeout(function () {
+            window.location.href = redirectUrl;
+        }, timeout);
+    }
 }
 
 function getUrlParam(name) {

@@ -3,7 +3,6 @@ package cn.jxufe.web.filter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -30,7 +29,6 @@ import cn.jxufe.util.JsonUtil;
  * @author hsw
  * @date 2020/2/29 9:54 下午
  */
-@Component
 @WebFilter(filterName = "鉴权过滤器", urlPatterns = "/home/*")
 public class TokenAuthenticateFilter implements Filter {
 

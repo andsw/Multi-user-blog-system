@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]-->
+    <!--  editor  -->
+    <link href="app/editormd/css/editormd.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+<div class="page login-page overflow-hidden">
+    <!--  导航栏  -->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Search Box-->
+            <div class="search-box">
+                <button class="dismiss"><i class="icon-close"></i></button>
+                <form id="searchForm" action="#" role="search">
+                    <label>
+                        <input type="search" placeholder="What are you looking for..." class="form-control">
+                    </label>
+                </form>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+                        <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <div class="brand-text d-none d-lg-inline-block"><span>WeiKe Blog </span><strong> Homepage</strong></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                        <!-- Notifications-->
+                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
+                                        <div class="notification-time"><small>4 minutes ago</small></div>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                                        <div class="notification-time"><small>4 minutes ago</small></div>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
+                                        <div class="notification-time"><small>4 minutes ago</small></div>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                                        <div class="notification-time"><small>10 minutes ago</small></div>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Messages                        -->
+                        <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                                    </div></a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Languages dropdown    -->
+                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                         class="nav-link dropdown-toggle avatar"><img id="avatar" style="height: 20px; margin-right: 10px"
+                                                                                                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8zNoatJqyxPaVgQ4ze38aHwcYeZx70lqhadDT2bKf9wGFXlqT" alt="..." class="img-fluid rounded-circle"><span class="d-none d-sm-inline-block">
+                            nobug</span></a>
+                            <ul aria-labelledby="languages" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
+                            </ul>
+                        </li>
+                        <!-- Logout    -->
+                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container d-flex bg-white" style="height: 700px;">
+        <div id="doc-content">
+            <textarea style="display:none;">### Pattern
+
+1. `pattern.matches(regex， text)` 返回boolean对象，表示一个句子是否符合正则表达式！
+
+2. ```java
+   Pattern pattern = Pattern.compile(regex);
+   Matcher matcher = pattern.matcher(text)
+   ```
+
+   其也有一个matches方法判断是否匹配！
+
+3. Pattern.split() 方法可以用正则表达式作为分隔符来断句。
+
+   ```java
+   Pattern pattern = Pattern.compile(patternString);
+   String[] split = pattern.split(text);
+   ```
+
+4. Pattern.pattern()其实就是获取编译了的regrex！即compile方法的参数！
+
+### Matcher
+
+java.util.regex.Matcher 类用于匹配一段文本中多次出现一个正则表达式，Matcher 也适用于多文本中匹配同一个正则表达式。构造方式：
+
+```java
+String text    =
+        "This is the text to be searched " +
+        "for occurrences of the http:// pattern.";
+String patternString = ".*http://.*";
+Pattern pattern = Pattern.compile(patternString);
+Matcher matcher = pattern.matcher(text);
+```
+
+1. `boolean matches = matcher.matches();`
+
+2. **lookingAt()** 与matches() 方法类似，最大的不同是，lookingAt()方法对文本的开头匹配正则表达式；而
+
+   matches() 对整个文本匹配正则表达式。
+
+3. #### find() + start() + end()
+
+   **find()** 方法用于在文本中查找出现的正则表达式，文本是创建Matcher时，通过 Pattern.matcher(text) 方法传入的。如果在文本中多次匹配，find() 方法返回第一个，之后**每次调用 find() 都会返回下一个**。
+
+   **start() 和 end()** 返回每次匹配的字串在整个文本中的开始和结束位置。实际上, end() 返回的是字符串末尾的后一位，这样，可以在把 start() 和 end() 的返回值直接用在String.substring() 里。
+
+4. #### reset()
+
+   **reset()** 方法会重置Matcher 内部的 匹配状态。当find() 方法开始匹配时,Matcher 内部会记录截至当前查找的距离。调用 reset() 会重新从文本开头查找。
+
+    **reset(CharSequence)** 方法. 这个方法重置Matcher,同时把一个新的字符串作为参数传入，用于代替创建 Matcher 的原始字符串。
+
+5. #### group()
+
+   假设想在一个文本中查找URL链接，并且想把找到的链接提取出来。当然可以通过 start()和 end()方法完成。但是用group()方法更容易些。
+
+   使用**group(int groupNo)** 方法访问一个分组。一个正则表达式可以有多个分组。每个分组由一对括号标记。想要访问正则表达式中某分组匹配的文本，可以把分组编号传入 group(int groupNo)方法。
+
+   group(0) 表示整个正则表达式，要获得一个有括号标记的分组，分组编号应该从1开始计算。
+
+   ```regex
+   ((John) (.+?))
+   ```
+
+   当遇到嵌套分组时, 分组编号是由左括号的顺序确定的。上例中，分组1 是那个大分组。分组2 是包括John的分组，分组3 是包括 .+? 的分组。当需要通过groups(int groupNo) 引用分组时，了解这些非常重要。
+
+6. #### replaceAll() + replaceFirst()
+
+   replaceAll() 和 replaceFirst() 方法可以用于替换Matcher搜索字符串中的一部分。replaceAll() 方法替换全部匹配的正则表达式，replaceFirst() 只替换第一个匹配的。
+
+   在处理之前，Matcher 会先**reset()重置**。所以这里的匹配表达式从**文本开头**开始计算。两个方法返回替换后的文本！
+
+7. #### appendReplacement() + appendTail()
+
+   appendReplacement() 和 appendTail() 方法用于替换输入文本中的字符串短语，同时把替换后的字符串附加到一个 StringBuffer 中。
+
+   当find() 方法找到一个匹配项时，可以调用 appendReplacement() 方法，这会导致输入字符串被增加到StringBuffer 中，而且匹配文本被替换。 从上一个匹配文本结尾处开始，直到本次匹配文本会被拷贝。
+
+   appendReplacement() 会记录拷贝StringBuffer 中的内容，可以持续调用find(),直到没有匹配项。
+
+   直到最后一个匹配项目，输入文本中剩余一部分没有拷贝到 StringBuffer. 这部分文本是从最后一个匹配项结尾，到文本末尾部分。通过调用 appendTail() 方法，可以把这部分内容拷贝到 StringBuffer 中.
+
+   ```java
+   String text    =
+             "John writes about this, and John Doe writes about that," +
+                     " and John Wayne writes about everything."
+           ;
+
+   String patternString1 = "((John) (.+?)) ";
+   Pattern      pattern      = Pattern.compile(patternString1);
+   Matcher      matcher      = pattern.matcher(text);
+   StringBuffer stringBuffer = new StringBuffer();
+
+   while(matcher.find()){
+       matcher.appendReplacement(stringBuffer, "Joe Blocks ");
+       System.out.println(stringBuffer.toString());
+   }
+   matcher.appendTail(stringBuffer);
+   System.out.println(stringBuffer.toString());
+   ```
+
+   注意我们在while循环中调用appendReplacement() 方法。在循环完毕后调用appendTail()。 代码输出如下:
+
+   ```plain
+   Joe Blocks
+    Joe Blocks about this, and Joe Blocks
+    Joe Blocks about this, and Joe Blocks writes about that, and Joe Blocks
+    Joe Blocks about this, and Joe Blocks writes about that, and Joe Blocks
+    writes about everything.
+   ```
+
+### 基本语法
+
+- **字符** ： 作用是简单的匹配一个确定的字符。可以在表达式中使用任意英文字符。也可以使用字符对于的8进制，16进制或unicode编码表示。
+
+- **字符分类**，用[]表示匹配中括号中的任意字符比如： [Jj]ohn
+
+- **预定义字符**：比如 \d 表示数字，\s 表示空白字符，\S表示非空白字符
+
+- **边界匹配**：\w 匹配一个单词，^匹配行首,$ 匹配行尾。
+
+- **量词匹配**：*表示0次或多次，+表示一次或多次，？表示零次或一次
+
+  > 量词匹配的三种模式，饥饿模式(.*?)，贪婪模式(.\*)，独占模式(.\*+)！
+  >
+  > 饥饿和贪婪略！
+  >
+  > 贪婪和独占模式的区别：
+  >
+  > `John went for a walk, and John fell down, and John hurt his knee.`
+  >
+  > 使用`John.*hurt`即贪婪模式来匹配能匹配到`John went for a walk, and John fell down, and John hurt`，如果用独占模式的话会直接`John.*+`匹配整个句子而忽略hurt导致匹配不成功！
+
+- ### 逻辑操作符
+
+  正则表达式支持少量的逻辑运算(与，或，非)。
+
+  与操作是默认的，表达式 John ,意味着J 与 o与h与n。
+
+  或操作需要显示指定，用 | 表示。例如表达式 John|hurt 意味着John 或 hurt 。
+
+- ## 字符
+
+  | .      | 任意英文字母                                                 |
+  | ------ | :----------------------------------------------------------- |
+  | \\     | 反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值 |
+  | nn     | 字符的8进制表示.n 在0至7之间取值                             |
+  | mnn    | 字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值          |
+  | \xhh   | 字符的16进制表示.                                            |
+  | \uhhhh | 字符的16进制表示 0xhhhh. 对应unicode 编码字符                |
+  | \t     | 缩进符.                                                      |
+  | \n     | 换行符 (unicode: ‘\u000A’)                                   |
+  | \r     | 回车符 (unicode: ‘\u000D’)                                   |
+  | \f     | 制表符 (unicode: ‘\u000C’)                                   |
+  | \a     | 警报（铃声）字符 (unicode: ‘\u0007′)                         |
+  | \e     | 转义符 (unicode: ‘\u001B’)                                   |
+  | \cx    | 控制符 x                                                     |
+
+- ## 字符分类
+
+  | [abc]         | 匹配 a, 或 b 或 c                                            |
+  | ------------- | ------------------------------------------------------------ |
+  | [^abc]        | 匹配不是a,b,c 的字符，是否定匹配                             |
+  | [a-zA-Z]      | 匹配a 到 z ，A到Z 直接的字符，是范围匹配                     |
+  | [a-d[m-p]]    | 匹配a到d之间字符或 m到p之间字符，是并集匹配                  |
+  | [a-z&&[def]]  | 匹配 d, e, 或 f. 是交集匹配 (这里是在范围 a-z和字符def之间取交集). |
+  | [a-z&&[^bc]]  | 匹配a-z 之间所有字符，排除bc的字符。是减法匹配               |
+  | [a-z&&[^m-p]] | 匹配a-z 之间所有字符,排除m-p之间的字符是减法匹配             |
+
+- ## 内置字符分类
+
+| .    | 匹配任意一个字符,根据创建Pattern是传入的标志,可能匹配行结尾符 |
+| ---- | ------------------------------------------------------------ |
+| \d   | 匹配任意数字 [0-9]                                           |
+| \D   | 匹配任意非数字 [^0-9]                                        |
+| \s   | 匹配任意空白符 (空格, 缩进, 换行,回车)                       |
+| \S   | 匹配任意非空白符                                             |
+| \w   | 匹配任意单词                                                 |
+| \W   | 匹配任意非单词                                               |
+
+## 边界匹配
+
+| ^    | 匹配行首                                                     |
+| ---- | ------------------------------------------------------------ |
+| $    | 匹配行尾                                                     |
+| \b   | 匹配单词边界                                                 |
+| \B   | 匹配非单词边界                                               |
+| \A   | 匹配文本开头                                                 |
+| \G   | 匹配前一匹配项结尾                                           |
+| \Z   | Matches the end of the input text except the final terminator if any |
+| \z   | 匹配文本结尾                                                 |
+
+## 量词
+
+![](https://upload-images.jianshu.io/upload_images/9031347-33ec11a88a15b68b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</textarea>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+<!--markdown editor-->
+<script src="app/editormd/editormd.js"></script>
+<script src="app/editormd/lib/marked.min.js"></script>
+<script src="app/editormd/lib/prettify.min.js"></script>
+<script src="app/editormd/lib/raphael.min.js"></script>
+<script src="app/editormd/lib/underscore.min.js"></script>
+<script src="app/editormd/lib/sequence-diagram.min.js"></script>
+<script src="app/editormd/lib/flowchart.min.js"></script>
+<script src="app/editormd/lib/jquery.flowchart.min.js"></script>
+<script src="js/customize/blog_preview.js"></script>
+
+<!-- Main File-->
+<script src="js/front.js"></script>
+
+<!-- customize -->
+<script src="js/customize/common.js"></script>
+
+</body>
+</html>

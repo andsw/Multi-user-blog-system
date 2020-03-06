@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="img/favicon.ico">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]-->
     <!--  editor  -->
-    <link rel="stylesheet" href="editor.md-master/css/editormd.min.css" />
+    <link href="app/editormd/css/editormd.css" rel="stylesheet" type="text/css" />
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -119,18 +119,12 @@
     </header>
 
     <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-        <!-- Form Panel    -->
-            <div class="form d-flex align-items-center bg-white">
-                <div id="layout" class="editor">
-                    <div id="my-editormd">
-                        <label for="my-editormd-markdown-doc"></label>
-                        <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;"></textarea>
-                        <!-- 注意：name属性的值-->
-                        <label for="my-editormd-html-code"></label>
-                        <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
-                    </div>
-                </div>
+        <div class="form-holder bg-white" style="height: 700px">
+            <div class="editormd" id="test-editormd">
+                <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
+                <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+                <textarea class="editormd-html-textarea" name="editorhtml" id="editorhtml"></textarea>
             </div>
         </div>
     </div>
@@ -143,8 +137,7 @@
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 <!--markdown editor-->
-<script src="editor.md-master/lib/codemirror/codemirror.min.js"></script>
-<script src="editor.md-master/editormd.min.js"></script>
+<script src="app/editormd/editormd.js"></script>
 <script src="js/customize/editor.js"></script>
 
 <!-- Main File-->

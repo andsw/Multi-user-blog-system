@@ -1,89 +1,25 @@
-let myEditor;
-$(function() {
-    myEditor = editormd("my-editormd", {
-        width: 1500,
-        height: 740,
-        path: '../lib/',
-        theme: "dark",
-        previewTheme: "dark",
-        editorTheme: "pastel-on-dark",
-        markdown: 'md',
-        codeFold: true,
-        //syncScrolling : false,
-        saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
-        searchReplace: true,
-        //watch : false,                // 关闭实时预览
-        htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
-        //toolbar  : false,             //关闭工具栏
-        //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
-        emoji: true,
+let testEditor;
+
+testEditor=$(function() {
+    editormd("test-editormd", {
+        width   : "90%",
+        height  : 640,
+        //markdown : md,
+        codeFold : true,
+        syncScrolling : "single",
+        //你的lib目录的路径
+        path    : "<%=request.getContextPath()%>/app/editormd/lib/",
+        imageUpload: false,//关闭图片上传功能
+        /*  theme: "dark",//工具栏主题
+         previewTheme: "dark",//预览主题
+         editorTheme: "pastel-on-dark",//编辑主题 */
+        emoji: false,
         taskList: true,
         tocm: true,         // Using [TOCM]
         tex: true,                   // 开启科学公式TeX语言支持，默认关闭
         flowChart: true,             // 开启流程图支持，默认关闭
         sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
-        //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
-        //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
-        //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
-        //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
-        //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
-        imageUpload: true,
-        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL: "./php/upload.php",
-        onload: function () {
-            console.log('onload', this);
-            //this.fullscreen();
-            //this.unwatch();
-            //this.watch().fullscreen();
-            //this.setMarkdown("#PHP");
-            //this.width("100%");
-            //this.height(480);
-            //this.resize("100%", 640);
-        }
+        //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+        saveHTMLToTextarea : true
     });
-});
-
-$("#goto-line-btn").bind("click", function(){
-    myEditor.gotoLine(90);
-});
-
-$("#show-btn").bind('click', function(){
-    myEditor.show();
-});
-
-$("#hide-btn").bind('click', function(){
-    myEditor.hide();
-});
-$("#get-md-btn").bind('click', function(){
-    alert(myEditor.getMarkdown());
-});
-$("#get-html-btn").bind('click', function() {
-    alert(myEditor.getHTML());
-});
-$("#watch-btn").bind('click', function() {
-    myEditor.watch();
-});
-$("#unwatch-btn").bind('click', function() {
-    myEditor.unwatch();
-});
-$("#preview-btn").bind('click', function() {
-    myEditor.previewing();
-});
-$("#fullscreen-btn").bind('click', function() {
-    myEditor.fullscreen();
-});
-$("#show-toolbar-btn").bind('click', function() {
-    myEditor.showToolbar();
-});
-$("#close-toolbar-btn").bind('click', function() {
-    myEditor.hideToolbar();
-});
-$("#toc-menu-btn").click(function(){
-    myEditor.config({
-                          tocDropdown   : true,
-                          tocTitle      : "目录 Table of Contents",
-                      });
-});
-$("#toc-default-btn").click(function() {
-    myEditor.config("tocDropdown", false);
 });

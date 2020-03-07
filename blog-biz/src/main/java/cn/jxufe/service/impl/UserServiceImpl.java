@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
             // 登录成功生成token并存入数据库
             Token token = new Token(userFromDb.getId(),
                 EncodeUtil.generateToken(userFromDb.getUsername(), userFromDb.getEmail(), userFromDb.getId()));
+            // 不存在则插入，存在则覆盖，新的登录会挤掉旧的登录
             tokenDao.insertToken(token);
             return token;
         } else {

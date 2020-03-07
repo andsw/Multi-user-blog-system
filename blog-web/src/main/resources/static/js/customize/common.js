@@ -15,9 +15,8 @@ const ToastLevel = {
 
 
 function request(path, method, data, async, successMethod, failureMethod) {
-    console.log(host + path);
     $.ajax({
-        url: host + path,
+        url: HOST + path,
         method: method,
         data: data,
         type: 'json',

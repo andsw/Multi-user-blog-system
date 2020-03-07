@@ -33,10 +33,10 @@ public class LoginController {
 
     private final UserService userService;
 
-    @Value(value = "cookie.name.token")
+    @Value(value = "${cookie.name.token: mphjouplfo}")
     private String tokenCookieName;
 
-    @Value(value = "cookie.name.userId")
+    @Value(value = "${cookie.name.userId:userId}")
     private String userIdCookieName;
 
     @Autowired
@@ -68,7 +68,7 @@ public class LoginController {
         response.addCookie(tokenCookie);
         response.addCookie(userIdCookie);
 
-        return RedirectResult.redirect(WebsitePathEnum.USER_HOMEPAGE);
+        return RedirectResult.redirect(WebsitePathEnum.USER_HOMEPAGE.getPath());
     }
 
     /**
@@ -84,6 +84,6 @@ public class LoginController {
     public RedirectResult Register(@RequestBody @Validated(RegisterGroup.class) User user)
         throws RegisterException {
         userService.registerUser(user);
-        return RedirectResult.redirect(WebsitePathEnum.LOGIN);
+        return RedirectResult.redirect(WebsitePathEnum.LOGIN.getPath());
     }
 }

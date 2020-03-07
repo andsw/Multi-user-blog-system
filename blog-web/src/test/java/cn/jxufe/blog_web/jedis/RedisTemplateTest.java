@@ -17,9 +17,6 @@ public class RedisTemplateTest {
 
     @Test
     public void testTemplate() {
-        redisTemplate.opsForValue().append("firstKey", "firstValue");
-        System.out.println(redisTemplate.opsForValue().get("firstKey"));
-        redisTemplate.delete("firstKey");
-        System.out.println(redisTemplate.opsForValue().get("firstKey"));
+        redisTemplate.opsForValue().get("31");
     }
 }

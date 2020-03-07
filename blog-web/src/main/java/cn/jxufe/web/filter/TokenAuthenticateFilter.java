@@ -88,6 +88,6 @@ public class TokenAuthenticateFilter implements Filter {
     }
 
     private void returnRedirectResponse(OutputStream outputStream, String message) throws IOException {
-        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg(WebsitePathEnum.LOGIN, message)).getBytes());
+        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg(WebsitePathEnum.LOGIN.getPath(), message)).getBytes());
     }
 }

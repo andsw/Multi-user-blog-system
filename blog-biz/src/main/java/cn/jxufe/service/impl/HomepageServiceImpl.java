@@ -1,14 +1,15 @@
 package cn.jxufe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.InvalidParameterException;
 
 import cn.jxufe.bean.User;
-import cn.jxufe.dao.BlogDao;
 import cn.jxufe.dao.BlogCollectionDao;
+import cn.jxufe.dao.BlogDao;
 import cn.jxufe.dao.LoveDao;
 import cn.jxufe.dao.UserDao;
 import cn.jxufe.service.HomepageService;
@@ -43,8 +44,9 @@ public class HomepageServiceImpl implements HomepageService {
      */
     @Transactional
     @Override
+    @Cacheable(value = "home_user", key = "#userId")
     public HomepageUserVo getHomepageUserVoByUserId(Integer userId) {
-
+        System.out.println("get from db");
         if (userId == null) {
             throw new InvalidParameterException("userId is null");
         }

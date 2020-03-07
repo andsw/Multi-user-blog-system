@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import cn.jxufe.bean.Token;
 import cn.jxufe.dto.RedirectResult;
+import cn.jxufe.my_enum.WebsitePathEnum;
 import cn.jxufe.service.TokenService;
 import cn.jxufe.util.JsonUtil;
 
@@ -50,7 +51,7 @@ public class TokenAuthenticateFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
         final String requestURI = ((HttpServletRequest) request).getRequestURI();
-        if (requestURI.equals("/login") || requestURI.equals("/register")) {
+        if (requestURI.equals(WebsitePathEnum.LOGIN.toString()) || requestURI.equals(WebsitePathEnum.REGISTER.toString())) {
             filterChain.doFilter(request, response);
         } else {
             Cookie[] cookies = ((HttpServletRequest) request).getCookies();
@@ -87,6 +88,6 @@ public class TokenAuthenticateFilter implements Filter {
     }
 
     private void returnRedirectResponse(OutputStream outputStream, String message) throws IOException {
-        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg("/login.html", message)).getBytes());
+        outputStream.write(JsonUtil.object2Json(RedirectResult.redirectWithMsg(WebsitePathEnum.LOGIN, message)).getBytes());
     }
 }

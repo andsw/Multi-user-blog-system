@@ -1,6 +1,7 @@
 package cn.jxufe.dto;
 
 import cn.jxufe.dto.myenum.HttpCodeEnum;
+import cn.jxufe.my_enum.WebsitePathEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -14,14 +15,14 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 public class RedirectResult {
     private Integer code;
-    private String redirectUrl;
+    private WebsitePathEnum redirectUrl;
     private String message;
 
-    public static RedirectResult redirect(String redirectUrl) {
+    public static RedirectResult redirect(WebsitePathEnum redirectUrl) {
         return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl, "");
     }
 
-    public static RedirectResult redirectWithMsg(String redirectUrl, String  message) {
+    public static RedirectResult redirectWithMsg(WebsitePathEnum redirectUrl, String  message) {
         return new RedirectResult(HttpCodeEnum.REDIRECT_CODE.getCode(), redirectUrl, message);
     }
 }

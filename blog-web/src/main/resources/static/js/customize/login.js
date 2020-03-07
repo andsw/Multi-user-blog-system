@@ -8,7 +8,7 @@ $(function () {
             if (result.code === 200) {
                 let redirectUrlAfterLogin = getUrlParam("redirectUrl");
                 if (redirectUrlAfterLogin === null) {
-                    redirectTo("/index.html");
+                    redirectTo(USER_HOMEPAGE_PATH);
                 } else {
                     redirectTo(redirectUrlAfterLogin);
                 }

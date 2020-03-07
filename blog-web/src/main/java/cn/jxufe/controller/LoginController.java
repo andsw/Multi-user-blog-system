@@ -15,6 +15,7 @@ import cn.jxufe.bean.User;
 import cn.jxufe.dto.RedirectResult;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
+import cn.jxufe.my_enum.WebsitePathEnum;
 import cn.jxufe.service.UserService;
 import cn.jxufe.validation.group.LoginGroup;
 import cn.jxufe.validation.group.RegisterGroup;
@@ -67,7 +68,7 @@ public class LoginController {
         response.addCookie(tokenCookie);
         response.addCookie(userIdCookie);
 
-        return RedirectResult.redirect("/index.html");
+        return RedirectResult.redirect(WebsitePathEnum.USER_HOMEPAGE);
     }
 
     /**
@@ -83,6 +84,6 @@ public class LoginController {
     public RedirectResult Register(@RequestBody @Validated(RegisterGroup.class) User user)
         throws RegisterException {
         userService.registerUser(user);
-        return RedirectResult.redirect("/login.html");
+        return RedirectResult.redirect(WebsitePathEnum.LOGIN);
     }
 }

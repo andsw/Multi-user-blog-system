@@ -1,4 +1,12 @@
-host = 'http://localhost:8080';
+HOST = 'http://localhost:8080';
+// 用户个人主页
+USER_HOMEPAGE_PATH = '/index.html';
+//博客系统主页
+HOMEPAGE_PATH = '/home.html';
+// 登录页面
+LOGIN_PATH = '/login.html';
+// 注册
+REGISTER_PATH = '/register.html';
 const ToastLevel = {
     ERROR: 1,
     WARN: 2,

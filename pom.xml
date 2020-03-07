@@ -92,6 +92,16 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!--   整合redis缓存     -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.2.0</version>
+        </dependency>
 
     </dependencies>
 

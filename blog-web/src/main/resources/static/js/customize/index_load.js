@@ -8,7 +8,7 @@ $(function () {
     if (userId == null) {
         userId = $.cookie("userId");
         if (userId == null) {
-            redirectTo("/login.html", ToastLevel.INFO, "未登录，无法进入个人主页！跳转登录...");
+            redirectTo(LOGIN_PATH, ToastLevel.INFO, "未登录，无法进入个人主页！跳转登录...");
             return;
         }
     }

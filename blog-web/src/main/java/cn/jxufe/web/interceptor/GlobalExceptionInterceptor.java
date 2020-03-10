@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Objects;
 
 import cn.jxufe.dto.NormalResult;
+import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 
@@ -33,6 +34,18 @@ public class GlobalExceptionInterceptor  {
             // 注册异常
             return NormalResult.failureWithMessage(e.getMessage());
         } else if (e instanceof LoginException) {
+            return NormalResult.failureWithMessage(e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 文章操作异常处理
+     * @param e
+     * @return
+     */
+    public NormalResult<?> blogExceptionHandler(Exception e) {
+        if (e instanceof BlogWritingException) {
             return NormalResult.failureWithMessage(e.getMessage());
         }
         return null;

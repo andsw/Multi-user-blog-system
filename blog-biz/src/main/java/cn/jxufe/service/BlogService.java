@@ -5,6 +5,8 @@ import com.github.pagehelper.Page;
 import java.util.List;
 
 import cn.jxufe.bean.Blog;
+import cn.jxufe.bean.BlogContent;
+import cn.jxufe.exception.BlogWritingException;
 
 /**
  * @author hsw
@@ -25,4 +27,8 @@ public interface BlogService {
      * @return 用户主页的文章列表
      */
     Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize);
+
+    void insertBlog(Blog blog, BlogContent content) throws BlogWritingException;
+
+    boolean deleteBlog(Integer blogId);
 }

@@ -1,17 +1,21 @@
 package cn.jxufe.bean;
 
-import org.apache.ibatis.type.Alias;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * blog
  * @author hsw
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class Blog implements Serializable {
     private Integer id;
 

@@ -1,14 +1,20 @@
 package cn.jxufe.bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * collect
  * @author hsw
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class BlogCollection implements Serializable {
     private Integer blogId;
 

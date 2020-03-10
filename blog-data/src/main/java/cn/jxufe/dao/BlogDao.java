@@ -20,7 +20,7 @@ public interface BlogDao {
 
     List<Blog> selectBlogByUserIdSortedByReadNum(Integer userId);
 
-    int deleteByBlogId(Integer blogId);
+    Integer deleteByBlogId(Integer blogId);
 
-    int insertBlog(Blog blog);
+    Blog insertBlog(Blog blog);
 }

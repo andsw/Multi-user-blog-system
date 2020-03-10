@@ -12,7 +12,9 @@ import cn.jxufe.bean.Blog;
 import cn.jxufe.bean.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
+import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
+import cn.jxufe.service.CorpusService;
 
 /**
  * @author hsw
@@ -24,10 +26,13 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
     private BlogContentDao blogContentDao;
 
+    private final CorpusService corpusService;
+
     @Autowired
-    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao) {
+    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService) {
         this.blogDao = blogDao;
         this.blogContentDao = blogContentDao;
+        this.corpusService = corpusService;
     }
 
     /**
@@ -53,8 +58,33 @@ public class BlogServiceImpl implements BlogService {
         return (Page<Blog>) blogDao.listByUserId(userId);
     }
 
-    public boolean insertBlog(Blog blog, BlogContent content) {
+    /**
+     * 检测corpus_id是否存在，检测BlogContent和title等
+     * 注意文章信息和内容插入必须同步，所以这里必须用事务。
+     * @param blog blog信息
+     * @param content 文章内容，判空交给hibernate-validation
+     */
+    @Override
+    public void insertBlog(Blog blog, BlogContent content) throws BlogWritingException {
+        if (!corpusService.checkIfCorpusExists(blog.getCorpusId())) {
+            throw new BlogWritingException("找不到文章所属文集");
+        }
+        Blog blogWithId = blogDao.insertBlog(blog);
+        content.setBlogId(blogWithId.getId());
+        blogContentDao.insertBlogContent(content);
+    }
 
-        return false;
+    /**
+     * 同样事务，需要同时删除信息及内容
+     * @param blogId
+     * @return
+     */
+    @Override
+    public boolean deleteBlog(Integer blogId) {
+        if (blogId == null) {
+            return false;
+        }
+        return blogDao.deleteByBlogId(blogId)
+        + blogContentDao.deleteBlogByBlogId(blogId) == 2;
     }
 }

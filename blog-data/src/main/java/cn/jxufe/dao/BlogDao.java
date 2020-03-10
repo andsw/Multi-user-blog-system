@@ -6,6 +6,10 @@ import cn.jxufe.bean.Blog;
 
 public interface BlogDao {
 
+    List<Blog> listByUserId(Integer userId);
+
+    Blog selectByBlogId(Integer blogId);
+
     /**
      *
      * @param userId userId
@@ -16,9 +20,7 @@ public interface BlogDao {
 
     List<Blog> selectBlogByUserIdSortedByReadNum(Integer userId);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByBlogId(Integer blogId);
 
-    Blog selectByPrimaryKey(Integer id);
-
-    List<Blog> listByUserId(Integer userId);
+    int insertBlog(Blog blog);
 }

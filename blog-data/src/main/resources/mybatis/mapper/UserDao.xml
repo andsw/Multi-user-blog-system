@@ -17,7 +17,7 @@
            fan_num,
            register_at
     from user
-    where id = ${userId}
+    where id = #{userId}
     limit 1
   </select>
 
@@ -26,10 +26,10 @@
     from user
     <choose>
       <when test="username != null">
-        where username = '${username}'
+        where username = #{username}
       </when>
       <otherwise>
-        when email = '${email}'
+        when email = #{email}
       </otherwise>
     </choose>
     limit 1
@@ -37,7 +37,7 @@
 
   <insert id="insertNewUser" parameterType="cn.jxufe.bean.User">
     insert into user(email, password, salt, username)
-    values ('${email}', '${password}', '${salt}', '${username}')
+    values (#{email}, #{password}, #{salt}, #{username})
   </insert>
 
   <!-- auto generate -->

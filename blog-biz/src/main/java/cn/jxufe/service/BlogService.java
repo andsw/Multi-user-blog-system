@@ -12,7 +12,7 @@ import cn.jxufe.bean.Blog;
  */
 public interface BlogService {
 
-    Long getSumReadNumByUserId(Integer userId);
+    Integer getSumReadNumByUserId(Integer userId, int blogNum);
 
     List<Blog> getTopHottestBlog(Integer userId, int n);
 
@@ -24,5 +24,5 @@ public interface BlogService {
      * @param pageSize 每页博客数量
      * @return 用户主页的文章列表
      */
-    Page<Blog> listUserBlogByPagination(int userId, int pageNum, int pageSize);
+    Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize);
 }

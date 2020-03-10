@@ -1,61 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.jxufe.dao.BlogDao">
+    <select id="listByUserId" resultType="cn.jxufe.bean.Blog">
+        select id,
+               title,
+               corpus_id,
+               user_id,
+               word_num,
+               read_num,
+               love_num,
+               comment_num,
+               release_time
+        from blog
+        where user_id = #{userId}
+        order by read_num desc
+    </select>
+    <select id="selectBlogByUserIdSortedByReadNum" resultType="cn.jxufe.bean.Blog">
+        select id,
+               title,
+               corpus_id,
+               user_id,
+               word_num,
+               read_num,
+               love_num,
+               comment_num,
+               release_time
+        from blog
+        where user_id = #{userId}
+        order by read_num desc
+    </select>
 
-  <!-- customize -->
-  <select id="selectBlogByUserIdSortedByReadNum" resultType="cn.jxufe.bean.Blog">
-    select id,
-           title,
-           corpus_id,
-           user_id,
-           word_num,
-           read_num,
-           love_num,
-           comment_num,
-           release_time
-    from blog
-    where user_id = ${userId}
-    order by read_num desc
-  </select>
-
-  <select id="selectSumReadNumByUserIdLimit" resultType="java.lang.Integer">
-    select sum(read_num)
-    from blog
-    where user_id = ${userId}
-    <if test="blogNum != null">
-      limit ${blogNum}
-    </if>
-  </select>
-
-  <!-- auto generate -->
-  <resultMap id="BaseResultMap" type="cn.jxufe.bean.Blog">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="corpus_id" jdbcType="INTEGER" property="corpusId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="word_num" jdbcType="INTEGER" property="wordNum" />
-    <result column="read_num" jdbcType="INTEGER" property="readNum" />
-    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, title, corpus_id, user_id, word_num, read_num, release_time,
-  </sql>
-  <sql id="Homepage_Blog_Column_List">
-    id, title, user_id, word_num, read_num, release_time,
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from blog
-    where id = #{id,jdbcType=INTEGER}
-    limit 1
-  </select>
-  <select id="listByUserId" resultType="cn.jxufe.bean.Blog">
-    select * from blog where user_id=#{userId}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from blog
-    where id = #{id,jdbcType=INTEGER}
-    limit 1
-  </delete>
+    <select id="selectSumReadNumByUserIdLimit" resultType="java.lang.Integer">
+        select sum(read_num)
+        from blog
+        where user_id = #{userId}
+        <if test="blogNum != null">
+            limit #{blogNum}
+        </if>
+    </select>
+    <select id="selectByBlogId" resultType="cn.jxufe.bean.Blog">
+        select *
+        from blog
+        where id = #{blogId}
+        limit 1
+    </select>
+    <delete id="deleteByBlogId">
+        delete
+        from blog
+        where id = #{blogId}
+        limit 1
+    </delete>
+    <insert id="insertBlog">
+        insert into blog(title, corpus_id, user_id, word_num)
+        value (#{title}, #{corpusId}, #{userId}, #{wordNum})
+    </insert>
 </mapper>

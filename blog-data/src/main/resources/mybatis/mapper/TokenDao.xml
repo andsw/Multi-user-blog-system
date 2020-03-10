@@ -10,8 +10,8 @@
   </select>
 
   <insert id="insertToken">
-    insert into token(user_id, login_token) value (${userId}, '${loginToken}')
-    ON DUPLICATE KEY UPDATE login_token='${loginToken}'
+    insert into token(user_id, login_token) value (${userId}, ${loginToken})
+    ON DUPLICATE KEY UPDATE login_token=${loginToken}
   </insert>
 
 </mapper>

@@ -6,10 +6,10 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.InvalidParameterException;
 import java.util.List;
 
 import cn.jxufe.bean.Blog;
+import cn.jxufe.bean.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
 import cn.jxufe.service.BlogService;
@@ -30,25 +30,31 @@ public class BlogServiceImpl implements BlogService {
         this.blogContentDao = blogContentDao;
     }
 
+    /**
+     * 获取用户文章总阅读量
+     * @param userId
+     * @param blogNum
+     * @return
+     */
     @Override
-    public Long getSumReadNumByUserId(Integer userId) {
-
-        return null;
+    public Integer getSumReadNumByUserId(Integer userId, int blogNum) {
+        return blogDao.selectSumReadNumByUserIdLimit(userId, blogNum);
     }
 
     @Override
     public List<Blog> getTopHottestBlog(Integer userId, int n) {
-        if (userId == null) {
-            throw new InvalidParameterException("userId is null");
-        }
         PageHelper.startPage(0, n);
         return blogDao.selectBlogByUserIdSortedByReadNum(userId);
     }
 
     @Override
-    public Page<Blog> listUserBlogByPagination(int userId, int pageNum, int pageSize) {
+    public Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return (Page<Blog>) blogDao.listByUserId(userId);
     }
 
+    public boolean insertBlog(Blog blog, BlogContent content) {
+
+        return false;
+    }
 }

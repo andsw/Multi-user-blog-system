@@ -5,11 +5,11 @@
     <select id="selectCountByAuthorId" resultType="java.lang.Integer">
         select count(*)
         from blog_collection
-        where author_id = ${userId};
+        where author_id = #{userId};
     </select>
     <select id="selectCountByUserId" resultType="java.lang.Integer">
         select count(*)
         from blog_collection
-        where user_id = ${userId};
+        where user_id = #{userId};
     </select>
 </mapper>

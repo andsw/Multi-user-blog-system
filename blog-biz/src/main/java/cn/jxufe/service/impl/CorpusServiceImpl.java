@@ -2,6 +2,7 @@ package cn.jxufe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.jxufe.bean.Corpus;
 import cn.jxufe.dao.CorpusDao;
 import cn.jxufe.exception.CorpusException;
 import cn.jxufe.service.CorpusService;
@@ -29,5 +30,10 @@ public class CorpusServiceImpl implements CorpusService {
             throw new CorpusException("找不到文集");
         }
         corpusDao.deleteByCorpusId(corpusId);
+    }
+
+    @Override
+    public Corpus addCorpus(Corpus corpus) {
+        return corpusDao.insertCorpus(corpus);
     }
 }

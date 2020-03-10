@@ -1,5 +1,6 @@
 package cn.jxufe.service;
 
+import cn.jxufe.bean.Corpus;
 import cn.jxufe.exception.CorpusException;
 
 /**
@@ -10,4 +11,6 @@ public interface CorpusService {
     boolean checkIfCorpusExists(Integer corpusId);
 
     void deleteCorpus(Integer corpusId) throws CorpusException;
+
+    Corpus addCorpus(Corpus corpus);
 }

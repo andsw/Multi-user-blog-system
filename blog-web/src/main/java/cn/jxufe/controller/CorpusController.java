@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.jxufe.bean.Corpus;
 import cn.jxufe.dto.NormalResult;
 import cn.jxufe.exception.CorpusException;
 import cn.jxufe.service.CorpusService;
@@ -25,8 +26,9 @@ public class CorpusController {
     }
 
     @PostMapping("/corpus")
-    public NormalResult<?> addCorpus() {
-        return null;
+    public NormalResult<?> addCorpus(Corpus corpus) {
+        final Corpus insertedCorpus = corpusService.addCorpus(corpus);
+        return NormalResult.successWithData(insertedCorpus);
     }
 
     @DeleteMapping("/corpus/{corpusId}")

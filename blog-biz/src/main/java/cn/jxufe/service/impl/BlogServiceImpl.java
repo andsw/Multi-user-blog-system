@@ -26,7 +26,7 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
     private BlogContentDao blogContentDao;
 
-    private final CorpusService corpusService;
+    private CorpusService corpusService;
 
     @Autowired
     public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService) {

@@ -9,7 +9,13 @@ import cn.jxufe.bean.Corpus;
 public interface CorpusDao {
     boolean selectExistByCorpusId(Integer corpusId);
 
-    void deleteByCorpusId(Integer corpusId);
+    Integer deleteByCorpusId(Integer corpusId);
 
     Corpus insertCorpus(Corpus corpus);
+
+    /**
+     * name
+     * @Param corpus
+     */
+    Integer updateCorpus(Corpus corpus);
 }

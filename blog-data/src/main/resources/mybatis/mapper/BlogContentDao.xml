@@ -13,14 +13,16 @@
     </insert>
     <delete id="deleteBlogByBlogId">
         delete
-        from blog
-        where id = #{blogId}
+        from blog_content
+        where blog_id = #{blogId}
         limit 1
     </delete>
-    <delete id="deleteBlogByCorpusId">
-        delete
-        from blog
-        where corpus_id = #{corpusId};
-    </delete>
+
+    <update id="updateBlogContentById">
+        update blog_content
+        set content = #{content}
+        where blog_id = #{blogId}
+        limit 1
+    </update>
 
 </mapper>

@@ -13,4 +13,6 @@ public interface CorpusService {
     void deleteCorpus(Integer corpusId) throws CorpusException;
 
     Corpus addCorpus(Corpus corpus);
+
+    void changeCorpusName();
 }

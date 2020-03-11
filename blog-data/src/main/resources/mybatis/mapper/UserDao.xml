@@ -2,59 +2,80 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.jxufe.dao.UserDao">
 
-  <!-- customize -->
-  <select id="selectByUserId" parameterType="Integer" resultType="cn.jxufe.bean.User">
-    select id,
-           email,
-           username,
-           avatar,
-           person_msg,
-           gender,
-           blog_num,
-           corpus_num,
-           word_num,
-           sub_num,
-           fan_num,
-           register_at
-    from user
-    where id = #{userId}
-    limit 1
-  </select>
+    <!-- customize -->
+    <select id="selectByUserId" parameterType="Integer" resultType="cn.jxufe.bean.User">
+        select id,
+               email,
+               username,
+               avatar,
+               person_msg,
+               gender,
+               blog_num,
+               corpus_num,
+               word_num,
+               sub_num,
+               fan_num,
+               register_at
+        from user
+        where id = #{userId}
+        limit 1
+    </select>
 
-  <select id="selectByUsernameOrEmail" resultType="cn.jxufe.bean.User">
-    select id, username, email, password, salt
-    from user
-    <choose>
-      <when test="username != null">
-        where username = #{username}
-      </when>
-      <otherwise>
-        when email = #{email}
-      </otherwise>
-    </choose>
-    limit 1
-  </select>
+    <select id="selectByUsernameOrEmail" resultType="cn.jxufe.bean.User">
+        select id, username, email, password, salt
+        from user
+        <choose>
+            <when test="username != null">
+                where username = #{username}
+            </when>
+            <otherwise>
+                when email = #{email}
+            </otherwise>
+        </choose>
+        limit 1
+    </select>
 
-  <insert id="insertNewUser" parameterType="cn.jxufe.bean.User">
-    insert into user(email, password, salt, username)
-    values (#{email}, #{password}, #{salt}, #{username})
-  </insert>
+    <insert id="insertNewUser" parameterType="cn.jxufe.bean.User">
+        insert into user(email, password, salt, username)
+        values (#{email}, #{password}, #{salt}, #{username})
+    </insert>
 
-  <!-- auto generate -->
-  <resultMap id="BaseResultMap" type="cn.jxufe.bean.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="person_msg" jdbcType="VARCHAR" property="personMsg" />
-    <result column="gender" jdbcType="BIT" property="gender" />
-    <result column="blog_num" jdbcType="INTEGER" property="blogNum" />
-    <result column="corpus_num" javaType="INTEGER" property="corpusNum"/>
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-    limit 1
-  </delete>
+    <update id="updateInfoByUserIdSelective">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="email!=null">email=#{email},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="salt!=null">salt=#{salt},</if>
+            <if test="username!=null">username=#{username},</if>
+            <if test="avatar!=null">avatar=#{avatar},</if>
+            <if test="personMsg!=null">person_msg=#{personMsg},</if>
+            <if test="gender!=null">gender=#{gender},</if>
+        </trim>
+        where id = #{id}
+        limit 1
+    </update>
+    <update id="plusNumByUserIdSelective">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="colName='blog_num'">blog_num=blog_num+#{num},</if>
+            <if test="colName='corpus_num'">corpus_num=corpus_num+#{num},</if>
+            <if test="colName='word_num'">word_num=word_num+#{num},</if>
+            <if test="colName='sub_num'">sub_num=sub_num+#{num},</if>
+            <if test="colName='fan_num'">fan_num=fan_num+#{num},</if>
+        </trim>
+        where id = #{userId}
+        limit 1
+    </update>
+    <update id="minusNumByUserIdSelective">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="colName='blog_num'">blog_num=blog_num-#{num},</if>
+            <if test="colName='corpus_num'">corpus_num=corpus_num-#{num},</if>
+            <if test="colName='word_num'">word_num=word_num-#{num},</if>
+            <if test="colName='sub_num'">sub_num=sub_num-#{num},</if>
+            <if test="colName='fan_num'">fan_num=fan_num-#{num},</if>
+        </trim>
+        where id = #{userId}
+        limit 1
+    </update>
 </mapper>

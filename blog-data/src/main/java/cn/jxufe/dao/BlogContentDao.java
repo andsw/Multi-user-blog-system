@@ -9,5 +9,5 @@ public interface BlogContentDao {
 
     Integer deleteBlogByBlogId(Integer blogId);
 
-    Integer deleteBlogByCorpusId(Integer corpusId);
+    Integer updateBlogContentById(Integer blogId);
 }

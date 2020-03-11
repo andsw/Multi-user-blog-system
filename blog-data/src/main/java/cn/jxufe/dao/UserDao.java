@@ -4,13 +4,15 @@ import cn.jxufe.bean.User;
 
 public interface UserDao {
 
-//    customize
-
     User selectByUserId(Integer userId);
 
     User selectByUsernameOrEmail(User user);
 
     Integer insertNewUser(User user);
 
-    int deleteByPrimaryKey(Integer id);
+    int updateInfoByUserIdSelective(User user);
+
+    int plusNumByUserIdSelective(Integer userId, String colName, int num);
+
+    int minusNumByUserIdSelective(Integer userId, String colName, int num);
 }

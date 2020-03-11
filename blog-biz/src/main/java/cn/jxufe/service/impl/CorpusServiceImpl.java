@@ -27,7 +27,7 @@ public class CorpusServiceImpl implements CorpusService {
     }
 
     /**
-     * 删除，TODO：用户数据更新
+     * 删除，TODO：1.0 用户数据更新
      * @param corpusId
      * @throws CorpusException
      */
@@ -40,7 +40,7 @@ public class CorpusServiceImpl implements CorpusService {
     }
 
     /**
-     * 添加，TODO：用户数据更新
+     * 添加，TODO：1.0 用户数据更新
      * @param corpus
      * @return
      */

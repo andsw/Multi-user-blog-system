@@ -3,7 +3,10 @@ package cn.jxufe.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * love表
@@ -11,6 +14,9 @@ import lombok.Data;
  * @author hsw
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class Love implements Serializable {
 
     private Integer userId;

@@ -2,13 +2,21 @@ package cn.jxufe.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
+ * TODO: 2.0 评论还需要点赞...
  * comment
  * @author hsw
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class Comment implements Serializable {
     private Integer id;
 

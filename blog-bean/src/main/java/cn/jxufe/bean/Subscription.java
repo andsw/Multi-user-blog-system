@@ -3,8 +3,10 @@ package cn.jxufe.bean;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * subscription
@@ -12,6 +14,9 @@ import lombok.EqualsAndHashCode;
  * @author hsw
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class Subscription implements Serializable {
     /**
      * 被关注的用户

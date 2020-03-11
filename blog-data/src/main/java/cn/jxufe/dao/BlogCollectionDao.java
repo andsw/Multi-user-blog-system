@@ -6,7 +6,7 @@ package cn.jxufe.dao;
  */
 public interface BlogCollectionDao {
     /**
-     *查找用户的文章被收藏次数
+     * 查找用户的文章被收藏次数
      * @param userId userId
      * @return 次数
      */

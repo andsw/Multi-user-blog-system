@@ -102,7 +102,8 @@ $(function () {
 });
 
 function noBlog() {
-    $("#hottest_blogs_div").html("<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
+    $("#hottest_blogs_div").html("<h4 class=\"text-gray\">热门博客：</h4>"
+                                 + "<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
                                  + "  <img src=\"img/customize/nothing_return.jpg\"\n"
                                  + "       alt=\"还没有博客哦，快来发表吧！\"\n"
                                  + "       class=\"offset-sm-3\">\n"

@@ -158,3 +158,9 @@
 .statistics strong {
     cursor: pointer;
 }
+
+/**/
+.nav-item {
+    position: relative;
+    z-index: 9999
+}

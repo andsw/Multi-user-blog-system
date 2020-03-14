@@ -24,14 +24,15 @@ testEditor=$(function() {
         // 可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
         saveHTMLToTextarea : true,
 
-        // 设置主题
-        theme: "dark",
-        editorTheme: "pastel-on-dark",
-        previewTheme: "dark",
+        // 设置主题, TODO： 前端设置编辑器主题
+        // theme: "dark",
+        // editorTheme: "pastel-on-dark",
+        // previewTheme: "dark",
 
-        onload: function () {
-            this.fullscreen();
-        },
+        // 编辑器全屏
+        // onload: function () {
+        //     this.fullscreen();
+        // },
 
         // 定制toolbar按钮
         toolbarIcons: function () {

@@ -177,10 +177,20 @@
 
 #blog_title_input {
     height: 50px;
+    border-right-width: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 #blog_markdown_container {
     height: 700px;
     display: none;
     z-index: 1
+}
+
+#submit_blog {
+    height: 50px;
+    width: 90px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }

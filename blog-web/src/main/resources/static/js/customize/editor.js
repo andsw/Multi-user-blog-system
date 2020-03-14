@@ -55,8 +55,20 @@ $(function() {
                     "watch", "preview", "fullscreen", "clear", "search"]
         }
     });
-    $("#submit_blog").click(function () {
+    $("#submit_blog").click(function (e) {
+        e.preventDefault();
+        let l = Ladda.create(this);
+        l.start();
         const blogContent = blogEditor.getMarkdown();
-        console.log(blogContent)
+        console.log(blogContent);
+        // request("/blog", 'post', null, true,
+        // function () {
+        //
+        // }, function () {
+        //
+        // })
+        setTimeout(function () {
+            l.stop()
+        }, 3000)
     });
 });

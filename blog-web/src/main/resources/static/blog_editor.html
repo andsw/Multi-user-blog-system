@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>写文章</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -111,38 +111,40 @@
                             </ul>
                         </li>
                         <!-- Logout    -->
-                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">主页</span><i class="fa fa-home"></i></a></li>
+                        <li class="nav-item"><a href="index.html" class="nav-link"> <span class="d-none d-sm-inline">主页</span><i class="fa fa-home"></i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container d-flex align-items-center bg-transparent" style="margin-bottom: -15px; min-height: 9px; padding-left: 0;padding-right: 0; z-index: 1">
+    <div class="container d-flex align-items-center bg-transparent" id="blog_title_container">
         <div class="col-12">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="...">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                    <button type="button" style="height: 50px" class="btn btn-default dropdown-toggle text-small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">文章类型 <span
+                            class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li class="nav-item"><a href="#">原创</a></li>
+                        <li class="nav-item"><a href="#">转载</a></li>
                     </ul>
                 </div><!-- /btn-group -->
+                <input id="blog_title_input" type="text" class="form-control" aria-label="..." placeholder="请 输 入 文 章 标 题！">
             </div><!-- /input-group -->
         </div><!-- /.col-lg-12 -->
     </div>
 
-    <div class="container d-flex align-items-center bg-transparent" style="height: 700px; display: none; z-index: 1">
-        <div class="editormd" id="test-editormd">
+    <div class="container d-flex align-items-center bg-transparent" id="blog_markdown_container">
+        <div class="editormd" id="blog-editormd">
             <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
             <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
             <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
             <textarea class="editormd-html-textarea" name="editorhtml" id="editorhtml"></textarea>
         </div>
+    </div>
+
+    <div class="container" id="">
+        <button id="submit_blog">提交</button>
     </div>
 </div>
 <!-- JavaScript files-->
@@ -152,6 +154,7 @@
 <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!--markdown editor-->
 <script src="app/editormd/editormd.js"></script>
 <script src="js/customize/editor.js"></script>

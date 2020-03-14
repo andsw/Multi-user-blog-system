@@ -1,13 +1,14 @@
 /* your styles go here */
 
 /*以下三个是鼠标悬停下划线从文字中间展开的动画*/
-.text-underline{
+.text-underline {
     display: inline;
     text-align: center;
     position: relative;
     cursor: pointer;
 }
-.text-underline::after{
+
+.text-underline::after {
     position: absolute;
     left: 0;
     top: 100%;
@@ -20,7 +21,8 @@
     -webkit-transition: all .3s;
 
 }
-.text-underline:hover::after{
+
+.text-underline:hover::after {
     height: 2px;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -163,4 +165,22 @@
 .nav-item {
     position: relative;
     z-index: 9999
+}
+
+#blog_title_container {
+    margin-bottom: -30px;
+    min-height: 9px;
+    padding-left: 4px;
+    padding-right: 4px;
+    z-index: 1
+}
+
+#blog_title_input {
+    height: 50px;
+}
+
+#blog_markdown_container {
+    height: 700px;
+    display: none;
+    z-index: 1
 }

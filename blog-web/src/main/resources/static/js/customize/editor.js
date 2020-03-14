@@ -1,7 +1,7 @@
-let testEditor;
+let blogEditor;
 
-testEditor=$(function() {
-    editormd("test-editormd", {
+$(function() {
+    blogEditor = editormd("blog-editormd", {
         width   : "100%",
         height  : "100%",
         codeFold : false,
@@ -34,10 +34,29 @@ testEditor=$(function() {
         //     this.fullscreen();
         // },
 
+        onload: function() {
+            toastr.info('asdf');
+        },
+
+        onfullscreen : function() {
+            toastr.info("ESC退出全屏");
+            $(".header").hide();
+            // console.log("onfullscreen =>", this, this.id, this.settings);
+        },
+        onfullscreenExit : function() {
+            $(".header").show();
+            // alert("onfullscreenExit");
+            // console.log("onfullscreenExit =>", this, this.id, this.settings);
+        },
+
         // 定制toolbar按钮
         toolbarIcons: function () {
             return ["undo", "redo", "|", "hr", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "|",
                     "watch", "preview", "fullscreen", "clear", "search"]
         }
+    });
+    $("#submit_blog").click(function () {
+        const blogContent = blogEditor.getMarkdown();
+        console.log(blogContent)
     });
 });

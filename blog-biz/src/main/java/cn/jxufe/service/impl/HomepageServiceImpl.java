@@ -1,7 +1,6 @@
 package cn.jxufe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,11 +41,10 @@ public class HomepageServiceImpl implements HomepageService {
      * @param userId userId需要判空
      * @return homepageUserVo
      */
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
-    @Cacheable(value = "home_user", key = "#userId")
+//    @Cacheable(value = "home_user", key = "#userId")
     public HomepageUserVo getHomepageUserVoByUserId(Integer userId) {
-        System.out.println("get from db");
         if (userId == null) {
             throw new InvalidParameterException("userId is null");
         }
@@ -54,15 +52,20 @@ public class HomepageServiceImpl implements HomepageService {
         // get user info
         final User user = userDao.selectByUserId(userId);
 
-        // blog view num
-        final Integer blogReadNum = blogDao.selectSumReadNumByUserIdLimit(userId, user.getBlogNum());
+        Integer blogReadNum = 0;
+        Integer collectionNum = 0;
+        Integer loveNum = 0;
+        if (user.getBlogNum() > 0) {
+            // blog view num
+            blogReadNum = blogDao.selectSumReadNumByUserIdLimit(userId, user.getBlogNum());
 
-        // blog collect count by other users
-        final Integer collectionNum = blogCollectionDao.selectCountByAuthorId(userId);
+            // blog collect count by other users
+            collectionNum = blogCollectionDao.selectCountByAuthorId(userId);
+
+            // thumb-up count given by other users
+            loveNum = loveDao.selectCountByAuthorId(userId);
+        }
         final Integer collectBlogNum = blogCollectionDao.selectCountByUserId(userId);
-
-        // thumb-up count given by other users
-        final Integer loveNum = loveDao.selectCountByAuthorId(userId);
 
         return new HomepageUserVo(user, blogReadNum, loveNum, collectionNum, collectBlogNum);
     }

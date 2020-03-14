@@ -13,8 +13,8 @@ $(function () {
         }
     }
 
-    //user信息加载成功的标志，成功就进行后续操作，否则就停止请求
-    let userInfoLoadRes = false;
+    //user信息
+    let userInfo = null;
     // 默认top 4 hottest blog
     let blog_num = 4;
     // 加载用户数据信息
@@ -23,7 +23,7 @@ $(function () {
             const usernameComponent = $('#username');
             const emailComponent = $('#email');
             const avatarComponent = $('#avatar');
-            const userInfo = result.data.user;
+            userInfo = result.data.user;
 
             usernameComponent.text(userInfo.username);
             emailComponent.text(userInfo.email);
@@ -55,7 +55,7 @@ $(function () {
     });
 
     // userInfo加载成功
-    if (userInfoLoadRes) {
+    if (userInfo != null && userInfo.blogNum > 0) {
         request("/home/blog/" + userId + "?blogNum=" + blog_num, "get", null, true, function (result) {
             if (result.code === 200) {
                 console.log(result.data);
@@ -63,11 +63,7 @@ $(function () {
                 const data = result.data;
 
                 if (data.length === 0) {
-                    $("#hottest_blogs_div").html("<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
-                                                 + "  <img src=\"img/customize/nothing_return.jpg\"\n"
-                                                 + "       alt=\"还没有博客哦，快来发表吧！\"\n"
-                                                 + "       class=\"offset-sm-3\">\n"
-                                                 + "</div>")
+                    noBlog()
                 } else {
                     $("#hottest-blog-loading").hide();
                     $(data).each(function (index, blog) {
@@ -102,5 +98,13 @@ $(function () {
         }, function () {
             alert('请求超时')
         });
-    }
+    } else {noBlog()}
 });
+
+function noBlog() {
+    $("#hottest_blogs_div").html("<div class=\"bg-white col-12\" style=\"height: 93%\">\n"
+                                 + "  <img src=\"img/customize/nothing_return.jpg\"\n"
+                                 + "       alt=\"还没有博客哦，快来发表吧！\"\n"
+                                 + "       class=\"offset-sm-3\">\n"
+                                 + "</div>")
+}

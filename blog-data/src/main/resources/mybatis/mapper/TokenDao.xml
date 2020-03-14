@@ -5,13 +5,13 @@
   <select id="selectTokenByUserId" parameterType="java.lang.Integer" resultType="cn.jxufe.bean.Token">
     select user_id, login_token, latest_login_at
     from token
-    where user_id = ${userId}
+    where user_id = #{userId}
     limit 1
   </select>
 
   <insert id="insertToken">
-    insert into token(user_id, login_token) value (${userId}, ${loginToken})
-    ON DUPLICATE KEY UPDATE login_token=${loginToken}
+    insert into token(user_id, login_token) value (#{userId}, #{loginToken})
+    ON DUPLICATE KEY UPDATE login_token=#{loginToken}
   </insert>
 
 </mapper>

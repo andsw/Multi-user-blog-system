@@ -1921,7 +1921,7 @@ input.input-material.is-invalid ~ label {
 .login-page .form-holder {
   width: 100%;
   border-radius: 5px;
-  overflow: scroll;
+  overflow: hidden;
   margin-bottom: 50px;
 }
 

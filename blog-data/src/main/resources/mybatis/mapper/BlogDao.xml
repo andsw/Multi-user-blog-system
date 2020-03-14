@@ -31,7 +31,7 @@
     </select>
 
     <select id="selectSumReadNumByUserIdLimit" resultType="java.lang.Integer">
-        select sum(read_num)
+        select COALESCE(sum(read_num), 0)
         from blog
         where user_id = #{userId}
         <if test="blogNum != null">

@@ -62,9 +62,6 @@ public class LoginController {
         // name为loginToken每个字母后加以为
         Cookie tokenCookie = new Cookie(tokenCookieName, token.getLoginToken());
         Cookie userIdCookie = new Cookie(userIdCookieName, "" + token.getUserId());
-        // 暂时设置cookie脚本不可获取
-        tokenCookie.setHttpOnly(true);
-        userIdCookie.setHttpOnly(true);
         response.addCookie(tokenCookie);
         response.addCookie(userIdCookie);
 

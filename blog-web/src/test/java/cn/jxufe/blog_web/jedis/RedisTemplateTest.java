@@ -17,6 +17,6 @@ public class RedisTemplateTest {
 
     @Test
     public void testTemplate() {
-        redisTemplate.opsForValue().get("31");
+        redisTemplate.delete("34");
     }
 }

@@ -13,7 +13,6 @@ $(function () {
                     redirectTo(redirectUrlAfterLogin);
                 }
             } else if (result.code === 302) {
-                alert(result.message);
                 redirectTo(result.redirectUrl, "登录成功");
             } else {
                 $("#login-exception").text(result.message);

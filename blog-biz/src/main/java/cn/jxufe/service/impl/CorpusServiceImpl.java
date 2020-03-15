@@ -3,6 +3,8 @@ package cn.jxufe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import cn.jxufe.bean.Corpus;
 import cn.jxufe.dao.CorpusDao;
 import cn.jxufe.exception.CorpusException;
@@ -15,8 +17,27 @@ import cn.jxufe.service.CorpusService;
 @Service
 public class CorpusServiceImpl implements CorpusService {
 
+    private final CorpusDao corpusDao;
+
     @Autowired
-    private CorpusDao corpusDao;
+    public CorpusServiceImpl(CorpusDao corpusDao) {
+        this.corpusDao = corpusDao;
+    }
+
+    @Override
+    public List<Corpus> getUserCorpusList(Integer userId) {
+        return corpusDao.selectCorpusByUserId(userId);
+    }
+
+    /**
+     * 只获取文集名字和id，避免获取过多冗余数据导致性能下降
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Corpus> getUserCorpusSimpleList(Integer userId) {
+        return corpusDao.selectSimpleInfoByUserId(userId);
+    }
 
     @Override
     public boolean checkIfCorpusExists(Integer corpusId) {

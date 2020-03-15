@@ -35,7 +35,13 @@ $(function() {
         // },
 
         onload: function() {
-            toastr.info('asdf');
+            // 加载成功后在toolbar上面加一个select可以否 style="display:inline-block;width:110px;overflow: hidden"
+            $(".editormd-menu").append("<li>\n"
+                                       + "<select id='corpus_selector' class='selectpicker text-black-50' data-live-search='true'>"
+                                       + "<option data-tokens=\"ketchup mustard\" value='1' class=''>查询设备</option>\n"
+                                       + "<option class='divider'></option>"
+                                       + "<option class='additem'></option>"
+                                       + "</select></li>");
         },
 
         onfullscreen : function() {
@@ -71,4 +77,32 @@ $(function() {
             l.stop()
         }, 3000)
     });
+
+    //文集下拉框 TODO:在下拉框选项或者旁边加入一个按钮可以添加文集！！！
+    load_corpus()
 });
+
+function load_corpus() {
+    const userId = $.cookie("userId");
+    request('/simple/corpus?userId=' + userId, 'get', null, false,
+            function (result) {
+                const corpusSelector = $(".selectpicker");
+                if (result.code === 200) {
+                    corpusSelector.html("");
+                    let option = '';
+                    $.each(result.data, function (idx, c) {
+                        option += '<option value="' + c.id + '">' + c.name + '</option>';
+                    });
+                    console.log(option);
+                    // corpusSelector.html(option);
+                    // corpusSelector.selectpicker("refresh");
+                    corpusSelector.html(option);
+                    corpusSelector.selectpicker('refresh');
+                } else {
+                    corpusSelector.append('<option>corpus加载失败，请刷新</option>');
+                    corpusSelector.selectpicker("refresh");
+                }
+            }, function () {
+                $("#corpus_selector").append('<option>发生错误，请重试</option>')
+        });
+}

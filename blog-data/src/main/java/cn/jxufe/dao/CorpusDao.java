@@ -18,11 +18,11 @@ public interface CorpusDao {
 
     Integer deleteByCorpusId(Integer corpusId);
 
-    Corpus insertCorpus(Corpus corpus);
+    Integer insertCorpus(Corpus corpus);
 
     /**
      * name
      * @Param corpus
      */
-    Integer updateCorpus(Corpus corpus);
+    Integer updateCorpusName(Corpus corpus);
 }

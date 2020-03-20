@@ -22,5 +22,5 @@ public interface BlogDao {
 
     Integer deleteByBlogId(Integer blogId);
 
-    Blog insertBlog(Blog blog);
+    Integer insertBlog(Blog blog);
 }

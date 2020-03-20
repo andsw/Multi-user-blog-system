@@ -19,6 +19,7 @@ import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.my_enum.WebsitePathEnum;
 import cn.jxufe.service.UserService;
+import cn.jxufe.util.CookieUtil;
 import cn.jxufe.validation.group.LoginGroup;
 import cn.jxufe.validation.group.RegisterGroup;
 import io.swagger.annotations.Api;
@@ -92,11 +93,7 @@ public class LoginController {
      */
     @GetMapping(value = "/logout")
     public RedirectResult logout(HttpServletRequest request, HttpServletResponse response) {
-        for (Cookie c : request.getCookies()) {
-            c.setMaxAge(0);
-            c.setPath("/");
-            response.addCookie(c);
-        }
+        CookieUtil.clearCookie(request, response);
         return RedirectResult.redirect("/login");
     }
 }

@@ -50,7 +50,7 @@
         where id = #{blogId}
         limit 1
     </delete>
-    <insert id="insertBlog">
+    <insert id="insertBlog" useGeneratedKeys="true" keyProperty="id">
         insert into blog(title, corpus_id, user_id, word_num)
         value (#{title}, #{corpusId}, #{userId}, #{wordNum})
     </insert>

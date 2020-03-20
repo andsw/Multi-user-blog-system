@@ -3,7 +3,6 @@ package cn.jxufe.service;
 import java.util.List;
 
 import cn.jxufe.bean.Corpus;
-import cn.jxufe.exception.CorpusException;
 
 /**
  * @author hsw
@@ -16,9 +15,9 @@ public interface CorpusService {
 
     boolean checkIfCorpusExists(Integer corpusId);
 
-    void deleteCorpus(Integer corpusId) throws CorpusException;
+    boolean deleteCorpus(Integer corpusId, Integer userId);
 
     Corpus addCorpus(Corpus corpus);
 
-    void changeCorpusName();
+    void renameCorpus(Corpus corpus);
 }

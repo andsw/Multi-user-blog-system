@@ -28,7 +28,7 @@ public interface BlogService {
      */
     Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize);
 
-    void insertBlog(Blog blog, BlogContent content) throws BlogWritingException;
+    boolean insertBlog(Blog blog, BlogContent content) throws BlogWritingException;
 
     boolean deleteBlog(Integer blogId);
 }

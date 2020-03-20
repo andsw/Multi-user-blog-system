@@ -31,6 +31,8 @@ public class BlogController {
 
     /**
      * 新增文章
+     * 事务方式写入 info和content
+     * 更新corpus的blogNum，user的blogNum
      * @param vo
      * @return
      */
@@ -40,8 +42,7 @@ public class BlogController {
             .setCorpusId(vo.getCorpusId()).setTitle(vo.getTitle())
             .setWordNum(vo.getWordNum());
         BlogContent content = new BlogContent().setContent(vo.getContent());
-        blogService.insertBlog(blog, content);
-        return NormalResult.success();
+        return blogService.insertBlog(blog, content) ? NormalResult.success() : NormalResult.failure();
     }
 
     @DeleteMapping(value = "/blog/{blogId}")

@@ -2,12 +2,14 @@ package cn.jxufe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import cn.jxufe.bean.Corpus;
 import cn.jxufe.dao.CorpusDao;
-import cn.jxufe.exception.CorpusException;
+import cn.jxufe.dao.UserDao;
 import cn.jxufe.service.CorpusService;
 
 /**
@@ -18,10 +20,12 @@ import cn.jxufe.service.CorpusService;
 public class CorpusServiceImpl implements CorpusService {
 
     private final CorpusDao corpusDao;
+    private final UserDao userDao;
 
     @Autowired
-    public CorpusServiceImpl(CorpusDao corpusDao) {
+    public CorpusServiceImpl(CorpusDao corpusDao, UserDao userDao) {
         this.corpusDao = corpusDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -48,30 +52,35 @@ public class CorpusServiceImpl implements CorpusService {
     }
 
     /**
-     * 删除，TODO：1.0 用户数据更新
-     * @param corpusId
-     * @throws CorpusException
+     * 删除
      */
     @Override
-    public void deleteCorpus(Integer corpusId) throws CorpusException {
-        if (corpusId == null) {
-            throw new CorpusException("找不到文集");
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public boolean deleteCorpus(Integer corpusId, Integer userId) {
+        if (corpusDao.deleteByCorpusId(corpusId) == 1) {
+            userDao.minusNumByUserIdSelective(userId, "corpusNum", 1);
+            return true;
         }
-        corpusDao.deleteByCorpusId(corpusId);
+        return false;
     }
 
     /**
-     * 添加，TODO：1.0 用户数据更新
+     * 添加
      * @param corpus
-     * @return
+     * @return 文集主键
      */
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Corpus addCorpus(Corpus corpus) {
-        return corpusDao.insertCorpus(corpus);
+        if (corpusDao.insertCorpus(corpus) == 1) {
+            userDao.plusNumByUserIdSelective(corpus.getUserId(), "corpus_num", 1);
+            return corpus;
+        }
+        return null;
     }
 
     @Override
-    public void changeCorpusName() {
-
+    public void renameCorpus(Corpus corpus) {
+        corpusDao.updateCorpusName(corpus);
     }
 }

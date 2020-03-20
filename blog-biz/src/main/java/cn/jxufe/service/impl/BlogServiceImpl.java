@@ -5,6 +5,8 @@ import com.github.pagehelper.PageHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import cn.jxufe.bean.Blog;
 import cn.jxufe.bean.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
+import cn.jxufe.dao.UserDao;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
 import cn.jxufe.service.CorpusService;
@@ -25,14 +28,17 @@ public class BlogServiceImpl implements BlogService {
 
     private BlogDao blogDao;
     private BlogContentDao blogContentDao;
+    private final UserDao userDao;
 
     private CorpusService corpusService;
 
+
     @Autowired
-    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService) {
+    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService, UserDao userDao) {
         this.blogDao = blogDao;
         this.blogContentDao = blogContentDao;
         this.corpusService = corpusService;
+        this.userDao = userDao;
     }
 
     /**
@@ -61,30 +67,34 @@ public class BlogServiceImpl implements BlogService {
     /**
      * 检测corpus_id是否存在，检测BlogContent和title等
      * 注意文章信息和内容插入必须同步，所以这里必须用事务。
-     * @param blog blog信息
+     *
+     * @param blog    blog信息
      * @param content 文章内容，判空交给hibernate-validation
      */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public void insertBlog(Blog blog, BlogContent content) throws BlogWritingException {
+    public boolean insertBlog(Blog blog, BlogContent content) throws BlogWritingException {
         if (!corpusService.checkIfCorpusExists(blog.getCorpusId())) {
             throw new BlogWritingException("找不到文章所属文集");
         }
-        Blog blogWithId = blogDao.insertBlog(blog);
-        content.setBlogId(blogWithId.getId());
-        blogContentDao.insertBlogContent(content);
+        if (blogDao.insertBlog(blog) == 1) {
+            content.setBlogId(blog.getId());
+            blogContentDao.insertBlogContent(content);
+            userDao.plusNumByUserIdSelective(blog.getUserId(), "blogNum", 1);
+            return true;
+        }
+        return false;
     }
 
     /**
      * 同样事务，需要同时删除信息及内容
-     * @param blogId
-     * @return
      */
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public boolean deleteBlog(Integer blogId) {
         if (blogId == null) {
             return false;
         }
-        return blogDao.deleteByBlogId(blogId)
-        + blogContentDao.deleteBlogByBlogId(blogId) == 2;
+        return false;
     }
 }

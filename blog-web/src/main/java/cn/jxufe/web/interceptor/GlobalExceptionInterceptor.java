@@ -35,20 +35,11 @@ public class GlobalExceptionInterceptor  {
             return NormalResult.failureWithMessage(e.getMessage());
         } else if (e instanceof LoginException) {
             return NormalResult.failureWithMessage(e.getMessage());
-        }
-        return null;
-    }
-
-    /**
-     * 文章操作异常处理
-     * @param e
-     * @return
-     */
-    public NormalResult<?> blogExceptionHandler(Exception e) {
-        if (e instanceof BlogWritingException) {
+        } else if (e instanceof BlogWritingException) {
             return NormalResult.failureWithMessage(e.getMessage());
+        } else {
+            return NormalResult.failureWithMessage("其他错误：" + e.getMessage());
         }
-        return null;
     }
 
 }

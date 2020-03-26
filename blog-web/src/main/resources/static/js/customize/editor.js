@@ -63,18 +63,52 @@ $(function() {
     $("#submit_blog").click(function (e) {
         e.preventDefault();
         let l = Ladda.create(this);
-        l.start();
-        const blogContent = blogEditor.getMarkdown();
-        console.log(blogContent);
-        request("/blog", 'post', null, true,
-        function (result) {
-            l.stop()
-        }, function () {
 
-        });
-        // setTimeout(function () {
-        //     l.stop()
-        // }, 3000)
+        const blogContent = blogEditor.getMarkdown();
+        const title = $("#blog_title_input").val();
+        const corpusId = $("#corpus_selector").val();
+
+        if (title == null || title.trim() === "") {
+            toastr.error("标题不能为空！");
+            l.stop();
+            return;
+        }
+        if (blogContent == null || blogContent.trim() === "") {
+            toastr.error("内容不能为空！");
+            l.stop();
+            return;
+        }
+        if (corpusId == null) {
+            toastr.error("未选择文章所属文集！");
+            l.stop();
+            return
+        }
+
+        // 按钮开始loading，表示正在上传文章
+        l.start();
+
+        let blogVo = {};
+        blogVo["corpusId"] = parseInt(corpusId);
+        blogVo["userId"] = parseInt($.cookie("userId"));
+        blogVo["title"] = title;
+        blogVo["content"] = blogContent;
+        blogVo["wordNum"] = blogContent.length;
+        console.log(blogVo);
+        request("/blog", 'post',  JSON.stringify(blogVo), true,
+                function (result) {
+                    if (result.code === 200) {
+                        toastr.success("保存成功！");
+                    } else {
+                        toastr.error(result.message);
+                    }
+                    //提交按钮停止loading
+                    l.stop();
+                }, function () {
+                toastr.error("提交发生错误！");
+                //提交按钮停止loading
+                l.stop();
+            });
+        // TODO: 等文章预览页面写好了，这里直接跳转文章展示页面！
     });
 });
 

@@ -27,4 +27,6 @@ public interface CorpusDao {
     Integer updateCorpusName(Corpus corpus);
 
     Integer selectCorpusCountByUserId(Integer userId);
+
+    Integer increaseBlogNumWhenWrite(Integer corpusId, int n);
 }

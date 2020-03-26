@@ -20,4 +20,6 @@ public interface CorpusService {
     Corpus addCorpus(Corpus corpus);
 
     void renameCorpus(Corpus corpus);
+
+    boolean updateBlogNum(Integer corpusId, int n);
 }

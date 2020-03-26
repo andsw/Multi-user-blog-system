@@ -80,6 +80,7 @@ public class BlogServiceImpl implements BlogService {
         if (blogDao.insertBlog(blog) == 1) {
             content.setBlogId(blog.getId());
             blogContentDao.insertBlogContent(content);
+            corpusService.updateBlogNum(blog.getCorpusId(), 1);
             return true;
         }
         return false;

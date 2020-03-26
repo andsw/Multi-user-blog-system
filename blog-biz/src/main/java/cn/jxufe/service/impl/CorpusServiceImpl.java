@@ -78,4 +78,12 @@ public class CorpusServiceImpl implements CorpusService {
     public void renameCorpus(Corpus corpus) {
         corpusDao.updateCorpusName(corpus);
     }
+
+    @Override
+    public boolean updateBlogNum(Integer corpusId, int n) {
+        if (corpusId == null) {
+            return false;
+        }
+        return corpusDao.increaseBlogNumWhenWrite(corpusId, n) == 1;
+    }
 }

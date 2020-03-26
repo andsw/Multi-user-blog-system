@@ -1,6 +1,6 @@
 package cn.jxufe.dao;
 
-import cn.jxufe.bean.Love;
+import cn.jxufe.entity.Love;
 
 /**
  * @author hsw

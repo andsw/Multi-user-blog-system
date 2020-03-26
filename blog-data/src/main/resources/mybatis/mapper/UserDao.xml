@@ -3,25 +3,20 @@
 <mapper namespace="cn.jxufe.dao.UserDao">
 
     <!-- customize -->
-    <select id="selectByUserId" parameterType="Integer" resultType="cn.jxufe.bean.User">
+    <select id="selectByUserId" parameterType="Integer" resultType="cn.jxufe.entity.User">
         select id,
                email,
                username,
                avatar,
                person_msg,
                gender,
-               blog_num,
-               corpus_num,
-               word_num,
-               sub_num,
-               fan_num,
                register_at
         from user
         where id = #{userId}
         limit 1
     </select>
 
-    <select id="selectByUsernameOrEmail" resultType="cn.jxufe.bean.User">
+    <select id="selectByUsernameOrEmail" resultType="cn.jxufe.entity.User">
         select id, username, email, password, salt
         from user
         <choose>
@@ -35,7 +30,7 @@
         limit 1
     </select>
 
-    <insert id="insertNewUser" parameterType="cn.jxufe.bean.User">
+    <insert id="insertNewUser" parameterType="cn.jxufe.entity.User">
         insert into user(email, password, salt, username)
         values (#{email}, #{password}, #{salt}, #{username})
     </insert>
@@ -54,28 +49,5 @@
         where id = #{id}
         limit 1
     </update>
-    <update id="plusNumByUserIdSelective">
-        update user
-        <trim prefix="set" suffixOverrides=",">
-            <if test="colName='blog_num'">blog_num=blog_num+#{num},</if>
-            <if test="colName='corpus_num'">corpus_num=corpus_num+#{num},</if>
-            <if test="colName='word_num'">word_num=word_num+#{num},</if>
-            <if test="colName='sub_num'">sub_num=sub_num+#{num},</if>
-            <if test="colName='fan_num'">fan_num=fan_num+#{num},</if>
-        </trim>
-        where id = #{userId}
-        limit 1
-    </update>
-    <update id="minusNumByUserIdSelective">
-        update user
-        <trim prefix="set" suffixOverrides=",">
-            <if test="colName='blog_num'">blog_num=blog_num-#{num},</if>
-            <if test="colName='corpus_num'">corpus_num=corpus_num-#{num},</if>
-            <if test="colName='word_num'">word_num=word_num-#{num},</if>
-            <if test="colName='sub_num'">sub_num=sub_num-#{num},</if>
-            <if test="colName='fan_num'">fan_num=fan_num-#{num},</if>
-        </trim>
-        where id = #{userId}
-        limit 1
-    </update>
+
 </mapper>

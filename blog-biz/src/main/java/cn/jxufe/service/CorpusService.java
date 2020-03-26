@@ -2,7 +2,7 @@ package cn.jxufe.service;
 
 import java.util.List;
 
-import cn.jxufe.bean.Corpus;
+import cn.jxufe.entity.Corpus;
 
 /**
  * @author hsw

@@ -2,7 +2,8 @@ package cn.jxufe.dao;
 
 import java.util.List;
 
-import cn.jxufe.bean.Blog;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.Do.UserBlogNumDo;
 
 public interface BlogDao {
 
@@ -23,4 +24,12 @@ public interface BlogDao {
     Integer deleteByBlogId(Integer blogId);
 
     Integer insertBlog(Blog blog);
+
+    /**
+     * 字数，文章数，阅读数，
+     * TODO: 记住sum，max等聚合函数可以添加列来提高效率
+     * @param userId
+     * @return
+     */
+    UserBlogNumDo selectNumInfoByUserId(Integer userId);
 }

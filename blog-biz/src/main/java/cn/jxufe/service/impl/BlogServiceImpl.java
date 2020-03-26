@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import cn.jxufe.bean.Blog;
-import cn.jxufe.bean.BlogContent;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
 import cn.jxufe.dao.UserDao;
@@ -80,7 +80,6 @@ public class BlogServiceImpl implements BlogService {
         if (blogDao.insertBlog(blog) == 1) {
             content.setBlogId(blog.getId());
             blogContentDao.insertBlogContent(content);
-            userDao.plusNumByUserIdSelective(blog.getUserId(), "blogNum", 1);
             return true;
         }
         return false;

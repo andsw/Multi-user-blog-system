@@ -1,6 +1,6 @@
 package cn.jxufe.dao;
 
-import cn.jxufe.bean.Comment;
+import cn.jxufe.entity.Comment;
 
 /**
  *

@@ -1,6 +1,6 @@
-package cn.jxufe.dto;
+package cn.jxufe.entity.dto;
 
-import cn.jxufe.dto.myenum.HttpCodeEnum;
+import cn.jxufe.entity.dto.myenum.HttpCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;

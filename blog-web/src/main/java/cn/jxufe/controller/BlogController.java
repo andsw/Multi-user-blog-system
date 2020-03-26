@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-import cn.jxufe.bean.Blog;
-import cn.jxufe.bean.BlogContent;
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.BlogContent;
+import cn.jxufe.entity.dto.NormalResult;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
-import cn.jxufe.vo.blog.BlogInsertionVo;
+import cn.jxufe.entity.vo.blog.BlogInsertionVo;
 
 /**
  * @author hsw

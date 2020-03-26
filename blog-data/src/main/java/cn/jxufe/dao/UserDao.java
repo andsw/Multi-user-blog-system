@@ -1,6 +1,6 @@
 package cn.jxufe.dao;
 
-import cn.jxufe.bean.User;
+import cn.jxufe.entity.User;
 
 public interface UserDao {
 
@@ -11,8 +11,4 @@ public interface UserDao {
     Integer insertNewUser(User user);
 
     int updateInfoByUserIdSelective(User user);
-
-    int plusNumByUserIdSelective(Integer userId, String colName, int num);
-
-    int minusNumByUserIdSelective(Integer userId, String colName, int num);
 }

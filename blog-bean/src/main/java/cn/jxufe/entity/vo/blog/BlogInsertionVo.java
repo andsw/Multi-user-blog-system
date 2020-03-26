@@ -1,4 +1,4 @@
-package cn.jxufe.vo.blog;
+package cn.jxufe.entity.vo.blog;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

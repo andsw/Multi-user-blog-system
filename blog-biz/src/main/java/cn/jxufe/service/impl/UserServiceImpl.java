@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
-import cn.jxufe.bean.Token;
-import cn.jxufe.bean.User;
+import cn.jxufe.entity.Token;
+import cn.jxufe.entity.User;
 import cn.jxufe.dao.TokenDao;
 import cn.jxufe.dao.UserDao;
 import cn.jxufe.exception.LoginException;

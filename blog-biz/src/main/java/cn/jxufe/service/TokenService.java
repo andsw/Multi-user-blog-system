@@ -2,7 +2,7 @@ package cn.jxufe.service;
 
 import java.sql.Timestamp;
 
-import cn.jxufe.bean.Token;
+import cn.jxufe.entity.Token;
 
 /**
  * @author hsw

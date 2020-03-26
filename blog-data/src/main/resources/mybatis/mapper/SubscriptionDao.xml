@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jxufe.dao.SubscriptionDao">
+
+    <select id="selectFansNumByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from subscription
+        where sub_id = #{userId}
+    </select>
+    <select id="selectSubNumByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from subscription
+        where fan_id = #{userId}
+    </select>
+</mapper>

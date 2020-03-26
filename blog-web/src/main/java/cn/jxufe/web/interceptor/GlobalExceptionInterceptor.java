@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Objects;
 
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.entity.dto.NormalResult;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;

@@ -14,7 +14,7 @@ $(function () {
     }
 
     //user信息
-    let userInfo = null;
+    let sumBlogNum = 0;
     // 默认top 4 hottest blog
     let blog_num = 4;
     // 加载用户数据信息
@@ -23,21 +23,22 @@ $(function () {
             const usernameComponent = $('#username');
             const emailComponent = $('#email');
             const avatarComponent = $('#avatar');
-            userInfo = result.data.user;
+            let userInfo = result.data.user;
 
             usernameComponent.text(userInfo.username);
             emailComponent.text(userInfo.email);
             avatarComponent.html('<img id="avatar" src="' + userInfo.avatar + '" alt="..." class="img-fluid rounded-circle">');
-            $("#blogNum").text(userInfo.blogNum);
-            $("#corpusNum").text(userInfo.corpusNum);
-            $("#wordNum").text(userInfo.wordNum);
-            $("#fanNum").text(userInfo.fanNum);
-            $("#subscriptionNum").text(userInfo.subNum);
+            $("#blogNum").text(result.data.blogNum);
+            $("#corpusNum").text(result.data.corpusNum);
+            $("#wordNum").text(result.data.wordNum);
+            $("#fanNum").text(result.data.fanNum);
+            $("#subscriptionNum").text(result.data.subNum);
 
             $("#readNum").text(result.data.readNum);
             $("#collectionNum").text(result.data.collectionNum);
             $("#likeNum").text(result.data.loveNum);
 
+            sumBlogNum = result.data.blogNum;
             // 只有当async为false的时候才能修改外部变量
             userInfoLoadRes = true;
         } else if (result.code === 302) {
@@ -55,7 +56,7 @@ $(function () {
     });
 
     // userInfo加载成功
-    if (userInfo != null && userInfo.blogNum > 0) {
+    if (sumBlogNum > 0) {
         request("/home/blog/" + userId + "?blogNum=" + blog_num, "get", null, true, function (result) {
             if (result.code === 200) {
                 console.log(result.data);

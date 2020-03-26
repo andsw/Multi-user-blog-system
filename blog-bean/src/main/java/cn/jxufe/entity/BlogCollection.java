@@ -1,4 +1,4 @@
-package cn.jxufe.bean;
+package cn.jxufe.entity;
 
 import java.io.Serializable;
 

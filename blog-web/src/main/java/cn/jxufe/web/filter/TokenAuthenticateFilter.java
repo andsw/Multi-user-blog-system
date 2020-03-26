@@ -20,8 +20,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import cn.jxufe.bean.Token;
-import cn.jxufe.dto.RedirectResult;
+import cn.jxufe.entity.Token;
+import cn.jxufe.entity.dto.RedirectResult;
 import cn.jxufe.my_enum.WebsitePathEnum;
 import cn.jxufe.service.TokenService;
 import cn.jxufe.util.JsonUtil;

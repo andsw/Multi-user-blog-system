@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.InvalidParameterException;
-import java.util.Arrays;
-
-import cn.jxufe.bean.User;
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.entity.User;
+import cn.jxufe.entity.dto.NormalResult;
 import cn.jxufe.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

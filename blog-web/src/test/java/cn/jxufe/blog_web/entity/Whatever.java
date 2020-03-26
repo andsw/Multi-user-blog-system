@@ -2,7 +2,7 @@ package cn.jxufe.blog_web.entity;
 
 import org.junit.jupiter.api.Test;
 
-import cn.jxufe.dto.myenum.HttpCodeEnum;
+import cn.jxufe.entity.dto.myenum.HttpCodeEnum;
 
 /**
  * @author hsw

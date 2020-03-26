@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import cn.jxufe.bean.Token;
+import cn.jxufe.entity.Token;
 import cn.jxufe.dao.TokenDao;
 import cn.jxufe.service.TokenService;
 

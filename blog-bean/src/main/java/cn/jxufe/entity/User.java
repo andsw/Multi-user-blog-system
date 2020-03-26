@@ -1,4 +1,4 @@
-package cn.jxufe.bean;
+package cn.jxufe.entity;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -66,26 +66,21 @@ public class User implements Serializable {
      */
     private Boolean gender;
 
-    /**
-     * 博客数量
-     */
-    @Min(value = 0)
-    private Integer blogNum;
-
-    /**
-     * 文集数量
-     */
-    @Min(value = 0)
-    private Integer corpusNum;
-
-    @Min(value = 0)
-    private Long wordNum;
-
-    @Min(value = 0)
-    private Integer subNum;
-
-    @Min(value = 0)
-    private Integer fanNum;
+    //不要了，需要时再去统计
+//    @Min(value = 0)
+//    private Integer blogNum;
+//
+//    @Min(value = 0)
+//    private Integer corpusNum;
+//
+//    @Min(value = 0)
+//    private Long wordNum;
+//
+//    @Min(value = 0)
+//    private Integer subNum;
+//
+//    @Min(value = 0)
+//    private Integer fanNum;
 
     /**
      * 注册时间，不可以更改！！！只读

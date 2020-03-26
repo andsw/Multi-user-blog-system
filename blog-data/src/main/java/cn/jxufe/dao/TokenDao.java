@@ -1,6 +1,6 @@
 package cn.jxufe.dao;
 
-import cn.jxufe.bean.Token;
+import cn.jxufe.entity.Token;
 
 /**
  * @author hsw

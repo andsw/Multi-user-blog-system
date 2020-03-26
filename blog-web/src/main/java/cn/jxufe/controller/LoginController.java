@@ -12,9 +12,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jxufe.bean.Token;
-import cn.jxufe.bean.User;
-import cn.jxufe.dto.RedirectResult;
+import cn.jxufe.entity.Token;
+import cn.jxufe.entity.User;
+import cn.jxufe.entity.dto.RedirectResult;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.my_enum.WebsitePathEnum;

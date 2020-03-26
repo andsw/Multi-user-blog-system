@@ -39,7 +39,7 @@ $(function() {
             $(".editormd-menu").append("<li>\n"
                                        + "<select id='corpus_selector' class='selectpicker text-black-50'>"
                                        + "</select></li>");
-            //文集下拉框  TODO:在下拉框选项或者旁边加入一个按钮可以添加文集！！！
+            //TODO:在下拉框选项或者旁边加入一个按钮可以添加文集！！！
             load_corpus()
         },
 
@@ -66,18 +66,19 @@ $(function() {
         l.start();
         const blogContent = blogEditor.getMarkdown();
         console.log(blogContent);
-        // request("/blog", 'post', null, true,
-        // function () {
-        //
-        // }, function () {
-        //
-        // })
-        setTimeout(function () {
+        request("/blog", 'post', null, true,
+        function (result) {
             l.stop()
-        }, 3000)
+        }, function () {
+
+        });
+        // setTimeout(function () {
+        //     l.stop()
+        // }, 3000)
     });
 });
 
+//文集下拉框加载文集列表
 function load_corpus() {
     const userId = $.cookie("userId");
     request('/simple/corpus?userId=' + userId, 'get', null, false,
@@ -99,7 +100,7 @@ function load_corpus() {
                     corpusSelector.selectpicker("refresh");
                 }
             }, function () {
-                $("#corpus_selector").append('<option>发生错误，请重试</option>')
+                $("#corpus_selector").html('<option>发生错误，请重试</option>')
+                corpusSelector.selectpicker('refresh');
         });
-    $("filter-option-inner-inner").settext
 }

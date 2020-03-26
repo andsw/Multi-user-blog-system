@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Arrays;
 import java.util.List;
 
-import cn.jxufe.bean.Blog;
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.dto.NormalResult;
 import cn.jxufe.service.BlogService;
 import cn.jxufe.service.HomepageService;
-import cn.jxufe.vo.homepage.HomepageUserVo;
+import cn.jxufe.entity.vo.homepage.HomepageUserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

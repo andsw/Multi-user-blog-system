@@ -1,4 +1,4 @@
-package cn.jxufe.dto.myenum;
+package cn.jxufe.entity.dto.myenum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

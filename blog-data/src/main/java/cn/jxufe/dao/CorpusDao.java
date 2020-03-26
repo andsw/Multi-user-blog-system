@@ -2,7 +2,7 @@ package cn.jxufe.dao;
 
 import java.util.List;
 
-import cn.jxufe.bean.Corpus;
+import cn.jxufe.entity.Corpus;
 
 /**
  * @author hsw
@@ -25,4 +25,6 @@ public interface CorpusDao {
      * @Param corpus
      */
     Integer updateCorpusName(Corpus corpus);
+
+    Integer selectCorpusCountByUserId(Integer userId);
 }

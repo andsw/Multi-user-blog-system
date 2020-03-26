@@ -1,6 +1,6 @@
 package cn.jxufe.dao;
 
-import cn.jxufe.bean.BlogContent;
+import cn.jxufe.entity.BlogContent;
 
 public interface BlogContentDao {
     BlogContent selectContentByBlogId(Integer blogId);

@@ -1,7 +1,7 @@
 package cn.jxufe.service;
 
-import cn.jxufe.bean.Token;
-import cn.jxufe.bean.User;
+import cn.jxufe.entity.Token;
+import cn.jxufe.entity.User;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 

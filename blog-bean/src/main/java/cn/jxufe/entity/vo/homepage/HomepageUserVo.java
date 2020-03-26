@@ -1,9 +1,8 @@
-package cn.jxufe.vo.homepage;
+package cn.jxufe.entity.vo.homepage;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-import cn.jxufe.bean.User;
+import cn.jxufe.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +18,15 @@ public class HomepageUserVo implements Serializable {
     /* from user */
     private User user;
 
-    /* others by calculation*/
+    // extract from user class!
+    private Integer blogNum;
     private Integer readNum;
+    private Long wordNum;
+    private Integer corpusNum;
+    private Integer subNum;
+    private Integer fanNum;
+
+    /* others by calculation*/
     private Integer loveNum;
     private Integer collectionNum;
     private Integer blogCollectedNum;

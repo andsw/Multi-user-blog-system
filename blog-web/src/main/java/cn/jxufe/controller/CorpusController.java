@@ -13,8 +13,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import cn.jxufe.bean.Corpus;
-import cn.jxufe.dto.NormalResult;
+import cn.jxufe.entity.Corpus;
+import cn.jxufe.entity.dto.NormalResult;
 import cn.jxufe.service.CorpusService;
 import cn.jxufe.util.CookieUtil;
 

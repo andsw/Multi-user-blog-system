@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import cn.jxufe.bean.User;
+import cn.jxufe.entity.User;
 import cn.jxufe.dao.UserDao;
 
 /**
@@ -18,8 +18,7 @@ public class UserDaoTest {
     private UserDao userDao;
 
     @Test
-    public void testUpdateNum() {
-        userDao.minusNumByUserIdSelective(1,"fan_num", 1);
+        public void testUpdateNum() {
 //        userDao.plusNumByUserIdSelective(1,"sub_num", 1);
     }
 

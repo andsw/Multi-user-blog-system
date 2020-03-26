@@ -4,8 +4,8 @@ import com.github.pagehelper.Page;
 
 import java.util.List;
 
-import cn.jxufe.bean.Blog;
-import cn.jxufe.bean.BlogContent;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.BlogContent;
 import cn.jxufe.exception.BlogWritingException;
 
 /**

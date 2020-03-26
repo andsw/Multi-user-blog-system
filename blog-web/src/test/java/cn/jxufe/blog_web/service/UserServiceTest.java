@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import cn.jxufe.bean.User;
-import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
 
 /**

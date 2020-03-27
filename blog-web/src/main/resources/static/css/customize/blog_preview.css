@@ -1,0 +1,15 @@
+#avatar {
+    height: 20px;
+    margin-right: 10px
+}
+
+#blog_title_item {
+    display: inline-block;
+    font-size: 20px
+}
+
+#blog_title {
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 100%;
+}

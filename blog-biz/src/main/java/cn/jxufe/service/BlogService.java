@@ -6,6 +6,7 @@ import java.util.List;
 
 import cn.jxufe.entity.Blog;
 import cn.jxufe.entity.BlogContent;
+import cn.jxufe.entity.vo.blog.BlogReadingVo;
 import cn.jxufe.exception.BlogWritingException;
 
 /**
@@ -31,4 +32,7 @@ public interface BlogService {
     boolean insertBlog(Blog blog, BlogContent content) throws BlogWritingException;
 
     boolean deleteBlog(Integer blogId);
+
+    BlogReadingVo getBlog(Integer blogId, Integer userId);
+
 }

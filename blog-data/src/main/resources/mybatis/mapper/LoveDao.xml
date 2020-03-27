@@ -30,4 +30,9 @@
         from love
         where blog_id = #{blogId}
     </select>
+    <select id="selectLoverByBlogId" resultType="java.lang.Integer">
+        select user_id
+        from love
+        where blog_id = #{blogId}
+    </select>
 </mapper>

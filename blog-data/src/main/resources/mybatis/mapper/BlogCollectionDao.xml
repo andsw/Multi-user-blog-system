@@ -12,4 +12,9 @@
         from blog_collection
         where user_id = #{userId};
     </select>
+    <select id="selectCollectorByBlogId" resultType="java.lang.Integer">
+        select user_id
+        from blog_collection
+        where blog_id = #{blogId};
+    </select>
 </mapper>

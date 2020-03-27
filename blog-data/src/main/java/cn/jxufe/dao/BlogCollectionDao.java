@@ -1,5 +1,7 @@
 package cn.jxufe.dao;
 
+import java.util.List;
+
 /**
  * @author hsw
  * @date 2020/2/9 15:27
@@ -18,4 +20,6 @@ public interface BlogCollectionDao {
      * @return int
      */
     Integer selectCountByUserId(Integer userId);
+
+    List<Integer> selectCollectorByBlogId(Integer blogId);
 }

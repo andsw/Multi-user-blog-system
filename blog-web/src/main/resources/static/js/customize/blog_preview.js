@@ -11,6 +11,11 @@ $(function () {
                         $("title")[0].text = blogInfo.title;
                         $("#blog_title").append(blogInfo.title);
                         $("#blog_content").val(result.data.content);
+                        $("#comment_num").append(blogInfo.commentNum);
+                        $("#love_num").append(result.data.loveNum);
+                        $("#read_num").append(blogInfo.readNum);
+                        $("#collect_num").append(result.data.collectNum);
+                        $("#word_num").append(blogInfo.wordNum);
                     } else {
                         toastr.error(result.message);
                     }

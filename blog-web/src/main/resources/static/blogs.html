@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/customize/blogs.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <!-- Favicon-->
@@ -157,221 +158,120 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Tables</h2>
+              <h2 class="no-margin-bottom">Blogs</h2>
             </div>
           </header>
           <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active">Tables            </li>
+              <li class="breadcrumb-item active">Blogs            </li>
             </ul>
           </div>
-          <section class="tables">
+          <section>
             <div class="container-fluid">
               <div class="row">
-                <div class="col-lg-6">
-                  <div class="card">
-                    <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
+                <div class="col-lg-12">
+                  <div>
+                    <div class="d-flex align-items-center">
+                      <h3 class="h4">Blogs Table</h3>
                     </div>
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Basic Table</h3>
-                    </div>
-                    <div class="card-body">
+                    <div>
                       <div class="table-responsive">
                         <table class="table">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
-                            </tr>
-                          </thead>
                           <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
+                            <tr class="align-items-center blog_row">
+                                <th scope="row" class="align-middle">1</th>
+                                <td class="align-middle"><h2>数据库（转）-----脏读、不可重复读和幻读以及隔离级别！</h2></td>
+                                <td class="align-middle">
+                                    <div id="comment_num" class="comments userBehaviorNum"><i class="fa fa-comment-o userBehaviorNumImg"></i>22</div>
+                                    <div id="read_num" class="read userBehaviorNum"><i class="fa fa-eye userBehaviorNumImg"></i>1232</div>
+                                    <div id="love_num" class="like userBehaviorNum"><i class="fa fa-thumbs-up userBehaviorNumImg">88</i></div>
+                                    <div id="collect_num" class="collect userBehaviorNum"><i class="fa fa-folder-o userBehaviorNumImg"></i>12</div>
+                                    <div id="word_num" class="text-gray userBehaviorNum">字数：8739</div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="" class="btn btn-primary btn-info text-white">编辑</a>
+                                    <a href="" class="btn btn-primary btn-danger text-white">删除</a>
+                                </td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
+                            <tr class="align-items-center blog_row">
+                                <th scope="row" class="align-middle">2</th>
+                                <td class="align-middle"><h2>docker----解决宿主机无法连接docker容器中运行的mysql问题</h2></td>
+                                <td class="align-middle">
+                                    <div id="comment_num" class="comments userBehaviorNum"><i class="fa fa-comment-o userBehaviorNumImg"></i>22</div>
+                                    <div id="read_num" class="read userBehaviorNum"><i class="fa fa-eye userBehaviorNumImg"></i>1232</div>
+                                    <div id="love_num" class="like userBehaviorNum"><i class="fa fa-thumbs-up userBehaviorNumImg">88</i></div>
+                                    <div id="collect_num" class="collect userBehaviorNum"><i class="fa fa-folder-o userBehaviorNumImg"></i>12</div>
+                                    <div id="word_num" class="text-gray userBehaviorNum">字数：8739</div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="" class="btn btn-primary btn-info text-white">编辑</a>
+                                    <a href="" class="btn btn-primary btn-danger text-white">删除</a>
+                                </td>
                             </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
+                            <tr class="align-items-center blog_row">
+                                <th scope="row" class="align-middle">3</th>
+                                <td class="align-middle overflow-hidden" style="width: 900px"><h2>java（转）----Java8的HashMap详解（存储结构，功能实现，扩容优化，线程安全，遍历方法）</h2></td>
+                                <td class="align-middle">
+                                    <div id="comment_num" class="comments userBehaviorNum"><i class="fa fa-comment-o userBehaviorNumImg"></i>22</div>
+                                    <div id="read_num" class="read userBehaviorNum"><i class="fa fa-eye userBehaviorNumImg"></i>1232</div>
+                                    <div id="love_num" class="like userBehaviorNum"><i class="fa fa-thumbs-up userBehaviorNumImg">88</i></div>
+                                    <div id="collect_num" class="collect userBehaviorNum"><i class="fa fa-folder-o userBehaviorNumImg"></i>12</div>
+                                    <div id="word_num" class="text-gray userBehaviorNum">字数：8739</div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="" class="btn btn-primary btn-info text-white">编辑</a>
+                                    <a href="" class="btn btn-primary btn-danger text-white">删除</a>
+                                </td>
+                            </tr>
+                            <tr class="align-items-center blog_row">
+                                <th scope="row" class="align-middle">4</th>
+                                <td class="align-middle"><h2>Linux-----etc-xinetd-d文件夹下非独立运行的配置文件的格式详解</h2></td>
+                                <td class="align-middle">
+                                    <div id="comment_num" class="comments userBehaviorNum"><i class="fa fa-comment-o userBehaviorNumImg"></i>22</div>
+                                    <div id="read_num" class="read userBehaviorNum"><i class="fa fa-eye userBehaviorNumImg"></i>1232</div>
+                                    <div id="love_num" class="like userBehaviorNum"><i class="fa fa-thumbs-up userBehaviorNumImg">88</i></div>
+                                    <div id="collect_num" class="collect userBehaviorNum"><i class="fa fa-folder-o userBehaviorNumImg"></i>12</div>
+                                    <div id="word_num" class="text-gray userBehaviorNum">字数：8739</div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="" class="btn btn-primary btn-info text-white">编辑</a>
+                                    <a href="" class="btn btn-primary btn-danger text-white">删除</a>
+                                </td>
+                            </tr>
+                            <tr class="align-items-center blog_row">
+                                <th scope="row" class="align-middle">5</th>
+                                <td class="align-middle"><h2>Spring----使用时IOException-parsing-XML-document-from-class-path-resource</h2></td>
+                                <td class="align-middle">
+                                    <div id="comment_num" class="comments userBehaviorNum"><i class="fa fa-comment-o userBehaviorNumImg"></i>22</div>
+                                    <div id="read_num" class="read userBehaviorNum"><i class="fa fa-eye userBehaviorNumImg"></i>1232</div>
+                                    <div id="love_num" class="like userBehaviorNum"><i class="fa fa-thumbs-up userBehaviorNumImg">88</i></div>
+                                    <div id="collect_num" class="collect userBehaviorNum"><i class="fa fa-folder-o userBehaviorNumImg"></i>12</div>
+                                    <div id="word_num" class="text-gray userBehaviorNum">字数：8739</div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="" class="btn btn-primary btn-info text-white">编辑</a>
+                                    <a href="" class="btn btn-primary btn-danger text-white">删除</a>
+                                </td>
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="card">
-                    <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
-                    </div>
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Striped Table</h3>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter                            </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="card">
-                    <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
-                    </div>
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Striped table with hover effect</h3>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter                            </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="card">
-                    <div class="card-close">
-                      <div class="dropdown">
-                        <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
-                    </div>
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Compact Table</h3>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter      </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">5</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">6</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter      </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                          <nav aria-label="..." class="align-items-center">
+                              <ul class="pagination">
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" tabindex="-1">上一页</a>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item active">
+                                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#">下一页</a>
+                                  </li>
+                              </ul>
+                          </nav>
                       </div>
                     </div>
                   </div>

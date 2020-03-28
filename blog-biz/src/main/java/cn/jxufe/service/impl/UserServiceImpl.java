@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.util.Objects;
 
 import cn.jxufe.entity.Token;
 import cn.jxufe.entity.User;
 import cn.jxufe.dao.TokenDao;
 import cn.jxufe.dao.UserDao;
+import cn.jxufe.entity.vo.user.BasicUserInfo;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 import cn.jxufe.service.UserService;
@@ -34,6 +36,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserInfo(Integer userId) {
         return userDao.selectByUserId(userId);
+    }
+
+    /**
+     * 获取侧边栏用户信息：username email gender
+     * @param userId
+     * @return
+     */
+    @Override
+    public BasicUserInfo getBasicUserInfo(Integer userId) {
+        if (userId == null) {
+            throw new InvalidParameterException("userId不能为空！");
+        }
+        return userDao.selectBasicInfoByUserId(userId);
     }
 
     @Override

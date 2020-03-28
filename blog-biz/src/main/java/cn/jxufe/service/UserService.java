@@ -2,6 +2,7 @@ package cn.jxufe.service;
 
 import cn.jxufe.entity.Token;
 import cn.jxufe.entity.User;
+import cn.jxufe.entity.vo.user.BasicUserInfo;
 import cn.jxufe.exception.LoginException;
 import cn.jxufe.exception.RegisterException;
 
@@ -17,6 +18,8 @@ public interface UserService {
      * @return 信息
      */
     User getUserInfo(Integer userId);
+
+    BasicUserInfo getBasicUserInfo(Integer userId);
 
     void registerUser(User user) throws RegisterException;
 

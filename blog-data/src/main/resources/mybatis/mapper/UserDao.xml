@@ -29,6 +29,12 @@
         </choose>
         limit 1
     </select>
+    <select id="selectBasicInfoByUserId" resultType="cn.jxufe.entity.vo.user.BasicUserInfo">
+        select id, username, email, avatar, gender
+        from user
+        where id = #{userId}
+        limit 1
+    </select>
 
     <insert id="insertNewUser" parameterType="cn.jxufe.entity.User">
         insert into user(email, password, salt, username)

@@ -3,6 +3,7 @@ package cn.jxufe.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "根据userId获取用户信息")
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    @GetMapping(value = "/user/{userId}")
     public NormalResult<User> getUserInfo(@PathVariable(name = "userId") Integer userId) {
         User user;
         try {
@@ -45,4 +46,8 @@ public class UserController {
         return NormalResult.successWithData(user);
     }
 
+    @GetMapping(value = "/user/basic/{userId}")
+    public NormalResult<?> getBasicUserInfo(@PathVariable(name = "userId") Integer userId) {
+        return NormalResult.successWithData(userService.getBasicUserInfo(userId));
+    }
 }

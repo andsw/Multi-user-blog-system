@@ -51,3 +51,37 @@ function getUrlParam(name) {
     const r = window.location.search.substr(1).match(reg);  //匹配目标参数
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
+
+/**
+ * 加载侧边栏信息，目前只有 头像 邮箱 用户名
+ * 除了主页其他页面都可以调用！
+ */
+function loadBasicUserInfo() {
+    let userId = getUrlParam("userId");
+    if (userId == null) {
+        userId = $.cookie("userId");
+        if (userId == null) {
+            redirectTo(LOGIN_PATH, ToastLevel.INFO, "未登录，无法进入个人主页！跳转登录...");
+            return;
+        }
+    }
+    request("/user/basic/" + userId, 'get', null, true, function (result) {
+        if (result.code === 200) {
+            setSideMenuUserInfo(result.data.username, result.data.email, result.data.gender, result.data.avatar);
+        } else {
+            toastr.error("加载用户信息发生错误！" + result.message);
+        }
+        $(".data-loading").hide()
+    }, function () {
+        toastr.error("发生未知错误！");
+    });
+}
+
+function setSideMenuUserInfo(username, email, gender, avatar) {
+    const usernameComponent = $('#username');
+    const emailComponent = $('#email');
+    const avatarComponent = $('#avatar');
+    usernameComponent.text(username);
+    emailComponent.text(email);
+    avatarComponent.html('<img id="avatar" src="' + avatar + '" alt="..." class="img-fluid rounded-circle">');
+}

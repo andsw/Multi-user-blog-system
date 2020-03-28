@@ -20,14 +20,10 @@ $(function () {
     // 加载用户数据信息
     request("/home/user/" + userId, "get", null, false, function (result) {
         if (result.code === 200) {
-            const usernameComponent = $('#username');
-            const emailComponent = $('#email');
-            const avatarComponent = $('#avatar');
             let userInfo = result.data.user;
 
-            usernameComponent.text(userInfo.username);
-            emailComponent.text(userInfo.email);
-            avatarComponent.html('<img id="avatar" src="' + userInfo.avatar + '" alt="..." class="img-fluid rounded-circle">');
+            setSideMenuUserInfo(userInfo.username, userInfo.email, userInfo.gender, userInfo.avatar);
+
             $("#blogNum").text(result.data.blogNum);
             $("#corpusNum").text(result.data.corpusNum);
             $("#wordNum").text(result.data.wordNum);
@@ -40,7 +36,6 @@ $(function () {
 
             sumBlogNum = result.data.blogNum;
             // 只有当async为false的时候才能修改外部变量
-            userInfoLoadRes = true;
         } else if (result.code === 302) {
             toastr.info(result.message);
             setTimeout(function () {

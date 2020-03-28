@@ -5,9 +5,12 @@ import java.util.List;
 import cn.jxufe.entity.Blog;
 import cn.jxufe.entity.Do.UserBlogNumDo;
 
+/**
+ * @author PC
+ */
 public interface BlogDao {
 
-    List<Blog> listByUserId(Integer userId);
+    List<Blog> listByUserId(Integer userId, Integer corpusId);
 
     Blog selectByBlogId(Integer blogId);
 

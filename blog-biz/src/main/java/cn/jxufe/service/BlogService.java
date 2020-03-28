@@ -1,11 +1,10 @@
 package cn.jxufe.service;
 
-import com.github.pagehelper.Page;
-
 import java.util.List;
 
 import cn.jxufe.entity.Blog;
 import cn.jxufe.entity.BlogContent;
+import cn.jxufe.entity.vo.blog.BlogListVo;
 import cn.jxufe.entity.vo.blog.BlogReadingVo;
 import cn.jxufe.exception.BlogWritingException;
 
@@ -19,20 +18,12 @@ public interface BlogService {
 
     List<Blog> getTopHottestBlog(Integer userId, int n);
 
-    /**
-     * 分页获取某用户的文章列表
-     *
-     * @param userId   .
-     * @param pageNum  页数
-     * @param pageSize 每页博客数量
-     * @return 用户主页的文章列表
-     */
-    Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize);
-
     boolean insertBlog(Blog blog, BlogContent content) throws BlogWritingException;
 
     boolean deleteBlog(Integer blogId);
 
     BlogReadingVo getBlog(Integer blogId, Integer userId);
+
+    BlogListVo getUsersBlogList(Integer userId, Integer corpusId, int pageNum, Integer selfUserId);
 
 }

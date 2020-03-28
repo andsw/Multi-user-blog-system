@@ -21,14 +21,6 @@ public class BlogServiceTest {
     private BlogService blogService;
 
     @Test
-    public void testListUserBlogs() {
-        Page<Blog> blogPage = blogService.listUserBlogByPagination(1, 1, 10);
-
-        System.out.println(blogPage);
-        assertEquals(blogPage.getTotal(), 96);
-    }
-
-    @Test
     public void testInsertBlog() {
 
     }

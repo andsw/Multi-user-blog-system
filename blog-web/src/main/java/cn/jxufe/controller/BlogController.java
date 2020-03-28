@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import cn.jxufe.entity.Blog;
 import cn.jxufe.entity.BlogContent;
 import cn.jxufe.entity.dto.NormalResult;
+import cn.jxufe.entity.vo.blog.BlogListVo;
 import cn.jxufe.entity.vo.blog.BlogReadingVo;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
@@ -34,6 +35,19 @@ public class BlogController {
     }
 
     /**
+     * @param userId, pageNum, request, corpusId: corpusId为-1时表示获取所有文集的文章分页
+     * @return cn.jxufe.entity.dto.NormalResult<?>
+     * @author hsw
+     * @date 22:20 2020/3/28
+     **/
+    @GetMapping(value = "/user/{userId}/corpus/{corpusId}/page/{pageNum}/blog")
+    public NormalResult<?> getUserBlogList(@PathVariable Integer userId, @PathVariable() Integer corpusId, @PathVariable Integer pageNum, HttpServletRequest request) {
+        String selfUserId = CookieUtil.getCookieValue(request, "userId");
+        final BlogListVo usersBlogList = blogService.getUsersBlogList(userId, corpusId, pageNum, selfUserId == null ? -1 : Integer.parseInt(selfUserId));
+        return NormalResult.successWithData(usersBlogList);
+    }
+
+    /**
      * 新增文章
      * 事务方式写入 info和content
      * 更新corpus的blogNum，user的blogNum
@@ -41,6 +55,7 @@ public class BlogController {
      * @return
      */
     @PostMapping(value = "/blog")
+
     public NormalResult<?> writeBlog(@RequestBody @Valid BlogInsertionVo vo) throws BlogWritingException {
         Blog blog = new Blog().setUserId(vo.getUserId())
             .setCorpusId(vo.getCorpusId()).setTitle(vo.getTitle())

@@ -13,7 +13,9 @@
                release_time
         from blog
         where user_id = #{userId}
-        order by read_num desc
+        <if test="param2 != null">
+            and corpus_id = #{corpusId}
+        </if>
     </select>
     <select id="selectBlogByUserIdSortedByReadNum" resultType="cn.jxufe.entity.Blog">
         select id,

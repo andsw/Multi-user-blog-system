@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import sun.rmi.runtime.Log;
+
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.jxufe.dao.BlogCollectionDao;
@@ -17,6 +21,8 @@ import cn.jxufe.entity.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
 import cn.jxufe.dao.UserDao;
+import cn.jxufe.entity.vo.blog.BlogListItemVo;
+import cn.jxufe.entity.vo.blog.BlogListVo;
 import cn.jxufe.entity.vo.blog.BlogReadingVo;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
@@ -60,12 +66,6 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getTopHottestBlog(Integer userId, int n) {
         PageHelper.startPage(0, n);
         return blogDao.selectBlogByUserIdSortedByReadNum(userId);
-    }
-
-    @Override
-    public Page<Blog> listUserBlogByPagination(Integer userId, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return (Page<Blog>) blogDao.listByUserId(userId);
     }
 
     /**
@@ -115,6 +115,37 @@ public class BlogServiceImpl implements BlogService {
             }
             return new BlogReadingVo(blog, blogContent == null ? "" : blogContent.getContent(), collector.size(),
                 collector.contains(userId), lover.size(), lover.contains(userId));
+        }
+        return null;
+    }
+
+    /**
+     * TODO 记得添加其他列的排序！
+     * @author hsw
+     * @date 22:24 2020/3/28
+     * @param userId 表示请求文章所属用户
+     * @param pageNum 第几页的文章（时间排序，默认页数5）
+     * @param selfUserId 本人的userId，判断是否属于自己的文章，不是自己的则显示点赞按钮，是自己的显示 “编辑”， “删除”按钮！（前端逻辑）
+     * @return java.util.List<cn.jxufe.entity.vo.blog.BlogListItemVo>
+     **/
+    @Override
+    public BlogListVo getUsersBlogList(Integer userId, Integer corpusId, int pageNum, Integer selfUserId) {
+        if (userId == null || userId <= 0) {
+            throw new InvalidParameterException("文章作者信息有误！");
+        }
+        List<BlogListItemVo> voList = new ArrayList<>(5);
+        PageHelper.startPage(pageNum, 5);
+        final Page<Blog> blogs = (Page<Blog>) blogDao.listByUserId(userId, corpusId == -1 ? null : corpusId);
+        if (blogs != null) {
+            for (Blog blog : blogs) {
+                final List<Integer> collector = blogCollectionDao.selectCollectorByBlogId(blog.getId());
+                final List<Integer> lover = loveDao.selectLoverByBlogId(blog.getId());
+                BlogListItemVo vo = new BlogListItemVo(blog,
+                    collector.size(), selfUserId != -1 && collector.contains(selfUserId),
+                    lover.size(), selfUserId != -1 && lover.contains(selfUserId));
+                voList.add(vo);
+            }
+            return new BlogListVo(voList, userId.equals(selfUserId), blogs.getPages());
         }
         return null;
     }

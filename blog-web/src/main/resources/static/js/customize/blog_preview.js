@@ -1,4 +1,3 @@
-
 var testEditor;
 $(function () {
     const blogId = getUrlParam("blogId");

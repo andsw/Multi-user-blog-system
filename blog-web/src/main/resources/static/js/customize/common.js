@@ -55,14 +55,17 @@ function getUrlParam(name) {
 /**
  * 加载侧边栏信息，目前只有 头像 邮箱 用户名
  * 除了主页其他页面都可以调用！
+ * 有一个参数是为了方便页面调用方法前以及获取过userId，就不用再在此方法中再次获取！
  */
-function loadBasicUserInfo() {
-    let userId = getUrlParam("userId");
+function loadBasicUserInfo(userId) {
     if (userId == null) {
-        userId = $.cookie("userId");
+        userId = getUrlParam("userId");
         if (userId == null) {
-            redirectTo(LOGIN_PATH, ToastLevel.INFO, "未登录，无法进入个人主页！跳转登录...");
-            return;
+            userId = $.cookie("userId");
+            if (userId == null) {
+                redirectTo(LOGIN_PATH, ToastLevel.INFO, "未登录，无法进入个人主页！跳转登录...");
+                return;
+            }
         }
     }
     request("/user/basic/" + userId, 'get', null, true, function (result) {

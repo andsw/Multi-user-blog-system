@@ -39,8 +39,8 @@ public class CorpusController {
             NormalResult.failure() : NormalResult.successWithData(newCorpus);
     }
 
-    @GetMapping(value = "/corpus")
-    public NormalResult<?> getUserCorpus(@RequestParam("userId") Integer userId) {
+    @GetMapping(value = "/user/{userId}/corpus")
+    public NormalResult<?> getUserCorpus(@PathVariable Integer userId) {
         final List<Corpus> userCorpusList = corpusService.getUserCorpusList(userId);
         return NormalResult.successWithData(userCorpusList);
     }

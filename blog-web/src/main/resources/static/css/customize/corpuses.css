@@ -11,6 +11,7 @@
     margin-right: auto;
 }
 
-.corpus_img:hover {
-    width: 140px;
+.corpus_bar {
+    cursor: pointer;
+
 }

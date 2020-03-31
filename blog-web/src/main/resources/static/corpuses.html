@@ -178,58 +178,27 @@
       </div>
 
       <div id="corpus_carousel" style="height: 670px" class="carousel slide">
-        <div style="height: inherit" class="carousel-inner">
-          <div style="height: inherit" class="carousel-item active">
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Java</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">操作系统</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">计算机网络</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Linux</p></div>
-            </div>
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Spring</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">mybatis</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">spring cloud</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">MQ</p></div>
-            </div>
-          </div>
-          <div style="height: inherit" class="carousel-item">
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Java</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">操作系统</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">计算机网络</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Linux</p></div>
-            </div>
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Spring</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">mybatis</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">spring cloud</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">MQ</p></div>
-            </div>
-          </div>
-          <div style="height: inherit" class="carousel-item">
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Java</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">操作系统</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">计算机网络</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Linux</p></div>
-            </div>
-            <div class="corpus_row container-fluid row align-content-center align-items-center">
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">Spring</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">mybatis</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">spring cloud</p></div>
-              <div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><p class="text-center">MQ</p></div>
-            </div>
-          </div>
+        <ol id="corpus_page_indicator" class="carousel-indicators">
+
+        </ol>
+        <div id="corpus_div" style="height: inherit" class="carousel-inner">
+
         </div>
-        <a class="carousel-control-prev" href="#corpus_carousel" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#corpus_carousel" role="button" data-slide="prev" style="width: 100px">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#corpus_carousel" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#corpus_carousel" role="button" data-slide="next" style="width: 100px">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+
+        <div id="corpus_operation_menu">
+          <ul class="dropdown-menu">
+            <li><a href="#">重命名</a></li>
+            <li><a href="#" class="text-red">删除</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- Page Footer-->

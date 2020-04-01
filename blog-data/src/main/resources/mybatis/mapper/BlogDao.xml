@@ -57,7 +57,7 @@
         value (#{title}, #{corpusId}, #{userId}, #{wordNum})
     </insert>
     <select id="selectNumInfoByUserId" resultType="cn.jxufe.entity.Do.UserBlogNumDo">
-        select count(*) as blog_num, sum(read_num) as read_num, sum(word_num) as word_num
+        select count(*) as blog_num, ifnull(sum(read_num), 0) as read_num, ifnull(sum(word_num), 0) as word_num
         from blog
         where user_id = #{userId}
     </select>

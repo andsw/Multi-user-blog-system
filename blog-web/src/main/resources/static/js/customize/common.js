@@ -84,7 +84,11 @@ function setSideMenuUserInfo(username, email, gender, avatar) {
     const usernameComponent = $('#username');
     const emailComponent = $('#email');
     const avatarComponent = $('#avatar');
-    usernameComponent.text(username);
+    if (gender) {
+        usernameComponent.html(username + "<i class='gender fa fa-venus text-red'></i>");
+    } else {
+        usernameComponent.html(username + "<i class='gender fa fa-mars text-blue'></i>");
+    }
     emailComponent.text(email);
     avatarComponent.html('<img id="avatar" src="' + avatar + '" alt="..." class="img-fluid rounded-circle">');
 }

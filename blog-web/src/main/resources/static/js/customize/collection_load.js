@@ -24,7 +24,7 @@ function loadFavorites(userId) {
                         let tempC = 0;
                         for (let j = i; j < favoritesList.length && tempC < 4; j++) {
                             favoritesHtml += '<div class="col-md-3 col-sm-6">'
-                                          + '<img class="favorites_img" src="img/folder.png" alt="">\n'
+                                          + '<img class="favorites_img" src="img/folder.png" style="cursor: pointer" alt="">\n'
                                           + '<i style="position: absolute; bottom: 38%; right: 40%;" class="fa fa-bars text-white favorites_bar" data-toggle="dropdown"'
                                           + ' data-target="#favorites_operation_menu"></i>'
                                           + '<p class="text-center">' + favoritesList[j].name + '(' + favoritesList[j].blogNum + ')' + '</p>'
@@ -39,7 +39,10 @@ function loadFavorites(userId) {
                             tempC = 0;
                             for (let j = i; j < favoritesList.length && tempC < 4; j++) {
                                 favoritesHtml +=
-                                    '<div class="col-md-3 col-sm-6"><img class="favorites_img" src="img/folder.png" alt=""><i style="position: absolute; bottom: 38%; right: 40%;" class="fa fa-bars text-white favorites_bar" data-toggle="dropdown"'
+                                    '<div class="col-md-3 col-sm-6"><img class="favorites_img" src="img/folder.png" alt="" style="cursor: pointer"><i style="position: absolute; bottom: 38%; right:'
+                                    + ' 40%;"'
+                                    + ' class="fa'
+                                    + ' fa-bars text-white favorites_bar" data-toggle="dropdown"'
                                     + ' data-target="#favorites_operation_menu"></i><p class="text-center">' + favoritesList[j].name + '(' + favoritesList[j].blogNum + ')' + '</p></div>\n';
                                 tempC++;
                             }

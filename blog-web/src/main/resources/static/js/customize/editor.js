@@ -40,7 +40,7 @@ $(function() {
                                        + "<select id='corpus_selector' class='selectpicker text-black-50'>"
                                        + "</select></li>");
             //TODO:在下拉框选项或者旁边加入一个按钮可以添加文集！！！
-            load_corpus()
+            load_corpus();
         },
 
         onfullscreen : function() {
@@ -110,6 +110,8 @@ $(function() {
             });
         // TODO: 等文章预览页面写好了，这里直接跳转文章展示页面！
     });
+
+
 });
 
 //文集下拉框加载文集列表

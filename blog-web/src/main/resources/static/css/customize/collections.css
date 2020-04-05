@@ -1,9 +1,9 @@
-.corpus_row {
+.favorites_row {
     margin-top: 140px;
     height: 22%;
 }
 
-.corpus_img {
+.favorites_img {
     width: 100px;
     height: auto;
     display: block;
@@ -11,6 +11,6 @@
     margin-right: auto;
 }
 
-.corpus_bar {
+.favorites_bar {
     cursor: pointer;
 }

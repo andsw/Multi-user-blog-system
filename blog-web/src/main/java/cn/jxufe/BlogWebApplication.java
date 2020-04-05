@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author PC
  */
 @SpringBootApplication
-//@ServletComponentScan
 @EnableTransactionManagement
 @EnableCaching
 @MapperScan(value = "cn.jxufe.dao")

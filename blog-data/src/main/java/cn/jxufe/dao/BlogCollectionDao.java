@@ -2,6 +2,9 @@ package cn.jxufe.dao;
 
 import java.util.List;
 
+import cn.jxufe.entity.Corpus;
+import cn.jxufe.entity.vo.blog.CollectedBlog;
+
 /**
  * @author hsw
  * @date 2020/2/9 15:27
@@ -22,4 +25,15 @@ public interface BlogCollectionDao {
     Integer selectCountByUserId(Integer userId);
 
     List<Integer> selectCollectorByBlogId(Integer blogId);
+
+    List<Corpus> selectCorpusWhereCollectedBlogIn(Integer userId);
+
+    /**
+     * 获取所有收藏的文章
+     * @author hsw
+     * @date 17:27 2020/4/1
+     * @param userId
+     * @return java.util.List<cn.jxufe.entity.vo.blog.CollectedBlog>
+     **/
+    List<CollectedBlog> selectAllBlogsInCollection(Integer userId);
 }

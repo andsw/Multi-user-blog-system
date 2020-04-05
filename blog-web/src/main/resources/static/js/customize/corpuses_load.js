@@ -41,10 +41,10 @@ function loadCorpus(userId) {
                             for (let j = i; j < corpusList.length && tempC < 4; j++) {
                                 corpusHtml +=
                                     '<div class="col-md-3 col-sm-6"><img class="corpus_img" src="img/folder.png" alt=""><i style="position: absolute; bottom: 38%; right: 40%;" class="fa fa-bars text-white corpus_bar" data-toggle="dropdown"'
-                                    + ' data-target="#corpus_operation_menu"></i><p class="text-center">' + corpusList[j].name + '(' + corpusList[j].blogNum + ')' +'</p></div>\n';
+                                    + ' data-target="#corpus_operation_menu"></i><p class="text-center">' + corpusList[j].name + '(' + corpusList[j].blogNum + ')' + '</p></div>\n';
                                 tempC++;
                             }
-                            corpusHtml +='</div>'
+                            corpusHtml += '</div>';
                         }
                         i += tempC;
                         corpusHtml += '</div>';
@@ -53,7 +53,7 @@ function loadCorpus(userId) {
                         page++;
                     }
                 } else {
-                    toastr.error("文集加载错误！" + result.message)
+                    toastr.error("文集加载错误！" + result.message);
                 }
             }, function () {
             toastr.error("发生未知错误！");

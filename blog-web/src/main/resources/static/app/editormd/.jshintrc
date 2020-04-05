@@ -1,6 +1,12 @@
 {
-  "undef": false,
-  "unused": true,
-  "esversion": 7,
-  "predef": [ "MY_GLOBAL" ]
+  "esversion": 6,
+  "curly": true,
+  "eqeqeq": false,
+  "futurehostile": true,
+  "notypeof": true,
+  "shadow": "inner",
+  "unused": false,
+  "jquery": true,
+  "laxbreak": false,
+  "operator-linebreak": ["error", "before"]
 }

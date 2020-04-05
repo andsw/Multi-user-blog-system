@@ -18,7 +18,6 @@ public class CorpusServiceTest {
     private CorpusService corpusService;
 
     @Test
-
     public void testAddCorpus() {
         Corpus corpus = new Corpus().setName("delete").setUserId(1);
         corpusService.addCorpus(corpus);

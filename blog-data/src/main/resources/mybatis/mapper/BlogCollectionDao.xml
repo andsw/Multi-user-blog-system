@@ -17,4 +17,30 @@
         from blog_collection
         where blog_id = #{blogId};
     </select>
+    <select id="selectAllBlogsInCollection" resultType="cn.jxufe.entity.vo.blog.CollectedBlog">
+        # 收藏的文章列表：文章id、标题、阅读、喜欢、收藏、评论、作者（头像、用户名、性别）、收藏到自己的文集（id、文集名）
+        select a.id       as blog_id,
+               title,
+               read_num,
+               love_num,
+               comment_num,
+               c.id       as user_id,
+               c.avatar   as avatar,
+               c.username as username,
+               d.id       as corpus_id,
+               d.name     as corpus_name
+        from blog a,
+             blog_collection b,
+             user c,
+             corpus d
+        where a.id = b.blog_id
+          and a.user_id = c.id
+          and b.collect_corpus_id = d.id
+          and b.user_id = #{userId}
+    </select>
+    <select id="selectCorpusWhereCollectedBlogIn" resultType="cn.jxufe.entity.Corpus">
+        select *
+        from corpus
+        where id in (select collect_corpus_id from blog_collection where corpus.user_id = #{userId});
+    </select>
 </mapper>

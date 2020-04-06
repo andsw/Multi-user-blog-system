@@ -92,3 +92,7 @@ function setSideMenuUserInfo(username, email, gender, avatar) {
     emailComponent.text(email);
     avatarComponent.html('<img id="avatar" src="' + avatar + '" alt="..." class="img-fluid rounded-circle">');
 }
+
+function redirectHomePage(userId) {
+    redirectTo("/index.html?userId=" + userId);
+}

@@ -9,11 +9,13 @@
 .fan_avatar {
     width: 75px;
     height: auto;
+    cursor: pointer;
 }
 
 .fan_info {
     display: inline-block;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .sub_btn {

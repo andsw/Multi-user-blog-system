@@ -10,6 +10,7 @@ import lombok.Data;
 public class SubscribeUser {
     private Integer id;
     private String username;
+    private String personMsg;
     private String email;
     private String avatar;
     private Boolean gender;

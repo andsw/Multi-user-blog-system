@@ -30,9 +30,9 @@ function loadsubs(userId) {
                                        + '            <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3); width: 95%; color:#987cb9;">');
             });
         } else {
-            Toastr.error("加载粉丝发生异常：" + result.message);
+            Toastr.error("加载关注的人发生异常：" + result.message);
         }
     }, function () {
-        Toastr.error("加载粉丝发生未知异常！");
+        Toastr.error("加载关注人发生未知异常！");
     });
 }

@@ -40,4 +40,8 @@ $(function () {
         editorTheme: "pastel-on-dark",
         previewTheme: "dark"
     });
-});
+})
+
+function loadComment() {
+
+}

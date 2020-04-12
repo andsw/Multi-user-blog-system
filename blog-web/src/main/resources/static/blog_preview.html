@@ -150,6 +150,11 @@
           <a href="">赞</a>
           <a href="">收藏</a>
           <a href="">评论</a>
+          <a href="" class="btn-primary bg-gray text-white" style="margin-left: 10px;
+    border-radius: 13px;
+    width: 79px;
+    padding-left: 11px;
+    height: 24px;" onclick="">查看评论</a>
         </div>
 
         <div class="col-md-3 col-sm-11 float-md-right float-sm-none" style="display: inline-block; margin-top: 10px">
@@ -164,32 +169,37 @@
       <textarea id="blog_content" style="display:none;"></textarea>
     </div>
   </div>
+  <!--评论模块-->
+  <div class="container d-flex bg-white" style="height: auto;z-index: 1;border-top-width: 1px; border-top-color: gray">
+    <iframe id="comment_iframe" src="./comment_static/index.html" scrolling="no" style="width:100%; height: auto; border-width: 0;"></iframe>
+  </div>
+
+  <!-- JavaScript files-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper.js/umd/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <!-- Main File-->
+  <script src="js/front.js"></script>
+
+  <!-- customize -->
+  <script src="js/customize/common.js"></script>
+  <script src="js/customize/blog_preview.js"></script>
+
+  <!--markdown editor-->
+  <script src="app/editormd/editormd.js"></script>
+  <script src="app/editormd/lib/marked.min.js"></script>
+  <script src="app/editormd/lib/prettify.min.js"></script>
+  <script src="app/editormd/lib/raphael.min.js"></script>
+  <script src="app/editormd/lib/underscore.min.js"></script>
+  <script src="app/editormd/lib/sequence-diagram.min.js"></script>
+  <script src="app/editormd/lib/flowchart.min.js"></script>
+  <script src="app/editormd/lib/jquery.flowchart.min.js"></script>
+
 </div>
-<!-- JavaScript files-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/umd/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="vendor/chart.js/Chart.min.js"></script>
-<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-<!-- Main File-->
-<script src="js/front.js"></script>
-
-<!-- customize -->
-<script src="js/customize/common.js"></script>
-<script src="js/customize/blog_preview.js"></script>
-
-<!--markdown editor-->
-<script src="app/editormd/editormd.js"></script>
-<script src="app/editormd/lib/marked.min.js"></script>
-<script src="app/editormd/lib/prettify.min.js"></script>
-<script src="app/editormd/lib/raphael.min.js"></script>
-<script src="app/editormd/lib/underscore.min.js"></script>
-<script src="app/editormd/lib/sequence-diagram.min.js"></script>
-<script src="app/editormd/lib/flowchart.min.js"></script>
-<script src="app/editormd/lib/jquery.flowchart.min.js"></script>
-
 </body>
 </html>

@@ -33,11 +33,6 @@ public class Comment implements Serializable {
     private Integer userId;
 
     /**
-     * 回复的评论id，默认0，如果是直接评论父级的评论，则于parent_id相同
-     */
-    private Integer replyId;
-
-    /**
      * 所属父级评论，，默认0时属于的父级评论表示本身为父级评论
      */
     private Integer parentId;

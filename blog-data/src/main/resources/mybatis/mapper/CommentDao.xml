@@ -2,21 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.jxufe.dao.CommentDao">
 
-    <insert id="insertComment">
-        insert into comment(content, blog_id, user_id, reply_id, parent_id)
-        value (#{cntent}, #{blog_id}, #{user_id}, #{reply_id}, #{parent_id})
-    </insert>
-    <delete id="deleteComment">
-        delete
+    <resultMap id="FistLoadedCommentVo" type="cn.jxufe.entity.vo.FistLoadedCommentVo">
+        <id column="parentId" javaType="integer" property="id"/>
+        <collection property="childrenComments" column="{parentId=parentId}" select="selectChildCommentByParentId" ofType="cn.jxufe.entity.Comment" javaType="ArrayList"/>
+    </resultMap>
+
+    <select id="selectChildCommentByParentId" resultType="cn.jxufe.entity.Comment">
+        select *
         from comment
-        where id = #{commentId}
+        where parent_id = #{parentId}
         limit 1
-    </delete>
-    <update id="updateCommentContent">
-        update comment
-        set content=#{content}
-        where id = #{commentId}
-        limit 1
-    </update>
+    </select>
+
+    <select id="selectFistLoadedCommentByBlogId" resultMap="FistLoadedCommentVo">
+        select id as parentId, content as parentContent, user_id as parentCommentUserId, create_time as parentCreateTime
+        from comment
+        where blog_id = #{blogId}
+          and parent_id = 0
+        limit #{parentCommentNum}
+    </select>
 
 </mapper>

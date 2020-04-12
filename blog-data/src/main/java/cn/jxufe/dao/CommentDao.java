@@ -1,6 +1,9 @@
 package cn.jxufe.dao;
 
+import java.util.List;
+
 import cn.jxufe.entity.Comment;
+import cn.jxufe.entity.vo.FistLoadedCommentVo;
 
 /**
  *
@@ -8,12 +11,8 @@ import cn.jxufe.entity.Comment;
  * @date 2020/3/11 3:56 下午
  */
 public interface CommentDao {
-    Comment insertComment(Comment comment);
 
-    Integer deleteComment(Integer commentId);
+    List<Comment> selectChildCommentByParentId(Integer parentId);
 
-    /**
-     * 只有修改内容一个场景
-     */
-    Integer updateCommentContent(Integer id, String content);
+    List<FistLoadedCommentVo> selectFistLoadedCommentByBlogId(Integer blogId, int parentCommentNum);
 }

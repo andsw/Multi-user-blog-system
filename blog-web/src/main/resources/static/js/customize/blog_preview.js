@@ -1,6 +1,8 @@
 var testEditor;
 $(function () {
     const blogId = getUrlParam("blogId");
+    // console.log(blogId);
+    $("#comment_iframe").attr('src', './comment_static/index.html?blogId=' + blogId);
     if (blogId != null) {
         request("/blog/" + blogId, 'get', null, false,
                 function (result) {
@@ -40,8 +42,4 @@ $(function () {
         editorTheme: "pastel-on-dark",
         previewTheme: "dark"
     });
-})
-
-function loadComment() {
-
-}
+});

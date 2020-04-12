@@ -29,3 +29,11 @@
 #sub_auth_btn {
     margin-top: 10px;
 }
+
+#show_comment_btn {
+    margin-left: 10px;
+    border-radius: 13px;
+    width: 79px;
+    padding-left: 11px;
+    height: 24px;
+}

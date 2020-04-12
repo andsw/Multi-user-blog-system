@@ -2,24 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.jxufe.dao.CommentDao">
 
-    <resultMap id="FistLoadedCommentVo" type="cn.jxufe.entity.vo.FistLoadedCommentVo">
+    <resultMap id="FistLoadedCommentVo" type="cn.jxufe.entity.vo.comment.FistLoadedCommentVo">
         <id column="parentId" javaType="integer" property="id"/>
-        <collection property="childrenComments" column="{parentId=parentId}" select="selectChildCommentByParentId" ofType="cn.jxufe.entity.Comment" javaType="ArrayList"/>
+        <collection property="childrenComments" column="{parentId=parentId}" select="selectChildCommentByParentId" ofType="cn.jxufe.entity.vo.comment.CommentWithUserInfoVo" javaType="ArrayList"/>
     </resultMap>
 
-    <select id="selectChildCommentByParentId" resultType="cn.jxufe.entity.Comment">
-        select *
-        from comment
+    <select id="selectChildCommentByParentId" resultType="cn.jxufe.entity.vo.comment.CommentWithUserInfoVo">
+        select a.id as commentId,
+               a.content,
+               a.user_id,
+               b.username,
+               b.avatar,
+               b.gender,
+               a.parent_id,
+               a.create_time
+        from comment a, user b
         where parent_id = #{parentId}
-        limit 1
+        and a.id = b.id
+        limit 5
     </select>
 
     <select id="selectFistLoadedCommentByBlogId" resultMap="FistLoadedCommentVo">
-        select id as parentId, content as parentContent, user_id as parentCommentUserId, create_time as parentCreateTime
-        from comment
+        select a.id as parentId, content as parentContent, user_id as parentCommentUserId, create_time as parentCreateTime, b.username, b.avatar, b.gender
+        from comment a,
+             user b
         where blog_id = #{blogId}
           and parent_id = 0
-        limit #{parentCommentNum}
+          and a.user_id = b.id
     </select>
 
 </mapper>

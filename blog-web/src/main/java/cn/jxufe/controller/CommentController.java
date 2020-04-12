@@ -23,7 +23,11 @@ public class CommentController {
     }
 
     @GetMapping(value = "/blog/{blogId}/comment")
-    public NormalResult<?> getInitBlogComment(@PathVariable Integer blogId, @RequestParam(value = "commentNum", required = false) Integer initCommentNUm) {
-        return NormalResult.successWithData(commentService.getInitBlogComments(blogId, initCommentNUm));
+    public NormalResult<?> getCommentPagination(@PathVariable(required = false) Integer blogId, @RequestParam(value = "pageNum") Integer pageNum, @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        if (blogId == null) {
+            NormalResult.failureWithMessage("blogId不能为空！");
+
+        }
+        return NormalResult.successWithData(commentService.getBlogComments(blogId, pageNum, pageSize));
     }
 }

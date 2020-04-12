@@ -17,6 +17,6 @@ public class CommentDaoTest {
     private CommentDao commentDao;
     @Test
     public void selectTest() {
-        System.out.println(commentDao.selectFistLoadedCommentByBlogId(1, 1));
+        System.out.println(commentDao.selectFistLoadedCommentByBlogId(1));
     }
 }

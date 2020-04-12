@@ -1,12 +1,14 @@
 package cn.jxufe.service.impl;
 
+import com.github.pagehelper.PageHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import cn.jxufe.dao.CommentDao;
-import cn.jxufe.entity.vo.FistLoadedCommentVo;
+import cn.jxufe.entity.vo.comment.FistLoadedCommentVo;
 import cn.jxufe.service.CommentService;
 
 /**
@@ -24,7 +26,11 @@ public class CommentServiceImpl implements CommentService {
      * 先获取第一集，然后再去获取它的子评论
      */
     @Override
-    public List<FistLoadedCommentVo> getInitBlogComments(Integer blogId, Integer parentCommentNum) {
-        return commentDao.selectFistLoadedCommentByBlogId(blogId, parentCommentNum);
+    public List<FistLoadedCommentVo> getBlogComments(Integer blogId, Integer pageNum, Integer pageSize) {
+        if (pageSize == null) {
+            pageSize = 10;
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        return commentDao.selectFistLoadedCommentByBlogId(blogId);
     }
 }

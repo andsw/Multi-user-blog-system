@@ -12,4 +12,6 @@ public interface SubscriptionService {
     List<SubscribeUser> findSubscribedUser(Integer userId);
 
     List<SubscribeUser> findFans(Integer userId);
+
+    Boolean isAlreadySubscribed(Integer fanId, Integer subId);
 }

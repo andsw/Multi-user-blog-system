@@ -17,11 +17,16 @@ $(function () {
                         $("#read_num").append(blogInfo.readNum);
                         $("#collect_num").append(result.data.collectNum);
                         $("#word_num").append(blogInfo.wordNum);
+
+                        $("#author_info_a").attr("href", "/index.html?userId=" + blogInfo.userId);
+                        $("#author_username").text(result.data.username);
+                        $("#author_avatar").attr("src", result.data.avatar);
+                        $("#author_info_a").append(returnGenderImg(result.data.gender));
                     } else {
                         toastr.error(result.message);
                     }
                 }, function () {
-                toastr.error("获取文章发生未知错误！")
+                toastr.error("获取文章发生未知错误！");
             });
     } else {
         toastr.warn("没有指定文章！");

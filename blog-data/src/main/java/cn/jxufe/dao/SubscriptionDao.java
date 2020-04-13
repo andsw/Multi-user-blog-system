@@ -1,5 +1,7 @@
 package cn.jxufe.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 import cn.jxufe.entity.vo.user.SubscribeUser;
@@ -20,4 +22,6 @@ public interface SubscriptionDao {
      **/
     List<SubscribeUser> selectUserByFanId(Integer fanId);
     List<SubscribeUser> selectFansBySubId(Integer userId);
+
+    Boolean alreadySubscribed(@Param(value = "fanId") Integer fanId, @Param(value = "subId") Integer subId);
 }

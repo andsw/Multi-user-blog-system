@@ -26,4 +26,11 @@
         where a.id = b.fan_id
           and b.sub_id = #{userId}
     </select>
+    <select id="alreadySubscribed" resultType="java.lang.Boolean">
+        select count(1)
+        from subscription
+        where fan_id = #{fanId}
+          and sub_id = #{subId}
+        limit 1
+    </select>
 </mapper>

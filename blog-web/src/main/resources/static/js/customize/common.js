@@ -96,3 +96,7 @@ function setSideMenuUserInfo(username, email, gender, avatar) {
 function redirectHomePage(userId) {
     redirectTo("/index.html?userId=" + userId);
 }
+
+function returnGenderImg(gender) {
+    return gender ? "<i class='gender fa fa-venus' style='color: red'/>" : "<i class='gender fa fa-mars' style='color: blue'/>";
+}

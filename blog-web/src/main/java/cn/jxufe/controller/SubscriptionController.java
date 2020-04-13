@@ -31,4 +31,9 @@ public class SubscriptionController {
     private NormalResult<?> getSubscribedUser(@PathVariable Integer userId) {
         return NormalResult.successWithData(subscriptionService.findSubscribedUser(userId));
     }
+
+    @GetMapping(value = "/subscription/fan/{fanId}/sub/{subId}")
+    public NormalResult<?> isAlreadySubscribed(@PathVariable Integer fanId, @PathVariable Integer subId) {
+        return subscriptionService.isAlreadySubscribed(fanId, subId) ? NormalResult.success() : NormalResult.failure();
+    }
 }

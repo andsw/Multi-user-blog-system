@@ -8,22 +8,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import sun.rmi.runtime.Log;
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.jxufe.dao.BlogCollectionDao;
-import cn.jxufe.dao.LoveDao;
-import cn.jxufe.entity.Blog;
-import cn.jxufe.entity.BlogContent;
 import cn.jxufe.dao.BlogContentDao;
 import cn.jxufe.dao.BlogDao;
+import cn.jxufe.dao.LoveDao;
 import cn.jxufe.dao.UserDao;
+import cn.jxufe.entity.Blog;
+import cn.jxufe.entity.BlogContent;
 import cn.jxufe.entity.vo.blog.BlogListItemVo;
 import cn.jxufe.entity.vo.blog.BlogListVo;
 import cn.jxufe.entity.vo.blog.BlogReadingVo;
+import cn.jxufe.entity.vo.user.BasicUserInfo;
 import cn.jxufe.exception.BlogWritingException;
 import cn.jxufe.service.BlogService;
 import cn.jxufe.service.CorpusService;
@@ -35,6 +34,7 @@ import cn.jxufe.service.CorpusService;
 @Service
 public class BlogServiceImpl implements BlogService {
 
+    private UserDao userDao;
     private BlogDao blogDao;
     private BlogContentDao blogContentDao;
     private CorpusService corpusService;
@@ -43,7 +43,8 @@ public class BlogServiceImpl implements BlogService {
 
 
     @Autowired
-    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService, BlogCollectionDao blogCollectionDao, LoveDao loveDao) {
+    public BlogServiceImpl(BlogDao blogDao, BlogContentDao blogContentDao, CorpusService corpusService, BlogCollectionDao blogCollectionDao, LoveDao loveDao, UserDao userDao) {
+        this.userDao = userDao;
         this.blogDao = blogDao;
         this.blogContentDao = blogContentDao;
         this.corpusService = corpusService;
@@ -108,12 +109,13 @@ public class BlogServiceImpl implements BlogService {
         if (blog != null) {
             final BlogContent blogContent = blogContentDao.selectContentByBlogId(blogId);
             final List<Integer> collector = blogCollectionDao.selectCollectorByBlogId(blogId);
+            final BasicUserInfo basicUserInfo = userDao.selectBasicInfoByUserId(userId);
             final List<Integer> lover = loveDao.selectLoverByBlogId(blogId);
             // 未登录时就可以确保不会有过收藏点赞
             if (userId == null) {
                 userId = -1;
             }
-            return new BlogReadingVo(blog, blogContent == null ? "" : blogContent.getContent(), collector.size(),
+            return new BlogReadingVo(blog, basicUserInfo.getUsername(), basicUserInfo.getAvatar(), basicUserInfo.getGender(), blogContent == null ? "" : blogContent.getContent(), collector.size(),
                 collector.contains(userId), lover.size(), lover.contains(userId));
         }
         return null;

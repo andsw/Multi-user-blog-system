@@ -1,8 +1,5 @@
 package cn.jxufe.entity.vo.blog;
 
-import java.sql.Timestamp;
-import java.util.List;
-
 import cn.jxufe.entity.Blog;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BlogReadingVo {
     private Blog blog;
+
+    private String username;
+    private String avatar;
+    private Boolean gender;
+
     private String content;
     private Integer collectNum;
     /**

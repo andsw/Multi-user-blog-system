@@ -27,7 +27,7 @@
 							<div id="editor" style="width: 100%;height: 150px;">
 								<p></p>
 							</div>
-							<a id="comment-form-btn" onclick="$.comment.submit($(this))" type="button" data-loading-text="正在提交评论..." class="btn btn-info btn-block">提交评论</a>
+							<a id="comment-form-btn" onclick="$.comment.submit($(this))" style="background-color: #796AEE" type="button" data-loading-text="正在提交评论..." class="btn btn-info btn-block">提交评论</a>
 						</form>
 					</div>
 				</div>
@@ -36,28 +36,46 @@
 					<h3><i class="fa fa-comments-o fa-fw"></i><em>20</em>条评论~~~</h3>
 					<ul id="comment_ul" class="comment">
 						<li>
-						<div class="comment-body" id="comment-1">
-							<div class="cheader">
-								<a target="_blank" href="https://github.com/zhangyd-c">
-									<img class="userImage" src="img/user/11.jpg">
-									<strong>张三</strong>
-								</a>
-								<div class="timer">
-									<i class="fa fa-clock-o fa-fw"></i>2018-01-01 14:14:14
-									<i class="fa fa-map-marker fa-fw"></i>北京市朝阳区
+							<div class="comment-body" id="comment-1">
+								<div class="cheader">
+									<a target="_blank" href="https://github.com/zhangyd-c">
+										<img class="userImage" src="img/user/11.jpg">
+										<strong>张三</strong>
+									</a>
+									<div class="timer">
+										<i class="fa fa-clock-o fa-fw"></i>2018-01-01 14:14:14
+										<i class="fa fa-map-marker fa-fw"></i>北京市朝阳区
+									</div>
+								</div>
+								<div class="content">
+									<a href="#comment-5" class="comment-quote">@钱五</a>
+									有人在车上分娩，有人在地铁怀孕，北京真是个充满生机的城市…<img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3c/pcmoren_wu_org.png" alt="[污]" data-w-e="1">
+								</div>
+								<div class="sign">
+	<!--								<i class="icons os-win2"></i>win8 <i class="sepa"></i>-->
+	<!--								<i class="icons browser-chrome"></i>chrome 15.0.0.12 <i class="sepa"></i>-->
+									<a href="#comment-1" class="comment-reply" onclick="$.comment.reply(1, this)"><i class="fa fa-reply fa-fw"></i>回复</a>
+								</div>
+								<div class="comment-body" id="comment-11">
+									<div class="cheader">
+										<a target="_blank" href="https://github.com/zhangyd-c">
+											<img class="userImage" src="img/user/11.jpg">
+											<strong>张三</strong>
+										</a>
+										<div class="timer">
+											<i class="fa fa-clock-o fa-fw"></i>2018-01-01 14:14:14
+											<i class="fa fa-map-marker fa-fw"></i>北京市朝阳区
+										</div>
+									</div>
+									<div class="content">
+										这个博客这好啊！
+									</div>
+									<div class="sign">
+										<a href="#comment-11" class="comment-reply" onclick="$.comment.reply(11, this)"><i class="fa fa-reply fa-fw"></i>回复</a>
+									</div>
 								</div>
 							</div>
-							<div class="content">
-								<a href="#comment-5" class="comment-quote">@钱五</a>
-								有人在车上分娩，有人在地铁怀孕，北京真是个充满生机的城市…<img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3c/pcmoren_wu_org.png" alt="[污]" data-w-e="1">
-							</div>
-							<div class="sign">
-<!--								<i class="icons os-win2"></i>win8 <i class="sepa"></i>-->
-<!--								<i class="icons browser-chrome"></i>chrome 15.0.0.12 <i class="sepa"></i>-->
-								<a href="#comment-1" class="comment-reply" onclick="$.comment.reply(1, this)"><i class="fa fa-reply fa-fw"></i>回复</a>
-							</div>
-						</div>
-					</li>
+						</li>
 					</ul>
 				</div>
 			</div>

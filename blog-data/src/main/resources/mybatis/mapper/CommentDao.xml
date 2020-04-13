@@ -18,7 +18,7 @@
                a.create_time
         from comment a, user b
         where parent_id = #{parentId}
-        and a.id = b.id
+        and a.user_id = b.id
         limit 5
     </select>
 

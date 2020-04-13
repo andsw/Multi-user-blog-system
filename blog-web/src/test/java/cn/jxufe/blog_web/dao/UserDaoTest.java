@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import cn.jxufe.entity.User;
 import cn.jxufe.dao.UserDao;
+import cn.jxufe.entity.User;
 
 /**
  * @author hsw
@@ -26,5 +26,10 @@ public class UserDaoTest {
     public void testUpdateInfo() {
         User user = new User().setId(29).setUsername("hsw1997");
         userDao.updateInfoByUserIdSelective(user);
+    }
+
+    @Test
+    public void testGetBasicInfo() {
+        System.out.println(userDao.selectBasicInfoByUserId(2));
     }
 }

@@ -28,4 +28,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public List<SubscribeUser> findFans(Integer userId) {
         return subscriptionDao.selectFansBySubId(userId);
     }
+
+    @Override
+    public Boolean isAlreadySubscribed(Integer fanId, Integer subId) {
+        if (fanId == null || subId == null) {
+            return false;
+        }
+        return subscriptionDao.alreadySubscribed(fanId, subId);
+    }
 }

@@ -2,6 +2,7 @@ package cn.jxufe.dao;
 
 import java.util.List;
 
+import cn.jxufe.entity.Comment;
 import cn.jxufe.entity.vo.comment.CommentWithUserInfoVo;
 import cn.jxufe.entity.vo.comment.FistLoadedCommentVo;
 
@@ -15,4 +16,7 @@ public interface CommentDao {
     List<CommentWithUserInfoVo> selectChildCommentByParentId(Integer parentId);
 
     List<FistLoadedCommentVo> selectFistLoadedCommentByBlogId(Integer blogId);
+
+    void insertComment(Comment comment);
+
 }

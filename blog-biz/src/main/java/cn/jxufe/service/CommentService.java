@@ -2,6 +2,8 @@ package cn.jxufe.service;
 
 import java.util.List;
 
+import cn.jxufe.entity.Comment;
+import cn.jxufe.entity.vo.comment.CommentWithUserInfoVo;
 import cn.jxufe.entity.vo.comment.FistLoadedCommentVo;
 
 /**
@@ -10,4 +12,6 @@ import cn.jxufe.entity.vo.comment.FistLoadedCommentVo;
  */
 public interface CommentService {
     List<FistLoadedCommentVo> getBlogComments(Integer blogId, Integer pageNum, Integer pageSize);
+
+    CommentWithUserInfoVo addComment(Comment comment);
 }

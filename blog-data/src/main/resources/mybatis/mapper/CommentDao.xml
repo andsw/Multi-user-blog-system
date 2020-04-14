@@ -31,4 +31,8 @@
           and a.user_id = b.id
     </select>
 
+    <insert id="insertComment" useGeneratedKeys="true">
+        insert into comment(content, blog_id, user_id, parent_id)
+        value (#{content}, #{blogId}, #{userId}, #{parentId})
+    </insert>
 </mapper>

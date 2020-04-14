@@ -1,4 +1,4 @@
-HOST = 'http://localhost:8080';
+const HOST = 'http://localhost:8080';
 // 用户个人主页
 USER_HOMEPAGE_PATH = '/index.html';
 //博客系统主页

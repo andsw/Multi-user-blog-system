@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import cn.jxufe.dao.CommentDao;
+import cn.jxufe.dao.UserDao;
+import cn.jxufe.entity.Comment;
+import cn.jxufe.entity.vo.comment.CommentWithUserInfoVo;
 import cn.jxufe.entity.vo.comment.FistLoadedCommentVo;
+import cn.jxufe.entity.vo.user.BasicUserInfo;
 import cn.jxufe.service.CommentService;
 
 /**
@@ -20,6 +24,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private UserDao userDao;
 
     /**
      * 分页获取文章的评论
@@ -32,5 +38,14 @@ public class CommentServiceImpl implements CommentService {
         }
         PageHelper.startPage(pageNum, pageSize);
         return commentDao.selectFistLoadedCommentByBlogId(blogId);
+    }
+
+    @Override
+    public CommentWithUserInfoVo addComment(Comment comment) {
+        commentDao.insertComment(comment);
+        BasicUserInfo userInfo = userDao.selectBasicInfoByUserId(comment.getUserId());
+        return new CommentWithUserInfoVo(comment.getId(),
+            comment.getContent(), comment.getUserId(), userInfo.getUsername(), userInfo.getAvatar(),
+            userInfo.getGender(), comment.getParentId(), null);
     }
 }

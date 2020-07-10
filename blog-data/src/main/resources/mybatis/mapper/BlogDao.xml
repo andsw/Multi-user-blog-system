@@ -61,4 +61,16 @@
         from blog
         where user_id = #{userId}
     </select>
+    <update id="plusCommentNum">
+        update blog
+        set comment_num = comment_num + 1
+        where id = #{blogId}
+        limit 1
+    </update>
+    <update id="minusCommentNum">
+        update blog
+        set comment_num = comment_num - 1
+        where id = #{blogId}
+        limit 1
+    </update>
 </mapper>

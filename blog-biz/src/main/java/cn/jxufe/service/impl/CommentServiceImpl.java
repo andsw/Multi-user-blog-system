@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import cn.jxufe.dao.BlogDao;
 import cn.jxufe.dao.CommentDao;
 import cn.jxufe.dao.UserDao;
 import cn.jxufe.entity.Comment;
@@ -26,6 +28,8 @@ public class CommentServiceImpl implements CommentService {
     private CommentDao commentDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BlogDao blogDao;
 
     /**
      * 分页获取文章的评论
@@ -40,12 +44,26 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.selectFistLoadedCommentByBlogId(blogId);
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public CommentWithUserInfoVo addComment(Comment comment) {
+        // 事务
         commentDao.insertComment(comment);
+        blogDao.plusCommentNum(comment.getBlogId());
+
         BasicUserInfo userInfo = userDao.selectBasicInfoByUserId(comment.getUserId());
         return new CommentWithUserInfoVo(comment.getId(),
             comment.getContent(), comment.getUserId(), userInfo.getUsername(), userInfo.getAvatar(),
             userInfo.getGender(), comment.getParentId(), null);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean deleteComment(Integer blogId, Integer commentId) {
+        if (blogDao.minusCommentNum(blogId) == 1) {
+            return commentDao.deleteComment(commentId) >= 1;
+        }
+        return false;
     }
 }

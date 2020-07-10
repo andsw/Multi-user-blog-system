@@ -35,4 +35,7 @@ public interface BlogDao {
      * @return
      */
     UserBlogNumDo selectNumInfoByUserId(Integer userId);
+
+    Integer plusCommentNum(Integer blogId);
+    Integer minusCommentNum(Integer blogId);
 }

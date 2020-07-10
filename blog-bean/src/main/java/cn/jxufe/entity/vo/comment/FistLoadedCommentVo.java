@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class FistLoadedCommentVo {
     private Integer id;
     private String parentContent;
-    private Integer parentCommentUserId;
+    private Integer commentUserId;
     private Timestamp parentCreateTime;
 
     // user info

@@ -23,7 +23,7 @@
     </select>
 
     <select id="selectFistLoadedCommentByBlogId" resultMap="FistLoadedCommentVo">
-        select a.id as parentId, content as parentContent, user_id as parentCommentUserId, create_time as parentCreateTime, b.username, b.avatar, b.gender
+        select a.id as parentId, content as parentContent, user_id as commentUserId, create_time as parentCreateTime, b.username, b.avatar, b.gender
         from comment a,
              user b
         where blog_id = #{blogId}
@@ -31,8 +31,15 @@
           and a.user_id = b.id
     </select>
 
-    <insert id="insertComment" useGeneratedKeys="true">
+    <insert id="insertComment" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into comment(content, blog_id, user_id, parent_id)
         value (#{content}, #{blogId}, #{userId}, #{parentId})
     </insert>
+
+    <delete id="deleteComment">
+        delete
+        from comment
+        where id = #{commentId}
+           or parent_id = #{commentId}
+    </delete>
 </mapper>

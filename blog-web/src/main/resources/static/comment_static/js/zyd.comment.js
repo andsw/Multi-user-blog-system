@@ -21,7 +21,6 @@ $.extend({
 
                      // 读取html内容
                      const content = editor.txt.html();
-                     console.log("content text : " + content);
                      // 读取 text
                      // var announcement_mag = editor.txt.text();
                      // console.log("content html : " + announcement_mag);
@@ -33,11 +32,12 @@ $.extend({
                                  if (result.code === 200) {
                                      const obj = result.data;
                                      const commentId = obj.commentId;
+                                     const usernameStr = "'" + obj.username + "'";
                                      let str = '$.comment.reply(' + commentId + ', this, ' + obj.userId + ', ' + usernameStr + ')'
                                      if (result.parentId === 0) {
                                          str = '$.comment.reply(' + commentId + ', this, 0, \'\')';
                                      }
-                                     let comment = '<div class="comment-body" id="' + obj.id + '" style="margin-top: 10px">'
+                                     let comment = '<div class="comment-body" id="' + obj.commentId + '" style="margin-top: 10px">'
                                                    + '     <div class="cheader">'
                                                    + '        <a target="_blank" href="../index.html?userId=' + obj.userId + '">'
                                                    + '           <img al="头像"  class="userImage" src="' + obj.avatar + '">'
@@ -52,9 +52,8 @@ $.extend({
                                                    + obj.content
                                                    + '     </div>'
                                                    + '     <div class="sign">'
-                                                   + '		<a href="#' + obj.id + '" class="comment-reply" onclick="' + str + '"><i class="fa'
-                                                   + ' fa-reply'
-                                                   + ' fa-fw"></i>回复</a>'
+                                                   + '		<a href="#' + obj.commentId + '" class="comment-reply" onclick="' + str + '"><i class="fa fa-reply fa-fw"></i>回复</a>'
+                                                   + '      <a href="javascript:void(0)" onclick="$.comment.deleteComment(' + blogId + ',' + commentId + ')"><i class="fa fa-remove fa-fw"/>删除</a>'
                                                    + '     </div></div>';
                                      if (obj.parentId === 0) {
                                          comment = "<li>" + comment + '</li>';
@@ -63,7 +62,7 @@ $.extend({
                                          $("#" + obj.parentId).append(comment);
                                      }
                                      editor.txt.html('');
-                                     Toastr.success('评论已发表！');
+                                     toastr.success('评论已发表！');
                                  } else {
                                      toastr("评论失败，原因 : " + result.message);
                                  }
@@ -71,6 +70,8 @@ $.extend({
                              function () {
                                  toastr("评论失败，发生未知错误！");
                              });
+                     // 点击提交后关闭输入框
+                     this.cancelReply(target);
                  },
                  // 点击回复评论按钮时的前端动态变化
                  reply: function (rId, c, userId, username) {
@@ -80,7 +81,7 @@ $.extend({
                      $(c).hide();
                      if (userId !== 0) {
                          // $('#content').html('<a href="/index.html?userId=' + userId + '">@' + username + '</a>');
-                         editor.txt.html('<a href="/index.html?userId=' + userId + '">@' + username + '</a>');
+                         editor.txt.html('<a href="/index.html?userId=' + userId + '" target="_blank">@' + username + '</a>');
                      }
                      // $(c).parents('.comment-body').append($('#comment-post'));
                      $(c).parent().parent().append($('#comment-post'));
@@ -93,24 +94,42 @@ $.extend({
                      $(c).parents(".comment-body").find('.comment-reply').show();
                      //			$(c).parent().parent().parent().find('.comment-reply').show();
                      $("#comment-place").append($('#comment-post'));
+                 },
+                 deleteComment: function (blogId, commentId) {
+                     request("/blog/" + blogId + "/comment/" + commentId, 'delete', null, true,
+                             function (result) {
+                                 if (result.code === 200) {
+                                     toastr.success("删除成功！");
+                                     $("#" + commentId).hide();
+                                 } else {
+                                     toastr.error("删除失败！");
+                                 }
+                             },
+                             function () {
+                                 toastr.error("删除失败！");
+                             });
                  }
              }
          });
 
 function loadComment() {
+    let selfUserId = $.cookie('userId');
     const blogId = getUrlParam("blogId");
+    $("#comment_num_em").text(getUrlParam("commentNum"));
     request("/blog/" + blogId + "/comment?pageSize=10&pageNum=1", 'get', null, true,
             function (result) {
                 if (result.code === 200) {
                     let commentUl = $("#comment_ul");
+                    let selfUserId = $.cookie("userId");
                     $.each(result.data, function (idx, obj) {
 						const commentId = obj.id;
                         replyParentStr = '$.comment.reply(' + commentId + ', this, 0, \'\')';
+
                         let comment = '<li>'
                                       + '  <div class="comment-body" id="' + commentId + '">'
                                       + '     <div class="cheader">'
-                                      + '        <a target="_blank" href="../index.html?userId=' + obj.parentCommentUserId + '">'
-                                      + '           <img al="头像"  class="userImage" src="' + obj.avatar + '">'
+                                      + '        <a target="_blank" href="../index.html?userId=' + obj.commentUserId + '">'
+                                      + '           <img alt="头像"  class="userImage" src="' + obj.avatar + '">'
                                       + '           <strong>' + obj.username + '</strong>'
                                       + '        </a>'
                                       + '        <div class="timer">'
@@ -126,6 +145,9 @@ function loadComment() {
                                       + (obj.childrenComments.length > 0 ? '        <a href="" class="comment-reply" onclick=""><i class="fa fa-comments-o fa-fw"></i>查看回复</a>' : '')
                                       + '		<a href="#' + commentId + '" class="comment-reply" '
                                       + '       onclick="' + replyParentStr + '"><i class="fa fa-reply fa-fw"></i>回复</a>'
+                                      + (obj.commentUserId == selfUserId ? '<a href="javascript:void(0)"  class="comment-reply" onclick="$.comment.deleteComment(' + blogId + ',' + commentId + ')"><i'
+                                      + ' class="fa'
+                                      + ' fa-remove fa-fw"/>删除</a>' : '')
                                       + '     </div>';
                         $.each(obj.childrenComments, function (idx, obj) {
                             usernameStr = "'" + obj.username + "'";
@@ -133,7 +155,7 @@ function loadComment() {
                             comment += '<div class="comment-body" id="' + obj.commentId + '" style="margin-top: 10px">'
                                        + '     <div class="cheader">'
                                        + '        <a target="_blank" href="../index.html?userId=' + obj.userId + '">'
-                                       + '           <img al="头像"  class="userImage" src="' + obj.avatar + '">'
+                                       + '           <img alt="头像"  class="userImage" src="' + obj.avatar + '">'
                                        + '           <strong>' + obj.username + '</strong>'
                                        + '        </a>'
                                        + '        <div class="timer">'
@@ -146,9 +168,9 @@ function loadComment() {
                                        + obj.content
                                        + '     </div>'
                                        + '     <div class="sign">'
-                                       + '		<a href="#' + obj.commentId + '" class="comment-reply" onclick="' + replyChildStr + '"><i class="fa'
-                                       + ' fa-reply'
-                                       + ' fa-fw"></i>回复</a>'
+                                       + '		<a href="#' + obj.commentId + '" class="comment-reply" onclick="' + replyChildStr + '"><i class="fa fa-reply fa-fw"></i>回复</a>'
+                                       + (obj.userId == selfUserId ? '<a href="javascript:void(0)" onclick="$.comment.deleteComment(' + blogId + ',' + obj.commentId + ')"><i class="fa fa-remove'
+                                       + ' fa-fw"/>删除</a>' : '')
                                        + '     </div></div>';
                         });
                         comment += '  </div></li>';

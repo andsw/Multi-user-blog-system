@@ -43,6 +43,7 @@ em {
 .comment-post .cancel-reply a,
 .comment-reply {
 	/*color: #0c0;*/
+	cursor: pointer;
 	text-decoration: none;
 }
 

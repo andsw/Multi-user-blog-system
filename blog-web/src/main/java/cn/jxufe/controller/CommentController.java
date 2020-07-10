@@ -1,6 +1,7 @@
 package cn.jxufe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +40,10 @@ public class CommentController {
         Comment comment = new Comment().setBlogId(blogId).setContent(content).setUserId(userId).setParentId(parentId);
 
         return NormalResult.successWithData(commentService.addComment(comment));
+    }
+
+    @DeleteMapping("/blog/{blogId}/comment/{commentId}")
+    public NormalResult<?> deleteComment(@PathVariable Integer blogId, @PathVariable Integer commentId) {
+        return commentService.deleteComment(blogId, commentId) ? NormalResult.success() : NormalResult.failure();
     }
 }

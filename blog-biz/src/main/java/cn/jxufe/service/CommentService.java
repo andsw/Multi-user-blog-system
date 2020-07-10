@@ -14,4 +14,6 @@ public interface CommentService {
     List<FistLoadedCommentVo> getBlogComments(Integer blogId, Integer pageNum, Integer pageSize);
 
     CommentWithUserInfoVo addComment(Comment comment);
+
+    boolean deleteComment(Integer blogId, Integer commentId);
 }

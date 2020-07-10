@@ -1,8 +1,6 @@
 var testEditor;
 $(function () {
     const blogId = getUrlParam("blogId");
-    // console.log(blogId);
-    $("#comment_iframe").attr('src', './comment_static/index.html?blogId=' + blogId);
     if (blogId != null) {
         request("/blog/" + blogId, 'get', null, false,
                 function (result) {
@@ -22,6 +20,7 @@ $(function () {
                         $("#author_username").text(result.data.username);
                         $("#author_avatar").attr("src", result.data.avatar);
                         $("#author_info_a").append(returnGenderImg(result.data.gender));
+                        $("#comment_iframe").attr('src', './comment_static/index.html?blogId=' + blogId + "&commentNum=" + blogInfo.commentNum);
                     } else {
                         toastr.error(result.message);
                     }

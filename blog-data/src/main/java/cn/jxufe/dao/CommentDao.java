@@ -19,4 +19,6 @@ public interface CommentDao {
 
     void insertComment(Comment comment);
 
+    Integer deleteComment(Integer commentId);
+
 }

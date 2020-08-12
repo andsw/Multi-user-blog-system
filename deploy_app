@@ -1,3 +1,4 @@
 git pull
+source /etc/profile
 mvn package
 java -jar ./blog-web/target/blog-web-0.0.1-SNAPSHOT.jar
